@@ -1,0 +1,52 @@
+/****************************************/
+/*      fonts.css - burger-quiz      */
+/*--------------------------------------*/
+/*  Author : Gwenolé Leroy-Ferrec - Tomy Guichard                  */
+/*  License : GPL-3.0                */
+/*  This file describes the fonts used  */
+/*  in the project.                     */
+/*  juin 2018                      */
+/****************************************/
+
+
+@font-face
+{
+    font-family: "AdventPro-Thin";
+    src: url("AdventPro-Thin.ttf");
+}
+
+@font-face
+{
+    font-family: "Bowhouse-Light";
+    src: url("Bowhouse-Light.otf");
+}
+
+@font-face
+{
+    font-family: "Quicksand_Light";
+    src: url("Quicksand_Light.otf");
+}
+
+@font-face
+{
+    font-family: "Quicksand";
+    src: url("Quicksand_Book.otf");
+}
+
+@font-face
+{
+    font-family: "ZillaSlab";
+    src: url("Zilla Slab/ZillaSlab-Regular.ttf");
+}
+
+@font-face
+{
+    font-family: "ZillaSlabBold";
+    src: url("Zilla Slab/ZillaSlab-SemiBold.ttf");
+}
+
+@font-face
+{
+    font-family: "ZillaSlabMedium";
+    src: url("Zilla Slab/ZillaSlab-Medium.ttf");
+}
