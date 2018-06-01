@@ -1,0 +1,16 @@
+/****************************************/
+/*		main.css - burger-quiz		*/
+/*--------------------------------------*/
+/*	Author : Gwenolé Leroy-Ferrec - Tomy Guichard					*/
+/*	License : GPL-3.0				*/
+/*	juin 2018						*/
+/****************************************/
+
+
+html, body
+{
+	margin: 0;
+	padding: 0;
+
+	font-family: Arial, Helvetica, sans-serif;
+}
