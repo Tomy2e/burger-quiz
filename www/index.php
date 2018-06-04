@@ -18,6 +18,7 @@
 		<?php require_once("templates/header.html"); ?>
 
 		<!-- Page content -->
+		<div class="main-content"></div>
 
 		<?php require_once("templates/footer.html"); ?>
 	</body>
