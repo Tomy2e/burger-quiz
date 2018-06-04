@@ -1,10 +1,10 @@
-/****************************************/
-/*		main.css - burger-quiz		*/
-/*--------------------------------------*/
-/*	Author : Gwenolé Leroy-Ferrec - Tomy Guichard					*/
-/*	License : GPL-3.0				*/
-/*	juin 2018						*/
-/****************************************/
+/****************************************************/
+/*		main.css - burger-quiz						*/
+/*--------------------------------------------------*/
+/*	Author : Gwenolé Leroy-Ferrec - Tomy Guichard	*/
+/*	License : GPL-3.0								*/
+/*	juin 2018										*/
+/****************************************************/
 
 
 html, body
@@ -13,4 +13,43 @@ html, body
 	padding: 0;
 
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+a
+{
+	color: orangered;
+	transition: all 0.3s;
+}
+
+a:visited
+{
+	color:	rgb(172, 73, 37);
+}
+
+a:hover
+{
+	color: orange;
+}
+
+button, .button
+{
+	padding: 0.5em 2em;
+	text-align: center;
+}
+
+.hbox, .vbox
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.hbox
+{
+	flex-direction: row;
+}
+
+.vbox
+{
+	flex-direction: column;
 }
