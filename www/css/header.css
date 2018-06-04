@@ -1,0 +1,105 @@
+header.hnav, .hnav
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    /*height: 10vh;*/
+
+    font-family: "ZillaSlabBold", "ZillaSlab", "Tibetan Machine Uni", Arial, Helvetica, sans-serif;
+
+    color: lightgrey;
+    background-color: black;
+
+    border-bottom: solid 4px orangered;
+}
+
+header h1
+{
+    font-size: 1.4em;
+    font-weight: normal;
+
+    margin: 0;
+    padding: 0.5em;
+    color: orangered;
+}
+
+header img
+{
+    display: inline;
+}
+
+.hnav-list
+{
+    display: inline-block;
+    list-style-type: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.hnav-list li
+{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.hnav-list li a
+{
+    display: block;
+    padding: 1em 1em;
+
+    font-size: 1.2em;
+
+    color: lightgrey;
+    text-decoration: none;
+}
+
+.hnav-list li a:hover
+{
+    color: orange;
+}
+
+.hnav-list li a.selected
+{
+    color: orangered;
+}
+
+.marker
+{
+    position: absolute;
+    bottom: 0;
+
+    content: " ";
+
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 10px 7.5px;
+    border-color: transparent transparent orangered transparent;
+
+    transition: left 0.5s;
+}
+
+.spacer
+{
+    flex: 2;
+}
+
+#hnav-left > *, #hnav-right > *
+{
+    display: inline-block;
+}
+
+#hnav-right
+{
+    flex: initial;
+}
+
+#site-logo
+{
+    width: 3em;
+    padding-left: 0.5em;
+}

@@ -10,6 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="header.css">
 		<link rel="stylesheet" type="text/css" href="footer.css">
+
+		<script src="/js/main.js"></script>
 	</head>
 	<body>
 		<?php require_once("templates/header.html"); ?>
