@@ -1,7 +1,7 @@
 function updateMarkerPosition()
 {
     var selectedItem = document.querySelector('.hnav-list li a.selected');
-    var marker = document.querySelector('.marker');
+    var marker = document.getElementById('marker');
 
     console.log(selectedItem);
     

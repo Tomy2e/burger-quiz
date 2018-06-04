@@ -40,8 +40,11 @@ button, .button
 {
 	padding: 0.5em 2em;
 	text-align: center;
+
+	font-size: 1em;
 }
 
+/*
 .hbox, .vbox
 {
 	display: flex;
@@ -57,4 +60,4 @@ button, .button
 .vbox
 {
 	flex-direction: column;
-}
+}*/

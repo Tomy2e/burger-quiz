@@ -67,7 +67,7 @@ header img
     color: orangered;
 }
 
-.marker
+.triangle
 {
     position: absolute;
     bottom: 0;
@@ -78,14 +78,23 @@ header img
     height: 0;
     border-style: solid;
     border-width: 0 7.5px 10px 7.5px;
-    border-color: transparent transparent orangered transparent;
-
-    transition: left 0.5s;
 }
 
 .spacer
 {
     flex: 2;
+}
+
+.roundel
+{
+    border-radius: 50%;
+}
+
+#marker
+{
+    border-color: transparent transparent orangered transparent;
+
+    transition: left 0.5s;
 }
 
 #hnav-left > *, #hnav-right > *
@@ -103,3 +112,45 @@ header img
     width: 3em;
     padding-left: 0.5em;
 }
+
+#profile-pic
+{
+    width: 2.5em;
+    padding: 0;
+}
+
+#profile-selector
+{
+    width: 2.5em;
+    height: 2.5em;
+
+    margin: 0.25em 0.5em;
+
+    border: solid 3px lightgray;
+
+    cursor: pointer;
+
+    transition: border-color 0.2s;
+}
+
+#profile-selector:hover
+{
+    border-color: orangered;
+}
+
+#profile-modal
+{
+    right: 1em;
+    font-size: 0.6em;
+}
+
+#profile-modal img
+{
+    height: 15em;
+}
+
+#profile-modal #window-profile-pic
+{
+    margin: 2em 4em;
+}
+
