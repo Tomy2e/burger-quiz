@@ -26,6 +26,7 @@ class Theme
             }
             else
             {
+                $this->id = $theme['id_theme'];
                 $this->libelle = $theme['libelle_theme'];
                 $this->photo = $theme['photo_theme'];
                 

@@ -20,6 +20,16 @@ class Question
         return $this->id;
     }
 
+    public function getLibelle1()
+    {
+        return $this->libelle1;
+    }
+
+    public function getlibelle2()
+    {
+        return $this->libelle2;
+    }
+
     public function fetchRandomPropositions($number = 3)
     {
         $prepFetch = $this->db->prepare("SELECT * FROM propositions WHERE id_question = ? AND active_proposition = 1 ORDER BY RAND() LIMIT 3");

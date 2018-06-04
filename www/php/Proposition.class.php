@@ -11,4 +11,14 @@ class Proposition
         $this->reponse = $reponse;
         $this->active = $active;
     }
+
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    public function getReponse()
+    {
+        return $this->reponse;
+    }
 }

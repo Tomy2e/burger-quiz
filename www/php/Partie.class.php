@@ -20,6 +20,11 @@ class Partie
         $this->questions = array();
     }
 
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+
     public function pickRandomQuestionsByTheme(Theme $theme, $number = 3)
     {
         // the $number variable is not used in the SQL query yet
