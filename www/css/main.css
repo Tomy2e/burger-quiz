@@ -31,6 +31,11 @@ a:hover
 	color: orange;
 }
 
+a:active, a:focus
+{
+	outline: none;
+}
+
 button, .button
 {
 	padding: 0.5em 2em;

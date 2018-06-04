@@ -7,8 +7,8 @@
 /****************************************************/
 
 
-window.onload = function () {
-	
+window.onload = function ()
+{
+	initNav();
 	updateMarkerPosition();
-	
 }
