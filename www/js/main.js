@@ -22,11 +22,13 @@ window.onload = function ()
 	initNav();
 	updateMarkerPosition();
 
+	window.onresize = updateMarkerPosition();
+
 	var profileWindow = new Window(this.document.getElementById('profile-modal'));
 
 	var profileWindowToggler = document.getElementById('profile-selector');
 
 	profileWindowToggler.addEventListener('click', (event) => {
 		profileWindow.toggle();
-	})
+	});
 }

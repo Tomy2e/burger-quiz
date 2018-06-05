@@ -26,7 +26,7 @@
 					<h2>Options</h2>
 				</a>
 
-				<a class="button squared menu-item" id="play" href="launch.php.php">
+				<a class="button squared menu-item" id="play" href="gamesettings.php">
 					<img src="/resources/img/burger-content.png" alt="">
 					<h2>Jouer</h2>
 				</a>
