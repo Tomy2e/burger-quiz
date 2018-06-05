@@ -15,10 +15,14 @@ LIBS += -lmysqlcppconn
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dbconnection.cpp
+    dbconnection.cpp \
+    questions.cpp \
+    question.cpp
 
 HEADERS  += mainwindow.h \
-    dbconnection.h
+    dbconnection.h \
+    questions.h \
+    question.h
 
 FORMS    += mainwindow.ui
 

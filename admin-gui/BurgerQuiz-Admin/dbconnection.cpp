@@ -33,7 +33,7 @@ sql::Connection * DbConnection::getConnection()
 {
     if(con == NULL)
     {
-        throw new string("The database is not initialized!");
+        throw string("The database is not initialized!");
     }
 
     if(!con->isValid())

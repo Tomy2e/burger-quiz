@@ -5,6 +5,9 @@
 #include <QDebug>
 #include "dbconnection.h"
 #include <QMessageBox>
+#include "questions.h"
+
+Q_DECLARE_METATYPE(Question)
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +25,12 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_7_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_12_clicked();
 
 private:
     Ui::MainWindow *ui;
