@@ -11,11 +11,14 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = BurgerQuiz-Admin
 TEMPLATE = app
 
+LIBS += -lmysqlcppconn
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    dbconnection.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    dbconnection.h
 
 FORMS    += mainwindow.ui
 
