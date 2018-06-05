@@ -2,14 +2,14 @@
 
 :root
 {
-    --btn-front: orangered;
+    --btn-front: rgb(219, 80, 30);
     --btn-back: white;
     --btn-disable: rgb(82, 82, 82);
     --btn-alt: rgb(34, 95, 34);
 
     --input-border: gray;
     --input-shadow: rgba(128, 128, 128, 0.651);
-    --input-border-active: rgb(197, 92, 54);
+    --input-border-active: rgb(219, 80, 30);
 }
 
 
@@ -100,6 +100,7 @@ button, .button
 
     text-transform: uppercase;
     text-decoration: none;
+    text-align: center;
     font-weight: bold;
     font-size: 0.8em;
 
@@ -140,7 +141,18 @@ button.highlighted:hover, .button.highlighted:hover
     color: var(--btn-front);
 }
 
+button.flat, .button.flat
+{
+    background-color: var(--btn-back);
+    border-color: var(--btn-back);
+}
 
+
+
+button.squared, .button.squared
+{
+    border-radius: 0;
+}
 
 table, td
 {

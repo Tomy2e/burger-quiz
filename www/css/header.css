@@ -1,18 +1,29 @@
+:root
+{
+    --header-back:  rgb(42, 42, 42);
+    --header-front: lightgray;
+    --main-front:   rgb(247, 108, 28);
+    --main-back:    white;
+    --alt-front:    rgb(197, 31, 31);
+}
+
 header.hnav, .hnav
 {
     position: fixed;
     top: 0;
     left: 0;
 
+    z-index: 4242;
+
     width: 100vw;
     /*height: 10vh;*/
 
     font-family: "ZillaSlabBold", "ZillaSlab", "Tibetan Machine Uni", Arial, Helvetica, sans-serif;
 
-    color: lightgrey;
-    background-color: black;
+    color: var(--header-front);
+    background-color: var(--header-back);
 
-    border-bottom: solid 4px orangered;
+    border-bottom: solid 4px var(--main-front);
 }
 
 header h1
@@ -22,7 +33,7 @@ header h1
 
     margin: 0;
     padding: 0.5em;
-    color: orangered;
+    color: var(--main-front);
 }
 
 header img
@@ -49,11 +60,11 @@ header img
 .hnav-list li a
 {
     display: block;
-    padding: 1em 1em;
+    padding: 1em;
 
     font-size: 1.2em;
 
-    color: lightgrey;
+    color: var(--header-front);
     text-decoration: none;
 }
 
@@ -64,7 +75,7 @@ header img
 
 .hnav-list li a.selected
 {
-    color: orangered;
+    color: var(--main-front);
 }
 
 .triangle
@@ -92,7 +103,7 @@ header img
 
 #marker
 {
-    border-color: transparent transparent orangered transparent;
+    border-color: transparent transparent var(--main-front) transparent;
 
     transition: left 0.5s;
 }
@@ -125,8 +136,9 @@ header img
     height: 2.5em;
 
     margin: 0.25em 0.5em;
+    margin-right: 1.5em;
 
-    border: solid 3px lightgray;
+    border: solid 3px var(--header-front);
 
     cursor: pointer;
 
@@ -135,13 +147,13 @@ header img
 
 #profile-selector:hover
 {
-    border-color: orangered;
+    border-color: var(--main-front);
 }
 
 #profile-modal
 {
     top: 4em;
-    right: 0.5em;
+    right: 1.5em;
     font-size: 1em;
 
     padding: 1em;
@@ -178,6 +190,6 @@ header img
     top: -10px;
     right: 1em;
 
-    border-color: transparent transparent white transparent;    
+    border-color: transparent transparent var(--main-back) transparent;    
 }
 

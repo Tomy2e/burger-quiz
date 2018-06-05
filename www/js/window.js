@@ -4,34 +4,33 @@ class Window
     {
         this.element = element;
         //this.visible = element.classList.contains('hidden');
-        this.element.addEventListener('transitionend', () => {
-            console.log('transitionend');
-            
-            if ( !this.visible() )
-            {
-                //this.element.style.zIndex = "-1";
-                this.element.style.zIndex = "-100";
-            } else {
-                this.element.style.display = "flex";
-            }
-            
-        });
     }
 
     show()
     {
-        this.element.classList.remove('hidden');
+        this.element.style.display = "flex";
+
+        setTimeout( () => {
+            this.element.classList.remove('hidden');
+        }, 20);
     }
 
     hide()
     {
         this.element.classList.add('hidden');
+        this.element.fireOnce('transitionend', (ev) => {
+            this.element.style.display = "none";
+        });
     }
 
     toggle()
     {
-        if (!this.visible()) this.element.style.zIndex = "100";
-        this.element.classList.toggle('hidden');
+        if ( this.visible() )
+        {
+            this.hide();
+        } else {
+            this.show();
+        }
     }
 
     visible()

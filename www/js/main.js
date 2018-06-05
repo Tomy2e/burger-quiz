@@ -6,6 +6,16 @@
 /*	juin 2018										*/
 /****************************************************/
 
+/* Attaches an event listener that will be only fired once */
+Element.prototype.fireOnce = function (event, callback)
+{
+	this.addEventListener(event, function (e) {
+		//Remove the event listener
+		e.target.removeEventListener(e.type, arguments.callee);
+		//Call the callback
+		return callback(e);
+	});
+}
 
 window.onload = function ()
 {
