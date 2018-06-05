@@ -20,7 +20,7 @@
 
 		<!-- Page content -->
 		<div class="main-content">
-			<div class="hbox">
+			<div id="menu-item-container" class="hbox">
 				<a class="button squared menu-item" id="settings" href="settings.php">
 					<img src="/resources/img/settings.png" alt="">
 					<h2>Options</h2>

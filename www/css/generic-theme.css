@@ -70,6 +70,11 @@ form
     text-align: center;
 }
 
+.centered
+{
+    justify-content: space-around;
+}
+
 input
 {
     width: 100%;
