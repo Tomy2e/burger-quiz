@@ -140,17 +140,44 @@ header img
 
 #profile-modal
 {
-    right: 1em;
-    font-size: 0.6em;
+    top: 4em;
+    right: 0.5em;
+    font-size: 1em;
+
+    padding: 1em;
+
+    border-radius: 0.5em;
+
+    cursor: default;
 }
 
 #profile-modal img
 {
-    height: 15em;
+    height: 8em;
+}
+
+#profile-modal h2
+{
+    margin: 0;
+
+    text-align: center;
+
+    font-weight: normal;
+    font-size: 1.3em;
+
+    color: grey;
 }
 
 #profile-modal #window-profile-pic
 {
-    margin: 2em 4em;
+    margin: 1em;
+}
+
+#modal-toparrow
+{
+    top: -10px;
+    right: 1em;
+
+    border-color: transparent transparent white transparent;    
 }
 

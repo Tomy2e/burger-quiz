@@ -41,9 +41,14 @@ button, .button
 	padding: 0.5em 2em;
 	text-align: center;
 
-	font-size: 1em;
+	/*font-size: 0.7em;*/
 }
 
+.main-content
+{
+	background-color: red;
+	min-height: 100vh;
+}
 /*
 .hbox, .vbox
 {
