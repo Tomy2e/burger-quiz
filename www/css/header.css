@@ -1,8 +1,8 @@
 :root
 {
-    --header-back:  rgb(42, 42, 42);
+    --header-back:  rgb(51, 48, 42);
     --header-front: lightgray;
-    --main-front:   rgb(247, 108, 28);
+    --main-front:   rgb(247, 128, 30);
     --main-back:    white;
     --alt-front:    rgb(197, 31, 31);
 }
@@ -31,6 +31,7 @@ header
 
 footer
 {
+    text-align: center;
     border-top: solid 4px var(--main-front);
 }
 
@@ -58,7 +59,6 @@ header img
 
 .hnav-list
 {
-    display: inline-block;
     list-style-type: none;
 
     padding: 0;

@@ -13,7 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="css/footer.css">
 		<link rel="stylesheet" type="text/css" href="css/menu.css">
 
-		<script src="/js/main.js"></script>
+		<script src="js/main.js"></script>
 	</head>
 	<body>
 		<?php require_once("templates/header.html"); ?>
@@ -22,17 +22,17 @@
 		<div class="main-content">
 			<div id="menu-item-container" class="hbox">
 				<a class="button squared menu-item" id="settings" href="settings.php">
-					<img src="/resources/img/settings.png" alt="">
+					<img src="resources/img/settings.png" alt="">
 					<h2>Options</h2>
 				</a>
 
-				<a class="button squared menu-item" id="play" href="launch.php.php">
-					<img src="/resources/img/burger-content.png" alt="">
+				<a class="button squared menu-item" id="play" href="gamesettings.php">
+					<img src="resources/img/burger-content.png" alt="">
 					<h2>Jouer</h2>
 				</a>
 
 				<a class="button squared menu-item" id="ranking" href="ranking.php">
-					<img src="/resources/img/coupe.png" alt="">
+					<img src="resources/img/coupe.png" alt="">
 					<h2>Classement</h2>
 				</a>
 			</div>
