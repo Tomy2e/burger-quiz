@@ -34,6 +34,10 @@ QVector<Question> Questions::fetchQuestions()
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
 
+        QMessageBox msgBox;
+        msgBox.setText("Une erreur SQL s'est produite !");
+        msgBox.exec();
+
         QVector<Question> emptyVec;
         return emptyVec;
       } catch(string e)

@@ -3,6 +3,10 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <QMessageBox>
+
+#include "dbconnection.h"
+
 
 using namespace std;
 
@@ -19,6 +23,9 @@ public:
     void setActive(int active);
     void setLibelle1(string libelle1);
     void setLibelle2(string libelle2);
+
+    void enable();
+    void disable();
 
     //QVector<Propositions> getPropositions();
 

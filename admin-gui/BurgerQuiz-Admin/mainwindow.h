@@ -32,6 +32,10 @@ private slots:
 
     void on_pushButton_12_clicked();
 
+    void on_listWidget_currentRowChanged(int currentRow);
+
+    void on_pushButton_11_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
