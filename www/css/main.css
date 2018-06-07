@@ -6,13 +6,18 @@
 /*	juin 2018										*/
 /****************************************************/
 
+@import "colors.css";
+
 
 html, body
 {
 	margin: 0;
 	padding: 0;
 
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "ZillaSlab", "Tibetan Machine Uni", Arial, Helvetica, sans-serif;
+
+	color: var(--text);
+	background-color: var(--main-back);
 }
 
 h1, h2, h3, h4, h5, h6
@@ -34,7 +39,7 @@ a:visited
 
 a:hover
 {
-	color: orange;
+	color: var(--text-alt);
 }
 
 a:active, a:focus

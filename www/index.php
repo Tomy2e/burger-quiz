@@ -19,7 +19,7 @@
 		<?php require_once("templates/header.html"); ?>
 
 		<!-- Page content -->
-		<div class="main-content">
+		<div id="page-menu" class="main-content">
 			<div id="menu-item-container" class="hbox">
 				<a class="button squared menu-item" id="settings" href="settings.php">
 					<img src="resources/img/settings.png" alt="">

@@ -1,11 +1,4 @@
-:root
-{
-    --header-back:  rgb(51, 48, 42);
-    --header-front: lightgray;
-    --main-front:   rgb(247, 128, 30);
-    --main-back:    white;
-    --alt-front:    rgb(197, 31, 31);
-}
+@import "colors.css";
 
 header.hnav, .hnav
 {
@@ -85,7 +78,7 @@ header img
 
 .hnav-list li a:hover
 {
-    color: orange;
+    color: var(--text-alt);
 }
 
 .hnav-list li a.selected
@@ -118,6 +111,7 @@ header img
 
 #marker
 {
+    right: -100%;
     border-color: transparent transparent var(--main-front) transparent;
 
     transition: left 0.5s;
