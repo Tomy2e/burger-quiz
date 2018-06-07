@@ -1,0 +1,12 @@
+:root
+{
+    --header-back:  rgb(51, 48, 42);
+    --header-front: lightgray;
+    --main-front:   rgb(247, 128, 30);
+    --main-back:    white;
+    --alt-front:    rgb(197, 31, 31);
+    --alt-back: rgb(97, 92, 87);
+    --text: rgb(68, 54, 45);
+    --text-important: var(--main-front);
+    --text-alt: orange;
+}

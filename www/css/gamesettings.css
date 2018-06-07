@@ -1,0 +1,100 @@
+@import "colors.css";
+
+li.theme-list-item
+{
+    padding: 1em;
+    background-color: var(--header-front);
+
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.theme-list-item:hover
+{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+}
+
+li.theme-list-item.selected
+{
+
+}
+
+li.theme-list-item h3
+{
+    color: gray;
+    margin: 0;
+    margin-top: 0.5em;
+}
+
+.hbox-selector
+{
+    background-color: var(--alt-back);
+    margin: 1em 30%;
+
+    transition: all 0.3s;
+}
+
+.hbox-selector ul
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+
+.hbox-selector ul li
+{
+    display: inline-block;
+    width: auto;
+    height: 1em;
+
+    flex: auto;
+
+    padding: 0.5em 1em;
+
+    font-size: 1em;
+
+    color: var(--main-back);
+    background-color: transparent;
+
+    cursor: pointer;
+
+    transition: all 0.3s;
+}
+
+.hbox-selector ul li:hover
+{
+    color: var(--text-alt);
+}
+
+.hbox-selector ul li.selected
+{
+    font-weight: bold;
+}
+
+.hbox-selector ul li.selected:hover
+{
+    color: white;
+}
+
+#hbox-selector-marker
+{
+    background-color: var(--main-front);
+
+    height: 2em;
+    width: 0em;
+
+    margin-top: -2em;
+
+    transition: all 0.2s;
+}
+
+.theme-cover
+{
+    width: 15vw;
+}
+
+#theme-list
+{
+    width: 100%;
+}
