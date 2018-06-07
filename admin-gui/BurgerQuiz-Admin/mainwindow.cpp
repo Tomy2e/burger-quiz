@@ -94,7 +94,9 @@ void MainWindow::on_pushButton_12_clicked()
 
         Question question = data.value<Question>();
 
-        qDebug() << question.getId();
+        question.remove();
+
+        delete ui->listWidget->takeItem(ui->listWidget->currentRow());
     }
 }
 
@@ -153,6 +155,120 @@ void MainWindow::on_pushButton_11_clicked()
 
                 ui->listWidget->currentItem()->setBackgroundColor(Qt::white);
                 ui->pushButton_11->setText("Désactiver");
+            }
+        }
+    }
+}
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    if(ui->listWidget->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget->currentItem()->data(1);
+
+        Question question = data.value<Question>();
+
+        bool ok;
+
+        QString text = QInputDialog::getText(this, tr("Définir Libellé 1"),
+                                             tr("Libellé 1:"), QLineEdit::Normal,
+                                             QString::fromStdString(question.getLibelle1()), &ok);
+        if (ok && !text.isEmpty())
+        {
+
+            question.updateLibelle1(text.toStdString());
+
+            data.setValue(question);
+            ui->listWidget->currentItem()->setData(1, data);
+            ui->listWidget->currentItem()->setText(QString::fromStdString(question.getLibelle1() + ", " + question.getLibelle2() + " ou les deux ?"));
+        }
+
+    }
+
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    if(ui->listWidget->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget->currentItem()->data(1);
+
+        Question question = data.value<Question>();
+
+        bool ok;
+
+        QString text = QInputDialog::getText(this, tr("Définir Libellé 2"),
+                                             tr("Libellé 2:"), QLineEdit::Normal,
+                                             QString::fromStdString(question.getLibelle2()), &ok);
+        if (ok && !text.isEmpty())
+        {
+
+            question.updateLibelle2(text.toStdString());
+
+            data.setValue(question);
+            ui->listWidget->currentItem()->setData(1, data);
+            ui->listWidget->currentItem()->setText(QString::fromStdString(question.getLibelle1() + ", " + question.getLibelle2() + " ou les deux ?"));
+
+        }
+
+    }
+}
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    // Exemple repris sur : https://stackoverflow.com/a/29132723
+
+    QDialog * d = new QDialog();
+    QVBoxLayout * vbox = new QVBoxLayout();
+
+    QLabel * labelA = new QLabel("Libellé1 :");
+    QLineEdit * lineEditA = new QLineEdit();
+
+    QLabel * labelB = new QLabel("Libellé 2 :");
+    QLineEdit * lineEditB = new QLineEdit();
+
+    QDialogButtonBox * buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                                        | QDialogButtonBox::Cancel);
+
+    QObject::connect(buttonBox, SIGNAL(accepted()), d, SLOT(accept()));
+    QObject::connect(buttonBox, SIGNAL(rejected()), d, SLOT(reject()));
+
+    vbox->addWidget(labelA);
+    vbox->addWidget(lineEditA);
+    vbox->addWidget(labelB);
+    vbox->addWidget(lineEditB);
+    vbox->addWidget(buttonBox);
+
+    d->setLayout(vbox);
+
+    int result = d->exec();
+    if(result == QDialog::Accepted)
+    {
+        if(!lineEditA->text().isEmpty() && !lineEditB->text().isEmpty())
+        {
+            Question newQuestion;
+            newQuestion.setActive(1);
+            newQuestion.setLibelle1(lineEditA->text().toStdString());
+            newQuestion.setLibelle2(lineEditB->text().toStdString());
+
+            Questions qManager;
+            qManager.createQuestion(newQuestion);
+
+            // Si la question a bien été ajoutée, son ID est différent de 0 suite au passage par référence précédent
+            if(newQuestion.getId() != 0)
+            {
+                QListWidgetItem *newItem = new QListWidgetItem;
+                   newItem->setText(QString::fromStdString(newQuestion.getLibelle1() + ", " + newQuestion.getLibelle2() + " ou les deux ?"));
+                   QVariant data;
+                   data.setValue(newQuestion);
+                   newItem->setData(1, data);
+
+                   if(newQuestion.getActive() == 0)
+                   {
+                       newItem->setBackgroundColor(Qt::gray);
+                   }
+
+                   ui->listWidget->insertItem(0, newItem);
             }
         }
     }

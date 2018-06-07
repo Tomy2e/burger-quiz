@@ -50,3 +50,49 @@ QVector<Question> Questions::fetchQuestions()
         return emptyVec;
     }
 }
+
+void Questions::createQuestion(Question &question)
+{
+    try {
+
+        sql::PreparedStatement *pstmt;
+        sql::Connection *con = DbConnection::getConnection();
+
+        pstmt = con->prepareStatement("INSERT INTO questions(libelle1, libelle2, active_question) VALUES (?, ?, ?)");
+
+        pstmt->setString(1, question.getLibelle1());
+        pstmt->setString(2, question.getLibelle2());
+        pstmt->setInt(3, question.getActive());
+
+        pstmt->executeUpdate();
+
+        delete pstmt;
+
+        // On récupère le last insert id
+
+        sql::Statement* stmt = con->createStatement();
+        sql::ResultSet* res = stmt->executeQuery("SELECT @@identity AS id");
+        res->next();
+        question.setId(res->getInt("id"));
+
+        delete stmt;
+        delete res;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
+        QMessageBox msgBox;
+        msgBox.setText("Une erreur SQL s'est produite !");
+        msgBox.exec();
+
+      } catch(string e)
+    {
+        QMessageBox msgBox;
+        msgBox.setText(QString::fromStdString(e));
+        msgBox.exec();
+    }
+}

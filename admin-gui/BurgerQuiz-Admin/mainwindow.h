@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include <QDebug>
 #include "dbconnection.h"
-#include <QMessageBox>
 #include "questions.h"
+
+#include <QtWidgets>
 
 Q_DECLARE_METATYPE(Question)
 
@@ -35,6 +36,12 @@ private slots:
     void on_listWidget_currentRowChanged(int currentRow);
 
     void on_pushButton_11_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_14_clicked();
+
+    void on_pushButton_16_clicked();
 
 private:
     Ui::MainWindow *ui;

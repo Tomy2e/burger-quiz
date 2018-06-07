@@ -17,12 +17,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     dbconnection.cpp \
     questions.cpp \
-    question.cpp
+    question.cpp \
+    proposition.cpp
 
 HEADERS  += mainwindow.h \
     dbconnection.h \
     questions.h \
-    question.h
+    question.h \
+    proposition.h
 
 FORMS    += mainwindow.ui
 

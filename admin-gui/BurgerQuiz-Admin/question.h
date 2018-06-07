@@ -24,8 +24,12 @@ public:
     void setLibelle1(string libelle1);
     void setLibelle2(string libelle2);
 
+    void updateLibelle1(string libelle1);
+    void updateLibelle2(string libelle2);
+
     void enable();
     void disable();
+    void remove();
 
     //QVector<Propositions> getPropositions();
 

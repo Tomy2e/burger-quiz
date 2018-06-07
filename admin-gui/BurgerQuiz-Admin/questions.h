@@ -18,6 +18,7 @@ public:
     Questions();
 
     QVector<Question> fetchQuestions();
+    void createQuestion(Question &question);
 };
 
 #endif // QUESTIONS_H
