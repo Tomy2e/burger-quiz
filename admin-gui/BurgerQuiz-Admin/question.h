@@ -7,6 +7,7 @@
 
 #include "dbconnection.h"
 #include "proposition.h"
+#include "theme.h"
 
 using namespace std;
 
@@ -32,6 +33,11 @@ public:
     void remove();
 
     QVector<Proposition> getPropositions();
+
+    QVector<Theme> getThemes();
+
+    void linkTheme(Theme theme);
+    void unlinkTheme(Theme theme);
 
     void ajouterProposition(Proposition &proposition);
 

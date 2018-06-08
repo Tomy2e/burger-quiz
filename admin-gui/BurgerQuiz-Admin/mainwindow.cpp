@@ -651,3 +651,81 @@ void MainWindow::on_pushButton_24_clicked()
 
     }
 }
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    if(ui->listWidget->currentRow() != -1)
+    {
+
+        QVariant data = ui->listWidget->currentItem()->data(1);
+
+        Question question = data.value<Question>();
+
+        ui->stackedWidget->setCurrentIndex(5);
+
+        ui->label_7->setText(QString::fromStdString(question.getLibelle1() + ", " + question.getLibelle2() + " ou les 2 ?"));
+
+        QVector<Theme> themes_associes = question.getThemes();
+
+        Themes themesMgr;
+        QVector<Theme> all_themes = themesMgr.fetchThemes();
+
+
+        ui->listWidget_4->clear();
+
+        for(int i = 0; i < all_themes.size(); i++)
+        {
+            // Source : http://www.qtcentre.org/threads/7032-QListWidget-with-check-box-s?p=37201#post37201
+
+            QListWidgetItem* item = new QListWidgetItem();
+            item->setText(QString::fromStdString(all_themes[i].getLibelle()));
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable); // set checkable flag
+
+            item->setCheckState(Qt::Unchecked);
+
+            for(int j = 0; j < themes_associes.size(); j++)
+            {
+                if(all_themes[i].getId() == themes_associes[j].getId())
+                {
+                    item->setCheckState(Qt::Checked);
+                }
+            }
+
+            QVariant data;
+            data.setValue(all_themes[i]);
+            item->setData(1, data);
+
+            ui->listWidget_4->insertItem(0, item);
+        }
+
+    }
+
+}
+
+void MainWindow::on_pushButton_26_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_pushButton_27_clicked()
+{
+    for(int i = 0; i < ui->listWidget_4->count(); i++)
+    {
+        QVariant dataTheme = ui->listWidget_4->item(i)->data(1);
+        Theme theme = dataTheme.value<Theme>();
+
+        QVariant dataQuestion = ui->listWidget->currentItem()->data(1);
+        Question question = dataQuestion.value<Question>();
+
+        if(ui->listWidget_4->item(i)->checkState() == Qt::Checked)
+        {
+            question.linkTheme(theme);
+        }
+        else
+        {
+            question.unlinkTheme(theme);
+        }
+    }
+
+    ui->stackedWidget->setCurrentIndex(2);
+}
