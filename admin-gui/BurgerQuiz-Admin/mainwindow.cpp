@@ -432,11 +432,6 @@ void MainWindow::on_pushButton_17_clicked()
                 ui->listWidget_2->insertItem(0, newItem);
             }
         }
-        // handle values from d
-        /*qDebug() << "The user clicked:"
-                 << "ComboBoxA" << comboBoxA->currentText()
-                 << "ComboBoxB" << comboBoxB->currentText()
-                 << "LineEditA" << lineEditA->text();*/
     }
 }
 
@@ -506,5 +501,153 @@ void MainWindow::on_pushButton_20_clicked()
         proposition.remove();
 
         delete ui->listWidget_2->takeItem(ui->listWidget_2->currentRow());
+    }
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+
+    Themes themesMgr;
+
+    QVector<Theme> themes = themesMgr.fetchThemes();
+
+
+    ui->listWidget_3->clear();
+
+    for(int i = 0; i < themes.length(); i++)
+    {
+        QListWidgetItem *newItem = new QListWidgetItem;
+        newItem->setText(QString::fromStdString(themes[i].getLibelle()));
+        QVariant data;
+        data.setValue(themes[i]);
+        newItem->setData(1, data);
+
+        ui->listWidget_3->insertItem(0, newItem);
+    }
+}
+
+void MainWindow::on_pushButton_21_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pushButton_22_clicked()
+{
+    QDialog * d = new QDialog();
+    QVBoxLayout * vbox = new QVBoxLayout();
+
+
+    QLabel * labelA = new QLabel("Libellé Thème : ");
+    QLineEdit * lineEditA = new QLineEdit();
+
+    QLabel * labelB = new QLabel("URL Photo : ");
+    QLineEdit * lineEditB = new QLineEdit();
+
+
+    QDialogButtonBox * buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                                        | QDialogButtonBox::Cancel);
+
+    QObject::connect(buttonBox, SIGNAL(accepted()), d, SLOT(accept()));
+    QObject::connect(buttonBox, SIGNAL(rejected()), d, SLOT(reject()));
+
+    vbox->addWidget(labelA);
+    vbox->addWidget(lineEditA);
+    vbox->addWidget(labelB);
+    vbox->addWidget(lineEditB);
+    vbox->addWidget(buttonBox);
+
+    d->setLayout(vbox);
+
+    int result = d->exec();
+    if(result == QDialog::Accepted)
+    {
+        if(!lineEditA->text().isEmpty())
+        {
+            Theme newTheme;
+            newTheme.setLibelle(lineEditA->text().toStdString());
+            newTheme.setPhoto(lineEditB->text().toStdString());
+
+            Themes themesMgr;
+            themesMgr.createTheme(newTheme);
+
+            if(newTheme.getId() != 0)
+            {
+                // Successfuly added to the database
+                QListWidgetItem *newItem = new QListWidgetItem;
+                newItem->setText(QString::fromStdString(newTheme.getLibelle()));
+                QVariant data;
+                data.setValue(newTheme);
+                newItem->setData(1, data);
+                ui->listWidget_3->insertItem(0, newItem);
+            }
+
+
+        }
+    }
+}
+
+void MainWindow::on_pushButton_23_clicked()
+{
+    if(ui->listWidget_3->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_3->currentItem()->data(1);
+
+        Theme theme = data.value<Theme>();
+
+        bool ok;
+
+        QString text = QInputDialog::getText(this, tr("Définir Libellé Thème"),
+                                             tr("Libellé:"), QLineEdit::Normal,
+                                             QString::fromStdString(theme.getLibelle()), &ok);
+        if (ok && !text.isEmpty())
+        {
+            theme.updateLibelle(text.toStdString());
+
+            data.setValue(theme);
+            ui->listWidget_3->currentItem()->setData(1, data);
+            ui->listWidget_3->currentItem()->setText(QString::fromStdString(theme.getLibelle()));
+
+        }
+
+    }
+}
+
+void MainWindow::on_pushButton_25_clicked()
+{
+    if(ui->listWidget_3->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_3->currentItem()->data(1);
+
+        Theme theme = data.value<Theme>();
+
+        bool ok;
+
+        QString text = QInputDialog::getText(this, tr("Définir photo"),
+                                             tr("URL :"), QLineEdit::Normal,
+                                             QString::fromStdString(theme.getPhoto()), &ok);
+        if (ok && !text.isEmpty())
+        {
+            theme.updatePhoto(text.toStdString());
+
+            data.setValue(theme);
+            ui->listWidget_3->currentItem()->setData(1, data);
+        }
+
+    }
+}
+
+void MainWindow::on_pushButton_24_clicked()
+{
+    if(ui->listWidget_3->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_3->currentItem()->data(1);
+
+        Theme theme = data.value<Theme>();
+
+        theme.remove();
+
+        delete ui->listWidget_3->takeItem(ui->listWidget_3->currentRow());
+
     }
 }
