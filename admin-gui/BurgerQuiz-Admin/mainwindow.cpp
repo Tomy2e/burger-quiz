@@ -439,3 +439,72 @@ void MainWindow::on_pushButton_17_clicked()
                  << "LineEditA" << lineEditA->text();*/
     }
 }
+
+void MainWindow::on_pushButton_19_clicked()
+{
+    if(ui->listWidget_2->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_2->currentItem()->data(1);
+
+        Proposition proposition = data.value<Proposition>();
+
+        if(proposition.getActive() == 1)
+        {
+            // On désactive
+            proposition.disable();
+            ui->pushButton_19->setText("Activer");
+        }
+        else
+        {
+            // On active
+            proposition.enable();
+            ui->pushButton_19->setText("Désactiver");
+        }
+
+        if(proposition.getActive() == 0)
+        {
+           ui->listWidget_2->currentItem()->setBackgroundColor(Qt::gray);
+        }
+        else
+        {
+           ui->listWidget_2->currentItem()->setBackgroundColor(Qt::white);
+        }
+
+        data.setValue(proposition);
+        ui->listWidget_2->currentItem()->setData(1, data);
+    }
+}
+
+void MainWindow::on_listWidget_2_currentRowChanged(int currentRow)
+{
+    if(currentRow != -1)
+    {
+        QVariant data = ui->listWidget_2->item(currentRow)->data(1);
+
+        Proposition proposition = data.value<Proposition>();
+
+        if(proposition.getActive() == 0)
+        {
+            ui->pushButton_19->setText("Activer");
+        }
+        else
+        {
+            ui->pushButton_19->setText("Désactiver");
+        }
+    }
+}
+
+void MainWindow::on_pushButton_20_clicked()
+{
+    // Supprimer une proposition
+    if(ui->listWidget_2->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_2->currentItem()->data(1);
+
+        Proposition proposition = data.value<Proposition>();
+
+        proposition.remove();
+
+        delete ui->listWidget_2->takeItem(ui->listWidget_2->currentRow());
+    }
+}
