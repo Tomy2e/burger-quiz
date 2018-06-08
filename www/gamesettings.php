@@ -32,16 +32,22 @@
 					require_once('php/Theme.class.php');
 
 					$db = Database::getInstance();
-
+					
 					$themes = Theme::fetchAllThemes();
 
-					echo "<pre>";
+					echo "\n####################################################################################\n";
 					var_dump($themes);
-					echo "</pre>"
+
+					foreach ($themes as $theme) {
+						echo '<li id="'.$theme->getId().'" class="theme-list-item">';
+							echo '<img class="theme-cover" src="'.( ($theme->getPhoto() == "") ? '/resources/img/imagedequalité.jpg"' : $theme->getPhoto() ).' alt="image de qualité.jpeg">';
+							echo '<h3>'.$theme->getLibelle().'</h3>';
+						echo '</li>';
+					}
 
 				?>
 				
-				<li id="0" class="theme-list-item">
+				<!--li id="0" class="theme-list-item">
 					<img class="theme-cover" src="/resources/img/imagedequalité.jpg" alt="image de qualité.jpeg">
 					<h3>ISEN</h3>
 				</li>
@@ -56,7 +62,7 @@
 				<li id="3" class="theme-list-item">
 					<img class="theme-cover" src="/resources/img/imagedequalité.jpg" alt="image de qualité.jpeg">
 					<h3>Histoire</h3>
-				</li>
+				</li-->
 			</ul>
 
 			<h1>Difficulté</h1>
