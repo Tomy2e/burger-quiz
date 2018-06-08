@@ -35,9 +35,6 @@
 					
 					$themes = Theme::fetchAllThemes();
 
-					echo "\n####################################################################################\n";
-					var_dump($themes);
-
 					foreach ($themes as $theme) {
 						echo '<li id="'.$theme->getId().'" class="theme-list-item">';
 							echo '<img class="theme-cover" src="'.( ($theme->getPhoto() == "") ? '/resources/img/imagedequalité.jpg"' : $theme->getPhoto() ).' alt="image de qualité.jpeg">';
@@ -76,14 +73,8 @@
 				<div id="slider-button-marker"></div>
 			</div>
 			
-			<a id="play" class="button squared highlighted" href="game.php">Jouer !</a>
+			<a id="play" class="button squared highlighted disabled" href="game.php">Jouer !</a>
 			<a id="replay" href="game.php">Rejouer une partie</a>
-
-			<form action="game.php">
-				<input type="hidden" name="id_theme">
-				<input type="hidden" name="difficulty">
-
-			</form>
 		</div>
 
 		<?php require_once("templates/footer.html"); ?>

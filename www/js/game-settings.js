@@ -10,6 +10,8 @@ window.addEventListener('load', () => {
         btnPlay.addEventListener('click', (ev) => {
             ev.preventDefault();
 
+            if ( btnPlay.classList.contains('disabled') ) return false;
+            
             var id_theme = document.querySelector('.theme-list-item.selected');
             var difficulty = document.querySelector('#difficulty .selected');
 
@@ -32,6 +34,7 @@ window.addEventListener('load', () => {
 function initThemeSelector()
 {
     var btnThemes = document.querySelectorAll('.theme-list-item');
+    var btnPlay = document.getElementById('play');
     
     for (const i in btnThemes) {
         if (btnThemes.hasOwnProperty(i)) {
@@ -41,7 +44,8 @@ function initThemeSelector()
                 if (selectedTheme) {
                     selectedTheme.classList.remove('selected');
                 }
-                btnThemes[i].classList.add('selected');                
+                btnThemes[i].classList.add('selected');
+                btnPlay.classList.remove('disabled');
             });
         }
     }

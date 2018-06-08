@@ -31,4 +31,16 @@ window.addEventListener('load', function ()
 	profileWindowToggler.addEventListener('click', (event) => {
 		profileWindow.toggle();
 	});
+
+	var mainContent = document.querySelector('body > div.main-content');
+
+	if ( mainContent )
+	{
+		mainContent.style.opacity = "1";
+
+		window.onbeforeunload = () => {
+			mainContent.style.opacity = "0";
+		}
+	}
 });
+
