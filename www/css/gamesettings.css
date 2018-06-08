@@ -27,7 +27,7 @@ li.theme-list-item h3
     margin-top: 0.5em;
 }
 
-.hbox-selector
+.slider-button
 {
     background-color: var(--alt-back);
     margin: 1em 30%;
@@ -35,14 +35,14 @@ li.theme-list-item h3
     transition: all 0.3s;
 }
 
-.hbox-selector ul
+.slider-button ul
 {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
 }
 
-.hbox-selector ul li
+.slider-button ul li
 {
     display: inline-block;
     width: auto;
@@ -51,6 +51,7 @@ li.theme-list-item h3
     flex: auto;
 
     padding: 0.5em 1em;
+    padding-bottom: 0.75em;
 
     font-size: 1em;
 
@@ -60,31 +61,33 @@ li.theme-list-item h3
     cursor: pointer;
 
     transition: all 0.3s;
+    transition-delay: 0.1s;
 }
 
-.hbox-selector ul li:hover
+.slider-button ul li:hover
 {
-    color: var(--text-alt);
+    background-color: rgba(255, 255, 255, 0.26);
 }
 
-.hbox-selector ul li.selected
+.slider-button ul li.selected::first-line
 {
-    font-weight: bold;
+    transform: scale(1.05);
 }
 
-.hbox-selector ul li.selected:hover
+.slider-button ul li.selected:hover
 {
     color: white;
+    background-color: transparent;
 }
 
-#hbox-selector-marker
+#slider-button-marker
 {
     background-color: var(--main-front);
 
-    height: 2em;
-    width: 0em;
+    height: 2.25em;
+    width: 9em;
 
-    margin-top: -2em;
+    margin-top: -2.25em;
 
     transition: all 0.2s;
 }
@@ -97,4 +100,19 @@ li.theme-list-item h3
 #theme-list
 {
     width: 100%;
+}
+
+#play
+{
+    display: block;
+    width: 10em;
+
+    margin: auto;
+    margin-top: 2.5em;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    
+    font-size: 1.4em;
+
+    background-color: var(--alt-front);
 }

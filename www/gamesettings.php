@@ -43,17 +43,18 @@
 			</ul>
 
 			<h1>Difficulté</h1>
-			<div class="hbox-selector" id="difficulty">
+			<div class="slider-button" id="difficulty">
 				<ul class="hnav-list">
 					<li class="selected">Facile</li>
 					<li>Moyen</li>
 					<li>Difficile</li>
 				</ul>
 
-				<div id="hbox-selector-marker"></div>
+				<div id="slider-button-marker"></div>
 			</div>
 			
-			<a href="game">start</a>
+			<a id="play" class="button flat highlighted" href="game.php">Jouer !</a>
+			<a id="replay" href="game.php">Rejouer une partie</a>
 
 		</div>
 
