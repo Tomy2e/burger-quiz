@@ -1,0 +1,76 @@
+
+@import "colors.css";
+
+
+.podium
+{
+    /*display: inline-block;*/
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.podium > div
+{
+    width: 8em;
+
+    margin-left: 0;
+    text-align: center;
+}
+
+.podium .user img
+{
+    width: 4em;
+
+    border: solid 4px var(--main-front);
+    border-radius: 100%;
+}
+
+.podium .user h2
+{
+    margin: 0;
+}
+
+.podium .step h2
+{
+    color: var(--header-front);
+    font-size: 5em;
+    margin: 0;
+}
+
+.podium #third .step h2
+{
+    font-size: 4em;
+    margin-top: -0.35em;
+}
+
+.podium .user .topscore
+{
+    display: inline-block;
+    font-size: 1.5em;
+
+    margin-bottom: 2em;
+
+    color: var(--alt-back);
+    font-family: "ZillaSlabBold", "ZillaSlab";
+}
+
+.podium .step
+{
+    background-color: var(--main-front);
+    padding: 1em;
+}
+
+.podium #first .step
+{
+    height: 9em;
+}
+
+.podium #second .step
+{
+    height: 6em;
+}
+
+.podium #third .step
+{
+    height: 3em;
+}

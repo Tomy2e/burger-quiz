@@ -1,0 +1,46 @@
+
+@import "colors.css";
+
+html
+{
+    width: 100vw;
+    overflow: hidden;
+
+    padding-right: 1vw;
+}
+
+.main-content
+{
+    min-height: auto;
+}
+
+footer
+{
+    position: absolute;
+    bottom: 0;
+
+    transform: translateY(100%) translateY(-5px);
+    transition: transform 0.3s ease-out;
+}
+
+footer:hover
+{
+    transform: none;
+}
+
+.fullscreen
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    color: var(--header-front);
+    background-color: var(--text);
+}
+
+#choices
+{
+    
+}
