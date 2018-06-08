@@ -9,6 +9,9 @@ class Theme
     public function __construct($id = null, $libelle = null, $photo = null)
     {
         $this->db = Database::getInstance();
+        $this->id = $id;
+        $this->libelle = $libelle;
+        $this->photo = $photo;
     }
 
     public function fetchFromLibelle($libelle)
