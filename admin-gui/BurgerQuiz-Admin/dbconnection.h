@@ -23,8 +23,6 @@ public:
 private:
     sql::Driver *driver;
     static sql::Connection *con;
-    sql::Statement *stmt;
-    sql::ResultSet *res;
 };
 
 #endif // DBCONNECTION_H

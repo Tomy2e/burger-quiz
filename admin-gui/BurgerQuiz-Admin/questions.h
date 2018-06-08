@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QMessageBox>
 #include <QDebug>
+#include "proposition.h"
 
 #include <stdlib.h>
 #include <iostream>

@@ -6,7 +6,7 @@
 #include <QMessageBox>
 
 #include "dbconnection.h"
-
+#include "proposition.h"
 
 using namespace std;
 
@@ -31,7 +31,9 @@ public:
     void disable();
     void remove();
 
-    //QVector<Propositions> getPropositions();
+    QVector<Proposition> getPropositions();
+
+    void ajouterProposition(Proposition &proposition);
 
 private:
     int id;

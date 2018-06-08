@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <iostream>
 
+#include <QtWidgets>
+
+#include "dbconnection.h"
+
 using namespace std;
 
 class Proposition
@@ -20,6 +24,12 @@ public:
     void setLibelleProposition(string libelleProposition);
     void setReponseProposition(int reponseProposition);
     void setActive(int active);
+
+    void disable();
+    void remove();
+    void updateLibelleProposition(string libelleProposition);
+    void updateReponseProposition(int reponseProposition);
+    void enable();
 
 private:
     int id;

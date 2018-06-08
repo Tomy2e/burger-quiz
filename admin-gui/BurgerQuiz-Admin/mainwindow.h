@@ -9,6 +9,8 @@
 #include <QtWidgets>
 
 Q_DECLARE_METATYPE(Question)
+Q_DECLARE_METATYPE(Proposition)
+
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +44,14 @@ private slots:
     void on_pushButton_14_clicked();
 
     void on_pushButton_16_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_15_clicked();
+
+    void on_pushButton_18_clicked();
+
+    void on_pushButton_17_clicked();
 
 private:
     Ui::MainWindow *ui;

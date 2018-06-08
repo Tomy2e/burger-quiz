@@ -273,3 +273,169 @@ void MainWindow::on_pushButton_16_clicked()
         }
     }
 }
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    if(ui->listWidget->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget->currentItem()->data(1);
+
+        Question question = data.value<Question>();
+
+        ui->stackedWidget->setCurrentIndex(3);
+
+        ui->label_2->setText(QString::fromStdString(question.getLibelle1() + ", " + question.getLibelle2() + " ou les 2 ?"));
+
+        QVector<Proposition> propositions = question.getPropositions();
+
+        ui->listWidget_2->clear();
+
+        for(int i = 0; i < propositions.length(); i++)
+        {
+            QListWidgetItem *newItem = new QListWidgetItem;
+            newItem->setText(QString::fromStdString(propositions[i].getLibelleProposition()));
+            QVariant data;
+            data.setValue(propositions[i]);
+            newItem->setData(1, data);
+
+            if(propositions[i].getActive() == 0)
+            {
+               newItem->setBackgroundColor(Qt::gray);
+            }
+
+            ui->listWidget_2->insertItem(0, newItem);
+        }
+
+    }
+}
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_pushButton_18_clicked()
+{
+    if(ui->listWidget_2->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_2->currentItem()->data(1);
+
+        Proposition proposition = data.value<Proposition>();
+
+        QDialog * d = new QDialog();
+        QVBoxLayout * vbox = new QVBoxLayout();
+        QLabel * labelA = new QLabel("Réponse : ");
+        QComboBox * comboBoxA = new QComboBox();
+        comboBoxA->addItems(QStringList() << "Libellé 1" << "Libellé 2" << "Les 2");
+
+        switch(proposition.getReponseProposition())
+        {
+            case 1:
+            comboBoxA->setCurrentIndex(comboBoxA->findText("Libellé 1"));
+            break;
+            case 2:
+            comboBoxA->setCurrentIndex(comboBoxA->findText("Libellé 2"));
+            break;
+            case 3:
+            comboBoxA->setCurrentIndex(comboBoxA->findText("Les 2"));
+            break;
+        }
+
+        QDialogButtonBox * buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                                            | QDialogButtonBox::Cancel);
+
+        QObject::connect(buttonBox, SIGNAL(accepted()), d, SLOT(accept()));
+        QObject::connect(buttonBox, SIGNAL(rejected()), d, SLOT(reject()));
+
+        vbox->addWidget(labelA);
+        vbox->addWidget(comboBoxA);
+        vbox->addWidget(buttonBox);
+
+        d->setLayout(vbox);
+
+        int result = d->exec();
+        if(result == QDialog::Accepted)
+        {
+
+            int selected = comboBoxA->currentIndex() + 1;
+
+            if(selected > 0 && selected < 4)
+            {
+                proposition.updateReponseProposition(selected);
+
+                if(proposition.getReponseProposition() == selected)
+                {
+                    // successfully updated reponse
+                    QVariant data;
+                    data.setValue(proposition);
+                    ui->listWidget_2->currentItem()->setData(1, data);
+                }
+            }
+        }
+
+    }
+
+}
+
+void MainWindow::on_pushButton_17_clicked()
+{
+    QDialog * d = new QDialog();
+    QVBoxLayout * vbox = new QVBoxLayout();
+
+
+    QLabel * labelA = new QLabel("Proposition : ");
+    QLineEdit * lineEditA = new QLineEdit();
+
+    QLabel * labelB = new QLabel("Réponse : ");
+    QComboBox * comboBoxA = new QComboBox();
+    comboBoxA->addItems(QStringList() << "Libellé 1" << "Libellé 2" << "Les 2");
+
+
+    QDialogButtonBox * buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                                        | QDialogButtonBox::Cancel);
+
+    QObject::connect(buttonBox, SIGNAL(accepted()), d, SLOT(accept()));
+    QObject::connect(buttonBox, SIGNAL(rejected()), d, SLOT(reject()));
+
+    vbox->addWidget(labelA);
+    vbox->addWidget(lineEditA);
+    vbox->addWidget(labelB);
+    vbox->addWidget(comboBoxA);
+    vbox->addWidget(buttonBox);
+
+    d->setLayout(vbox);
+
+    int result = d->exec();
+    if(result == QDialog::Accepted)
+    {
+        if(!lineEditA->text().isEmpty())
+        {
+            Proposition newProp;
+            newProp.setActive(1);
+            newProp.setLibelleProposition(lineEditA->text().toStdString());
+            newProp.setReponseProposition(comboBoxA->currentIndex() + 1);
+
+            QVariant data = ui->listWidget->currentItem()->data(1);
+
+            Question question = data.value<Question>();
+
+            question.ajouterProposition(newProp);
+
+            if(newProp.getId() != 0)
+            {
+                // Successfuly added to the database
+                QListWidgetItem *newItem = new QListWidgetItem;
+                newItem->setText(QString::fromStdString(newProp.getLibelleProposition()));
+                QVariant data;
+                data.setValue(newProp);
+                newItem->setData(1, data);
+                ui->listWidget_2->insertItem(0, newItem);
+            }
+        }
+        // handle values from d
+        /*qDebug() << "The user clicked:"
+                 << "ComboBoxA" << comboBoxA->currentText()
+                 << "ComboBoxB" << comboBoxB->currentText()
+                 << "LineEditA" << lineEditA->text();*/
+    }
+}
