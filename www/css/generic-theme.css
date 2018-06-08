@@ -11,6 +11,12 @@
     --input-border: gray;
     --input-shadow: rgba(128, 128, 128, 0.651);
     --input-border-active: rgb(219, 80, 30);
+
+    --table-head-text:  white;
+    --table-head-back:  var(--main-front);
+    --table-line-text:  var(--text);
+    --table-line-odd:   rgb(255, 210, 158);
+    --table-line-even:  rgb(255, 195, 128);
 }
 
 
@@ -123,7 +129,7 @@ button, .button
 
 button.disabled, .button.disabled
 {
-    background-color: var(--btn-disable);
+    opacity: 0.5;
 }
 
 button.highlighted, .button.highlighted
@@ -201,18 +207,19 @@ table.flat-table, table.flat-table td
 
 table.flat-table tr
 {
+    color: var(--table-line-text);
     border-bottom: solid 2px rgb(161, 161, 161);
     /*padding: 0.5em;*/
 }
 
 table.flat-table tr:nth-child(even)
 {
-    background-color: rgb(241, 241, 241);
+    background-color: var(--table-line-even);
 }
 
 table.flat-table tr:nth-child(odd)
 {
-    background-color: rgb(230, 230, 230);
+    background-color: var(--table-line-odd);
 }
 
 table.flat-table thead tr
@@ -222,7 +229,8 @@ table.flat-table thead tr
     z-index: 99;
 
     border: none;
-    background-color: white !important;
+    color: var(--table-head-text);
+    background-color: var(--table-head-back) !important;
 }
 
 
