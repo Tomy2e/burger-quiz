@@ -151,16 +151,20 @@ button.flat, .button.flat
 {
     background-color: var(--btn-back);
     border-color: var(--btn-back);
-
-    border-radius: 0;
 }
-
-
 
 button.squared, .button.squared
 {
     border-radius: 0;
 }
+
+button.selected, .button.selected
+{
+    color: var(--main-back);
+    background-color: var(--main-front);
+}
+
+
 
 table, td
 {

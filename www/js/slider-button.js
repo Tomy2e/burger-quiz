@@ -1,11 +1,4 @@
-window.addEventListener('load', () => {
-    var selectors = document.querySelector('.slider-button');
 
-    if (selectors)
-    {
-        var btn = new SliderButton(selectors);
-    }
-}); 
 
 class SliderButton
 {
@@ -69,3 +62,11 @@ class SliderButton
         return this.selectedItem;
     }
 }
+
+window.addEventListener('load', () => {
+    var selectors = document.querySelector('.slider-button');
+
+    if (selectors) {
+        var btn = new SliderButton(selectors);
+    }
+});

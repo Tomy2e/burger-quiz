@@ -17,7 +17,7 @@ Element.prototype.fireOnce = function (event, callback)
 	});
 }
 
-window.onload = function ()
+window.addEventListener('load', function ()
 {
 	initNav();
 	updateMarkerPosition();
@@ -31,4 +31,4 @@ window.onload = function ()
 	profileWindowToggler.addEventListener('click', (event) => {
 		profileWindow.toggle();
 	});
-}
+});
