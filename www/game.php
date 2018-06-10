@@ -27,7 +27,7 @@
                     <ul class="steps-indicator">
                         <li></li>
                         <li></li>
-                        <li></li>
+                        <li>z</li>
                     </ul>
 
                     <h2 id="question">Bernard Tapie, un tapis ou les deux ?</h2>
@@ -35,8 +35,8 @@
                 </div>
 
                 <div id="choices" class="hbox">
-                    <button id="choice1" class="squared flat">Bernard Tapie</button>
-                    <button id="choice2" class="squared flat">Un tapis</button>
+                    <button id="choice1" class="choice squared flat">Bernard Tapie</button>
+                    <button id="choice2" class="choice squared flat">Un tapis</button>
                     <button id="both" class="roundel">Les deux</button>
                 </div>
 

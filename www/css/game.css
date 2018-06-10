@@ -36,11 +36,76 @@ footer:hover
     width: 100vw;
     height: 100vh;
 
-    color: var(--header-front);
-    background-color: var(--text);
+    color: var(--game-answer);
+    background-color: var(--game-back);
+}
+
+.fullscreen > *:first-child
+{
+    margin-top: 4em;
+}
+
+ul.steps-indicator
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul.steps-indicator li
+{
+    display: inline;
+    list-style-type: disc;
+    content: "e";
 }
 
 #choices
 {
-    
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    /*height: 40vh;*/
 }
+
+#choices button.choice, button#both
+{
+    width: 50vw;
+    height: 40vh;
+    
+    font-family: "ZillaSlabBold", "ZillaSlab";
+    font-weight: normal;
+    font-size: 2em;
+
+    color: var(--game-answer);
+
+    border: none;
+    border-top: solid 2px var(--game-border);
+}
+
+#choices #choice1
+{
+    background-color: var(--game-choice1);
+    border-right: solid 1px var(--game-border);
+}
+
+#choices #choice2
+{
+    margin-left: 0;
+
+    background-color: var(--game-choice2);
+    border-left: solid 1px var(--game-border);
+}
+
+#choices #both
+{
+    position: absolute;
+    left: 43vw;
+
+    width: 14vw;
+    height: 14vw;
+    
+    margin: 0;
+
+    background-color: var(--game-both);
+    border: solid 2px var(--game-border);
+}
+

@@ -5,7 +5,7 @@
 
     --main-front:   rgb(247, 128, 30);
     --main-back:    white;
-    --alt-front:    rgb(197, 31, 31);
+    --alt-front:    rgb(224, 61, 39);
     --alt-back:     rgb(97, 92, 87);
 
     --text:         rgb(68, 60, 45);
@@ -17,4 +17,12 @@
     --table-line-text:  var(--text);
     --table-line-odd:   rgb(255, 210, 158);
     --table-line-even:  rgb(255, 195, 128);
+
+    --game-back:    var(--text);
+    --game-question: var(--main-front);
+    --game-answer:  var(--header-front);
+    --game-choice1: rgb(51, 78, 155);
+    --game-choice2: var(--alt-front);
+    --game-both:    rgb(78, 122, 53);
+    --game-border:  white;
 }
