@@ -28,6 +28,14 @@ class User
 
     public function getPassword()
     {
+        // If password is not hashed, let's hash it
+        if(substr($this->password, 0, 10) == "nothashed:")
+        {
+            $explPw = explode(":", $this->password);
+
+            $this->setPassword($explPw[1]);
+        }
+
         return $this->password;
     }
 
@@ -94,21 +102,21 @@ class User
     public function setPassword($password)
     {
 
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+
         // If ID is defined, update the database
         if(!is_null($this->id)) 
         {
             $prepUpdatePassword = $this->db->prepare("UPDATE utilisateurs SET password_utilisateur = ? WHERE id_utilisateur = ?");
             if(!$prepUpdatePassword->execute(array(
-                $password,
+                $this->password,
                 $this->id
             )))
             {
                 throw new UserException("Database error : Failed to update the password");
             }
         }
-
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
-
+        
         return $this;
     }
 

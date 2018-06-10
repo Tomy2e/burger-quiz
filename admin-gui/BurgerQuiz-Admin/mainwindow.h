@@ -7,10 +7,12 @@
 #include "questions.h"
 #include "themes.h"
 #include <QtWidgets>
+#include "users.h"
 
 Q_DECLARE_METATYPE(Question)
 Q_DECLARE_METATYPE(Proposition)
 Q_DECLARE_METATYPE(Theme)
+Q_DECLARE_METATYPE(User)
 
 
 namespace Ui {
@@ -77,6 +79,22 @@ private slots:
     void on_pushButton_26_clicked();
 
     void on_pushButton_27_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_28_clicked();
+
+    void on_pushButton_29_clicked();
+
+    void on_pushButton_30_clicked();
+
+    void on_pushButton_31_clicked();
+
+    void on_pushButton_32_clicked();
+
+    void on_pushButton_33_clicked();
+
+    void on_pushButton_34_clicked();
 
 private:
     Ui::MainWindow *ui;

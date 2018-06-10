@@ -729,3 +729,211 @@ void MainWindow::on_pushButton_27_clicked()
 
     ui->stackedWidget->setCurrentIndex(2);
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(6);
+
+    Users usersMgr;
+
+    QVector<User> users = usersMgr.fetchUsers();
+
+
+    ui->listWidget_5->clear();
+
+    for(int i = 0; i < users.length(); i++)
+    {
+        QListWidgetItem *newItem = new QListWidgetItem;
+        newItem->setText(QString::fromStdString(users[i].getUsername()));
+        QVariant data;
+        data.setValue(users[i]);
+        newItem->setData(1, data);
+
+        ui->listWidget_5->insertItem(0, newItem);
+    }
+}
+
+void MainWindow::on_pushButton_28_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pushButton_29_clicked()
+{
+    // Add new user
+    QDialog * d = new QDialog();
+    QVBoxLayout * vbox = new QVBoxLayout();
+
+
+    QLabel * labelA = new QLabel("Nom d'utilisateur : ");
+    QLineEdit * lineEditA = new QLineEdit();
+
+    QLabel * labelB = new QLabel("Age : ");
+    QSpinBox * spin = new QSpinBox();
+    spin->setMinimum(13);
+    spin->setMaximum(100);
+
+    QLabel * labelC = new QLabel("Email : ");
+    QLineEdit * lineEditC = new QLineEdit();
+
+    QLabel * labelD = new QLabel("Mot de passe : ");
+    QLineEdit * lineEditD = new QLineEdit();
+    lineEditD->setEchoMode(QLineEdit::Password);
+
+
+    QDialogButtonBox * buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                                        | QDialogButtonBox::Cancel);
+
+    QObject::connect(buttonBox, SIGNAL(accepted()), d, SLOT(accept()));
+    QObject::connect(buttonBox, SIGNAL(rejected()), d, SLOT(reject()));
+
+    vbox->addWidget(labelA);
+    vbox->addWidget(lineEditA);
+    vbox->addWidget(labelB);
+    vbox->addWidget(spin);
+    vbox->addWidget(labelC);
+    vbox->addWidget(lineEditC);
+    vbox->addWidget(labelD);
+    vbox->addWidget(lineEditD);
+    vbox->addWidget(buttonBox);
+
+    d->setLayout(vbox);
+
+    int result = d->exec();
+    if(result == QDialog::Accepted)
+    {
+        if(!lineEditA->text().isEmpty())
+        {
+            User newUser;
+            newUser.setUsername(lineEditA->text().toStdString());
+            newUser.setAge(spin->value());
+            newUser.setEmail(lineEditC->text().toStdString());
+            newUser.setPassword(lineEditD->text().toStdString(), false);
+            newUser.setPhoto("");
+
+            Users usersMgr;
+            usersMgr.createUser(newUser);
+
+            if(newUser.getId() != 0)
+            {
+                // Successfuly added to the database
+                QListWidgetItem *newItem = new QListWidgetItem;
+                newItem->setText(QString::fromStdString(newUser.getUsername()));
+                QVariant data;
+                data.setValue(newUser);
+                newItem->setData(1, data);
+                ui->listWidget_5->insertItem(0, newItem);
+            }
+        }
+    }
+}
+
+void MainWindow::on_pushButton_30_clicked()
+{
+    if(ui->listWidget_5->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_5->currentItem()->data(1);
+
+        User user = data.value<User>();
+
+        bool ok;
+
+        QString text = QInputDialog::getText(this, tr("Définir MDP"),
+                                             tr("Nouv. MDP :"), QLineEdit::Password,
+                                             "", &ok);
+        if (ok && !text.isEmpty())
+        {
+            user.updatePassword(text.toStdString());
+
+            data.setValue(user);
+            ui->listWidget_5->currentItem()->setData(1, data);
+        }
+    }
+}
+
+void MainWindow::on_pushButton_31_clicked()
+{
+    if(ui->listWidget_5->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_5->currentItem()->data(1);
+
+        User user = data.value<User>();
+
+        bool ok;
+
+        int i = QInputDialog::getInt(NULL, tr("Définir âge"),
+                                     tr("Âge :"), user.getAge(), 13, 100, 1, &ok);
+        if (ok)
+        {
+            user.updateAge(i);
+
+            data.setValue(user);
+            ui->listWidget_5->currentItem()->setData(1, data);;
+        }
+
+
+    }
+}
+
+void MainWindow::on_pushButton_32_clicked()
+{
+    if(ui->listWidget_5->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_5->currentItem()->data(1);
+
+        User user = data.value<User>();
+
+        bool ok;
+
+        QString text = QInputDialog::getText(this, tr("Définir Email"),
+                                             tr("Nouv. MDP :"), QLineEdit::Normal,
+                                             QString::fromStdString(user.getEmail()), &ok);
+        if (ok)
+        {
+            user.updateEmail(text.toStdString());
+
+            data.setValue(user);
+            ui->listWidget_5->currentItem()->setData(1, data);
+        }
+    }
+}
+
+void MainWindow::on_pushButton_33_clicked()
+{
+    if(ui->listWidget_5->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_5->currentItem()->data(1);
+
+        User user = data.value<User>();
+
+        bool ok;
+
+        QString text = QInputDialog::getText(this, tr("Définir photo"),
+                                             tr("URL Nouv. photo :"), QLineEdit::Normal,
+                                             QString::fromStdString(user.getPhoto()), &ok);
+        if (ok && !text.isEmpty())
+        {
+            user.updatePhoto(text.toStdString());
+
+            data.setValue(user);
+            ui->listWidget_5->currentItem()->setData(1, data);
+        }
+    }
+}
+
+void MainWindow::on_pushButton_34_clicked()
+{
+    // Remove user
+
+    if(ui->listWidget_5->currentRow() != -1)
+    {
+        QVariant data = ui->listWidget_5->currentItem()->data(1);
+
+        User user = data.value<User>();
+
+        user.remove();
+
+        delete ui->listWidget_5->takeItem(ui->listWidget_5->currentRow());
+
+    }
+}
