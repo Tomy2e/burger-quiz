@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     question.cpp \
     proposition.cpp \
     theme.cpp \
-    themes.cpp
+    themes.cpp \
+    user.cpp \
+    users.cpp
 
 HEADERS  += mainwindow.h \
     dbconnection.h \
@@ -28,7 +30,9 @@ HEADERS  += mainwindow.h \
     question.h \
     proposition.h \
     theme.h \
-    themes.h
+    themes.h \
+    user.h \
+    users.h
 
 FORMS    += mainwindow.ui
 
