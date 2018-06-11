@@ -35,7 +35,10 @@ footer:hover
     left: 0;
     width: 100vw;
     height: 100vh;
+}
 
+.fullscreen#game-ui
+{
     color: var(--game-answer);
     background-color: var(--game-back);
 }
@@ -47,15 +50,26 @@ footer:hover
 
 ul.steps-indicator
 {
-    margin: 0;
+    margin: 1em;
+    margin-top: 1em !important;
     padding: 0;
 }
 
 ul.steps-indicator li
 {
-    display: inline;
-    list-style-type: disc;
-    content: "e";
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+
+    margin: 0.5em;
+
+    background-color: var(--game-answer);
+    border-radius: 100%;
+}
+
+#game-ui #question, #game-ui #affirmation
+{
+    color: var(--game-answer);
 }
 
 #choices
@@ -73,7 +87,8 @@ ul.steps-indicator li
     
     font-family: "ZillaSlabBold", "ZillaSlab";
     font-weight: normal;
-    font-size: 2em;
+    font-size: 1.7em;
+    text-transform: none;
 
     color: var(--game-answer);
 

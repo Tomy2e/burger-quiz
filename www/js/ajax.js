@@ -1,25 +1,42 @@
-/****************************************/
-/*    ajax.js - burger-quiz          */
-/*--------------------------------------*/
-/*  Author : Gwenolé Leroy-Ferrec - Tomy Guichard                  */
-/*  License : GPL-3.0                */
-/*  Defines a basic AJAX request        */
-/*  function using the XMLHttpRequest   */
-/*  object.                             */
-/*               ------                 */
-/*  juin 2018                      */
-/****************************************/
+/**************************************************/
+/*             ajax.js - burger-quiz              */
+/*------------------------------------------------*/
+/*  Author : Gwenolé Leroy-Ferrec - Tomy Guichard */
+/*  License : GPL-3.0                             */
+/*  Defines a basic AJAX request function using   */
+/*  the XMLHttpRequest object.                    */
+/*               ------                           */
+/*  juin 2018                                     */
+/**************************************************/
 
 
 
-function ajaxRequest(type, request, callback, data = null)
+function ajaxRequest(type, request, data= {}, callback = () => {})
 {
   var xhr;
 
   // Create XML HTTP request.
   xhr = new XMLHttpRequest();
-  if (type == 'GET' && data != null)
-    request += '?' + data;
+
+  //Parse optional data to build request parameters
+  if ( data )
+  {
+    var s_data = '';
+    
+    for (const param in data)
+    {
+      if (data.hasOwnProperty(param))
+      {
+        s_data += param + '=' + data[param] + '&';
+      }
+    }
+
+    s_data = s_data.slice('&', -1); //Remove the trailing &
+
+    if (type == 'GET' && s_data != null) request += '?' + s_data;
+  }
+
+
   xhr.open(type, request, true);
 
   // Add the onload function.
@@ -82,5 +99,5 @@ function httpErrors(errorNumber)
       text += ' HTTP Error Code : ' + errorNumber;
       break;
   }
-  console.log(text);
+  console.error(text);
 }
