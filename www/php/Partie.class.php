@@ -6,13 +6,9 @@ class Partie
 
     private $questions;
 
-    private $db;
 
     public function __construct($id = null, $date = null, $difficulte = null)
     {
-
-        $this->db = Database::getInstance();
-
         $this->id = $id;
         $this->date = $date;
         $this->difficulte = $difficulte;
@@ -20,8 +16,51 @@ class Partie
         $this->questions = array();
     }
 
+    public function setDifficulte($diff)
+    {
+        if(is_numeric($diff) && $diff > 0 && $diff < 4)
+        {
+            $this->difficulte = $diff;
+        }
+        else
+        {
+            $this->difficulte = 1;
+        }
+    }
+
     public function getQuestions()
     {
+        if(!is_null($this->id) && empty($this->questions))
+        {
+            // Fetch questions in database
+            $prepFetch = Database::getInstance()->prepare("SELECT * FROM questions, appartient_parties WHERE appartient_parties.id_question = questions.id_question AND appartient_parties.id_partie = ?");
+            if($prepFetch->execute(array(
+                $this->id
+            ))) 
+            {
+                $fetchQuestions = $prepFetch->fetchAll();
+
+                $pickedQuestions = array();
+
+                if(count($fetchQuestions) < $number)
+                {
+                    throw new PartieException("Not enough questions available in this theme");
+                }
+
+                // Transform arrays of arrays to arrays of Question objects
+                foreach($fetchQuestions as $question)
+                {
+                    array_push($pickedQuestions, new Question($question['id_question'], $question['libelle1'], $question['libelle2'], $question['active_question']));
+                }
+
+                $this->questions = $pickedQuestions;
+            }
+            else
+            {
+                throw new PartieException("Database error : failed to fetch questions");
+            }
+        }
+
         return $this->questions;
     }
 
@@ -29,7 +68,7 @@ class Partie
     {
         // the $number variable is not used in the SQL query yet
 
-        $prepFetch = $this->db->prepare("SELECT * FROM questions, appartient_themes WHERE questions.id_question = appartient_themes.id_question AND appartient_themes.id_theme = ? AND questions.active_question = 1 ORDER BY RAND() LIMIT 3");
+        $prepFetch = Database::getInstance()->prepare("SELECT * FROM questions, appartient_themes WHERE questions.id_question = appartient_themes.id_question AND appartient_themes.id_theme = ? AND questions.active_question = 1 ORDER BY RAND() LIMIT 3");
         if($prepFetch->execute(array(
             $theme->getId()
         )))
@@ -53,7 +92,7 @@ class Partie
             {
                 // If the game is already in the database, we replace the old questions with the new ones
 
-                $prepRemoveOldQuestions = $this->db->prepare("DELETE FROM appartient_parties WHERE id_partie = ?");
+                $prepRemoveOldQuestions = Database::getInstance()->prepare("DELETE FROM appartient_parties WHERE id_partie = ?");
                 if(!$prepRemoveOldQuestions->execute(array(
                     $this->id
                 )))
@@ -63,7 +102,7 @@ class Partie
 
                 foreach($pickedQuestions as $question)
                 {
-                    $prepAddNewQuestion = $this->db->prepare("INSERT INTO appartient_parties (id_partie, id_question) VALUES (?,?)");
+                    $prepAddNewQuestion = Database::getInstance()->prepare("INSERT INTO appartient_parties (id_partie, id_question) VALUES (?,?)");
                     if(!$prepAddNewQuestion->execute(array(
                         $this->id,
                         $question->getId()
@@ -86,19 +125,18 @@ class Partie
     {
         if(is_null($this->id))
         {
-            $prepAdd = $this->db->prepare("INSERT INTO parties (date_partie, difficulte_partie) VALUES (?,?)");
+            $prepAdd = Database::getInstance()->prepare("INSERT INTO parties (date_partie, difficulte_partie) VALUES (NOW(),?)");
             if($prepAdd->execute(array(
-                $this->date,
                 $this->difficulte
             )))
             {
-                $this->id = $this->db->lastInsertId();
+                $this->id = Database::getInstance()->lastInsertId();
 
                 // Add existing questions to the database
 
                 foreach($this->questions as $question)
                 {
-                    $prepAddNewQuestion = $this->db->prepare("INSERT INTO appartient_parties (id_partie, id_question) VALUES (?,?)");
+                    $prepAddNewQuestion = Database::getInstance()->prepare("INSERT INTO appartient_parties (id_partie, id_question) VALUES (?,?)");
                     if(!$prepAddNewQuestion->execute(array(
                         $this->id,
                         $question->getId()

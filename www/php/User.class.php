@@ -66,7 +66,7 @@ class User
             throw new UserException("Username exceeds 64 characters");
         }
 
-        if(strlen($username) <= 4)
+        if(strlen($username) < 4)
         {
             throw new UserException("Username must contain at least 4 characters");
         }

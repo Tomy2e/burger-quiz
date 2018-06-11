@@ -42,6 +42,34 @@ class Theme
         }
     }
 
+    public function fetchFromId($id)
+    {
+        $prepFetch = $this->db->prepare("SELECT * FROM themes WHERE id_theme = ?");
+        if($prepFetch->execute(array(
+            $id
+        )))
+        {
+            $theme = $prepFetch->fetch();
+
+            if(empty($theme))
+            {
+                return false;
+            }
+            else
+            {
+                $this->id = $theme['id_theme'];
+                $this->libelle = $theme['libelle_theme'];
+                $this->photo = $theme['photo_theme'];
+                
+                return true;
+            }
+        }
+        else
+        {
+            throw new ThemeException("Database error : failed to fetch themes from id");
+        }
+    }
+
     public function getId()
     {
         return $this->id;
