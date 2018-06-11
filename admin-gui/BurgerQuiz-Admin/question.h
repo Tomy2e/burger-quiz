@@ -1,6 +1,13 @@
 #ifndef QUESTION_H
 #define QUESTION_H
 
+/*!
+ * \file question.h
+ * \brief Abstraction des questions
+ * \author Tomy G. & Gwenolé LF.
+ * \version 0.1
+ */
+
 #include <stdlib.h>
 #include <iostream>
 #include <QMessageBox>
@@ -11,6 +18,11 @@
 
 using namespace std;
 
+/*! \class Question
+ * \brief classe representant une question
+ *
+ *  La classe permet aussi d'interagir directement avec la base de données (UPDATE et DELETE)
+ */
 class Question
 {
 public:
@@ -42,9 +54,10 @@ public:
     void ajouterProposition(Proposition &proposition);
 
 private:
-    int id;
-    string libelle1, libelle2;
-    int active;
+    int id; /*!< ID de la question */
+    string libelle1; /*!< Libellé 1 de la question */
+    string libelle2; /*!< Libellé 2 de la question */
+    int active; /*!< Question active ou non (0 ou 1) */
 };
 
 #endif // QUESTION_H

@@ -1,6 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+/*!
+ * \file mainwindow.h
+ * \brief Fenêtre principale
+ * \author Tomy G. & Gwenolé LF.
+ * \version 0.1
+ */
+
 #include <QMainWindow>
 #include <QDebug>
 #include "dbconnection.h"
@@ -19,6 +26,11 @@ namespace Ui {
 class MainWindow;
 }
 
+/*! \class MainWindow
+ * \brief classe représentant la fenêtre principale
+ *
+ *  La classe gère toutes les interactions et l'affichage graphique
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
