@@ -72,8 +72,9 @@ class Game
         ajaxRequest('POST', 'ajax.php?action=answer_question', {'answer':choice}, (res) => {
             res = JSON.parse(res);
 
-            if ( res.answer_correct ) 
-        })
+            if ( res.answer_correct ) this.show('answer-true');
+            else this.show('answer-false');
+        });
     }
 }
 
@@ -82,7 +83,11 @@ Game.answers = { 'first': 1, 'second': 2, 'both': 3, 'none': 4 };
 window.addEventListener('load', () => {
     var quiz = new Game();
 
-    setTimeout(() => {
+
+    /**
+     * test
+     */
+    /*setTimeout(() => {
         quiz.show('answer-true');
 
         setTimeout(() => {
@@ -92,6 +97,16 @@ window.addEventListener('load', () => {
                 quiz.show('game-ui');
             }, 1000);
         }, 1000);
-    }, 1000);
+    }, 1000);*/
+
+    quiz.show(_GET.get('page'));
+
+    var btnChoice1 = document.getElementById('choice1');
+    var btnChoice2 = document.getElementById('choice2');
+    var btnBoth = document.getElementById('both');
+
+    btnChoice1.addEventListener('click', quiz.answer(Game.answers.first));
+    btnChoice2.addEventListener('click', quiz.answer(Game.answers.second));
+    btnBoth.addEventListener('click', quiz.answer(Game.answers.both));
     
 });
