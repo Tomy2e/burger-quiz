@@ -13,7 +13,7 @@
 
 function ajaxRequest(type, request, data= {}, callback = () => {})
 {
-  var xhr;
+  var xhr, s_data = '';
 
   // Create XML HTTP request.
   xhr = new XMLHttpRequest();
@@ -21,8 +21,6 @@ function ajaxRequest(type, request, data= {}, callback = () => {})
   //Parse optional data to build request parameters
   if ( data )
   {
-    var s_data = '';
-
     for (const param in data)
     {
       if (data.hasOwnProperty(param))
@@ -38,6 +36,7 @@ function ajaxRequest(type, request, data= {}, callback = () => {})
 
 
   xhr.open(type, request, true);
+  console.log('[ajax] Requested ' + type + ':' + request);
 
   // Add the onload function.
   xhr.onload = function ()
@@ -55,7 +54,7 @@ function ajaxRequest(type, request, data= {}, callback = () => {})
   };
 
   // Send XML HTTP request.
-  xhr.send(data);
+  xhr.send(s_data);
 }
 
 //------------------------------------------------------------------------------

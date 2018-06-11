@@ -106,8 +106,20 @@ window.addEventListener('load', () => {
     var btnChoice2 = document.getElementById('choice2');
     var btnBoth = document.getElementById('both');
 
-    btnChoice1.addEventListener('click', quiz.answer(Game.answers.first));
-    btnChoice2.addEventListener('click', quiz.answer(Game.answers.second));
-    btnBoth.addEventListener('click', quiz.answer(Game.answers.both));
+    btnChoice1.addEventListener('click', (ev) => {
+        console.log(ev.target);
+        quiz.answer(Game.answers.first);
+    });
+
+    btnChoice2.addEventListener('click', (ev) => {
+        console.log(ev.target);
+        quiz.answer(Game.answers.second);
+    });
+
+    btnBoth.addEventListener('click', (ev) => {
+        console.log(ev.target);
+        quiz.answer(Game.answers.both);
+    });
+
     
 });
