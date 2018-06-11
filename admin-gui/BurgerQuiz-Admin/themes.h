@@ -23,7 +23,24 @@ class Themes
 public:
     Themes();
 
+    /*!
+     *  \brief Récupération des thèmes
+     *
+     *  Methode qui va chercher dans la base de données
+     *  tous les thèmes
+     *
+     *  \return Un QVector contenant des thèmes
+     */
     QVector<Theme> fetchThemes();
+
+    /*!
+     *  \brief Crée un nouveau thème
+     *
+     *  Méthode qui permet d'ajouter un nouveau thème
+     *  à la base de données
+     *
+     *  \param theme : le nouveau thème, passé par référence
+     */
     void createTheme(Theme &theme);
 };
 

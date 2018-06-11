@@ -31,7 +31,23 @@ class DbConnection
 {
 public:
     DbConnection();
+
+    /*!
+     *  \brief Initialise la connexion à la base de données
+     *
+     *  \param serverAddr : l'adresse du serveur MySQL (sans le port)
+     *  \param username : le nom d'utilisateur MySQL
+     *  \param password : le mot de passe MySQL
+     *  \param dbname : le nom de la base de données MySQL
+     *  \return true si la connexion s'est effectuée avec succès, sinon false
+     */
     bool initializeConnection(string serverAddr, string username, string password, string dbname);
+
+    /*!
+     *  \brief Permet de réutiliser une connexion déjà existante
+     *
+     * \return le pointeur vers la connexion à la base de donnnées
+     */
     static sql::Connection * getConnection();
 
 private:

@@ -23,6 +23,13 @@ using namespace std;
 class User
 {
 public:
+
+    /*!
+     *  \brief Constructeur
+     *
+     *  Définit par défaut l'ID utilisateur à 0
+     *
+     */
     User();
 
     /*!
