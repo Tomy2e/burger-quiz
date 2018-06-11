@@ -22,7 +22,7 @@ function ajaxRequest(type, request, data= {}, callback = () => {})
   if ( data )
   {
     var s_data = '';
-    
+
     for (const param in data)
     {
       if (data.hasOwnProperty(param))
@@ -46,7 +46,7 @@ function ajaxRequest(type, request, data= {}, callback = () => {})
     {
       case 200:
       case 201:
-        console.log(xhr.responseText);
+        console.log(xhr.status);
         callback(xhr.responseText);
         break;
       default:
