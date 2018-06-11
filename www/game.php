@@ -22,12 +22,12 @@
 
 		<!-- Page content -->
 		<div id="page-quiz" class="main-content centered">
-            <div class="fullscreen" id="game-ui">
+            <div class="fullscreen selected" id="game-ui">
                 <div class="vbox" id="question-zone">
                     <ul class="steps-indicator">
-                        <li></li>
-                        <li></li>
-                        <li>z</li>
+                        <li id="step1"></li>
+                        <li id="step2"></li>
+                        <li id="step3"></li>
                     </ul>
 
                     <h2 id="question">Bernard Tapie, un tapis ou les deux ?</h2>
@@ -43,6 +43,14 @@
                 <div class="progress-bar" id"timer-bar">
                     <div id="progress"></div>
                 </div>
+            </div>
+
+            <div class="fullscreen" id="answer-true">
+                <h1>Bien joué !</h1>
+            </div>
+
+            <div class="fullscreen" id="answer-false">
+                <h1>Perdu !</h1>
             </div>
 		</div>
 
