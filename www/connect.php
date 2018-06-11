@@ -60,27 +60,47 @@ else if(!empty($_POST['register_username']))
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Connexion</title>
+		<meta author="Gwenolé Leroy-Ferrec - Tomy Guichard">
+
+		<title>Connexion - The Ultimate Burger Quiz</title>
+
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/generic-theme.css">
+		<link rel="stylesheet" type="text/css" href="css/fonts.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css">
+		<link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
+
+        <script src="js/main.js"></script>
     </head>
 
     <body>
-        <h1>Connexion</h1>
-        <?php if(!empty($error_login)) { echo $error_login; } ?>
-        <form action="" method="post">
-            Username : <input type="text" name="login_username"/><br />
-            Password : <input type="password" name="login_password"/><br />
-            <input type="submit" value="Connexion"/>
-        </form>
+        <?php require_once("templates/header.html"); ?>
 
-        <h1>Inscription</h1>
-        <?php if(!empty($error_register)) { echo $error_register; } ?>
-        <form action="" method="post">
-            Username : <input type="text" name="register_username"/><br />
-            Age : <input type="number" name="register_age"/><br />
-            Email : <input type="email" name="register_email"/><br />
-            Password : <input type="password" name="register_password"/><br />
-            Confirm password : <input type="password" name="register_password2"/><br />
-            <input type="submit" value="Inscription"/>
-        </form>
+		<!-- Page content -->
+		<div id="page-quiz" class="main-content centered">
+            <h1>Connexion</h1>
+
+            <?php if(!empty($error_login)) { echo $error_login; } ?>
+
+            <form class="vbox" action="" method="post">
+                Username : <input type="text" name="login_username"/><br />
+                Password : <input type="password" name="login_password"/><br />
+                <button class="highlighted" type="submit" value="Connexion">Connection</button>
+            </form>
+
+            <h1>Inscription</h1>
+
+            <?php if(!empty($error_register)) { echo $error_register; } ?>
+
+            <form class="vbox" action="" method="post">
+                Username : <input type="text" name="register_username"/><br />
+                Age : <input type="number" name="register_age"/><br />
+                Email : <input type="email" name="register_email"/><br />
+                Password : <input type="password" name="register_password"/><br />
+                Confirm password : <input type="password" name="register_password2"/><br />
+                <button class="highlighted" type="submit" value="Inscription">Inscription</button>
+            </form>
+        </div>
     </body>
 </html>
