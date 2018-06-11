@@ -62,6 +62,17 @@
 
             <div class="fullscreen" id="answer-false">
                 <h1>Perdu !</h1>
+                <img src="resources/img/burger-triste.png" alt="Là c'est une image de burger triste mais vous pouvez pas la voir pour une raison quelconque">
+
+                <div class="score-box">
+                    <div id="score">
+                        <h2>666</h2>
+                        <span>points</span>
+                    </div>
+                    <h3>(+0)</h3>
+                </div>
+
+                <button class="next-question">Arch, quéssion zuifante</button>
             </div>
 		</div>
 

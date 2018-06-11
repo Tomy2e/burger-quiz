@@ -63,6 +63,7 @@ class Game
     nextQuestion()
     {
         ajaxRequest('GET', 'ajax.php?action=next_question', {}, (res) => {
+            quiz.show('game-ui');
             console.log(JSON.parse(res));
         });
     }
