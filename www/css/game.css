@@ -35,6 +35,8 @@ footer:hover
     left: 0;
     width: 100vw;
     height: 100vh;
+
+    transition: all 0.3s;
 }
 
 .fullscreen#game-ui
@@ -43,9 +45,30 @@ footer:hover
     background-color: var(--game-back);
 }
 
+.fullscreen:not(.selected)
+{
+    opacity: 1;
+}
+
+.fullscreen:not(.selected):not(#game-ui)
+{
+    transform: translateY(-100%);
+    opacity: 1;
+}
+
 .fullscreen > *:first-child
 {
     margin-top: 4em;
+}
+
+#answer-true
+{
+    background-color: var(--game-both);
+}
+
+#answer-false
+{
+    background-color: var(--game-choice2);
 }
 
 ul.steps-indicator
@@ -67,7 +90,7 @@ ul.steps-indicator li
     border-radius: 100%;
 }
 
-#game-ui #question, #game-ui #affirmation
+.fullscreen h1, .fullscreen h2
 {
     color: var(--game-answer);
 }
