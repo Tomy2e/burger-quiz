@@ -17,6 +17,8 @@ Element.prototype.fireOnce = function (event, callback)
 	});
 }
 
+var _GET = new URL(location.href).searchParams;
+
 window.addEventListener('load', function ()
 {
 	initNav();

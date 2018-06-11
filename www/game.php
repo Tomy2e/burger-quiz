@@ -47,6 +47,17 @@
 
             <div class="fullscreen" id="answer-true">
                 <h1>Bien joué !</h1>
+                <img src="resources/img/burger-content.png" alt="Là c'est une image de burger content mais vous pouvez pas la voir pour une raison quelconque">
+
+                <div class="score-box">
+                    <div id="score">
+                        <h2>666</h2>
+                        <span>points</span>
+                    </div>
+                    <h3>(+42)</h3>
+                </div>
+
+                <button class="next-question">Arch, quéssion zuifante</button>
             </div>
 
             <div class="fullscreen" id="answer-false">

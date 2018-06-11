@@ -4,7 +4,7 @@ class Game
     {
         var _GET = new URL(location.href).searchParams;
 
-        this.screens = document.querySelectorAll("fullscreen");
+        this.screens = document.querySelectorAll(".fullscreen");
         this.selected = undefined;
 
         this.theme = _GET.get('id_theme');
@@ -12,6 +12,8 @@ class Game
 
         for (let screen of this.screens)
         {
+            console.log(screen);
+            
             if ( screen.classList.contains('selected') )
             {
                 this.selected = screen;
@@ -24,12 +26,21 @@ class Game
     {
         if ( this.selected ) this.selected.classList.remove('selected');
 
-        for (let screen of this.screens)
+        var target = this.getScreen(screenId);
+
+        if ( target )
         {
-            if ( screen.id == screenId)
+            target.classList.add('selected');
+            this.selected = target;
+        }
+    }
+
+    getScreen(screenId)
+    {
+        for (let screen of this.screens) {
+            if (screen.id == screenId)
             {
-                screen.classList.add('selected');
-                return true;
+                return screen;
             }
         }
 
@@ -56,16 +67,46 @@ class Game
         });
     }
 
-    answer()
+    answer(choice)
     {
+        ajaxRequest('POST', 'ajax.php?action=answer_question', {'answer':choice}, (res) => {
+            res = JSON.parse(res);
 
+            if ( res.answer_correct ) this.show('answer-true');
+            else this.show('answer-false');
+        });
     }
-
-    static answers() { return {'first':1, 'second':2, 'both':3, 'none':4}; }
 }
+
+Game.answers = { 'first': 1, 'second': 2, 'both': 3, 'none': 4 };
 
 window.addEventListener('load', () => {
     var quiz = new Game();
 
-    quiz.begin();
+
+    /**
+     * test
+     */
+    /*setTimeout(() => {
+        quiz.show('answer-true');
+
+        setTimeout(() => {
+            quiz.show('answer-false');
+
+            setTimeout(() => {
+                quiz.show('game-ui');
+            }, 1000);
+        }, 1000);
+    }, 1000);*/
+
+    quiz.show(_GET.get('page'));
+
+    var btnChoice1 = document.getElementById('choice1');
+    var btnChoice2 = document.getElementById('choice2');
+    var btnBoth = document.getElementById('both');
+
+    btnChoice1.addEventListener('click', quiz.answer(Game.answers.first));
+    btnChoice2.addEventListener('click', quiz.answer(Game.answers.second));
+    btnBoth.addEventListener('click', quiz.answer(Game.answers.both));
+    
 });
