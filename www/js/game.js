@@ -32,6 +32,12 @@ class Game
         {
             target.classList.add('selected');
             this.selected = target;
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -63,7 +69,7 @@ class Game
     nextQuestion()
     {
         ajaxRequest('GET', 'ajax.php?action=next_question', {}, (res) => {
-            quiz.show('game-ui');
+            this.show('game-ui');
             console.log(JSON.parse(res));
         });
     }
@@ -100,7 +106,7 @@ window.addEventListener('load', () => {
         }, 1000);
     }, 1000);*/
 
-    quiz.show(_GET.get('page'));
+    if ( !quiz.show(_GET.get('page')) ) quiz.show('game-ui');
 
     var btnChoice1 = document.getElementById('choice1');
     var btnChoice2 = document.getElementById('choice2');
@@ -121,5 +127,5 @@ window.addEventListener('load', () => {
         quiz.answer(Game.answers.both);
     });
 
-    
+    quiz.begin();
 });
