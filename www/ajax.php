@@ -249,9 +249,26 @@ else if ($_GET['action'] == 'answer_question')
                 $partieFinished = false;
             }
 
+            // Get answer of this question
+            switch($currentProposition->getReponse())
+            {
+                case 1:
+                    $currentReponse = $currentPartie->getQuestions()[$_SESSION['current_question_index']]->getLibelle1();
+                break;
+
+                case 2:
+                    $currentReponse = $currentPartie->getQuestions()[$_SESSION['current_question_index']]->getLibelle2();
+                break;
+
+                default:
+                    $currentReponse = "Les deux";
+                break;
+            }
+
             echo json_encode(array(
                 'status' => 'ok',
                 'answer_correct' => $answerCorrect,
+                'answer' => $currentReponse,
                 'new_score' => $_SESSION['current_score'],
                 'diff_score' => $answerPoints,
                 'partie_terminee' => $partieFinished
