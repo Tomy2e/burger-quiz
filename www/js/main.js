@@ -30,9 +30,12 @@ window.addEventListener('load', function ()
 
 	var profileWindowToggler = document.getElementById('profile-selector');
 
-	profileWindowToggler.addEventListener('click', (event) => {
-		profileWindow.toggle();
-	});
+	if ( profileWindow && profileWindowToggler )
+	{
+		profileWindowToggler.addEventListener('click', (event) => {
+			profileWindow.toggle();
+		});
+	}
 
 	var mainContent = document.querySelector('body > div.main-content');
 

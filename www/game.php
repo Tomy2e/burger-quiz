@@ -11,10 +11,12 @@
 		<link rel="stylesheet" type="text/css" href="css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="css/header.css">
 		<link rel="stylesheet" type="text/css" href="css/footer.css">
-		<link rel="stylesheet" type="text/css" href="css/game.css">
+        <link rel="stylesheet" type="text/css" href="css/game.css">
+        <link rel="stylesheet" type="text/css" href="css/notify.css">
 
         <script src="js/main.js"></script>
         <script src="js/ajax.js"></script>
+        <script src="js/notify.js"></script>
 		<script src="js/game.js"></script>
 	</head>
 	<body>
@@ -22,6 +24,9 @@
 
 		<!-- Page content -->
 		<div id="page-quiz" class="main-content centered">
+
+            <div id="notify-container"></div>
+
             <div class="fullscreen selected" id="game-ui">
                 <div class="vbox" id="question-zone">
                     <ul class="steps-indicator">
@@ -30,13 +35,13 @@
                         <li id="step3"></li>
                     </ul>
 
-                    <h2 id="question">Bernard Tapie, un tapis ou les deux ?</h2>
-                    <h1 id="affirmation">Il peut voler</h1>
+                    <h2 id="question">...</h2>
+                    <h1 id="affirmation">Préparation de la sauce...</h1>
                 </div>
 
                 <div id="choices" class="hbox">
-                    <button id="choice1" class="choice squared flat">Bernard Tapie</button>
-                    <button id="choice2" class="choice squared flat">Un tapis</button>
+                    <button id="choice1" class="choice squared flat">Loading...</button>
+                    <button id="choice2" class="choice squared flat">Loading...</button>
                     <button id="both" class="roundel">Les deux</button>
                 </div>
 
