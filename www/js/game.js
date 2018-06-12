@@ -59,7 +59,7 @@ class Game
         ajaxRequest('POST', 'ajax.php?action=new_game', 
         {
             'id_theme':this.theme,
-            'difficulty':this.difficulty,
+            /*'difficulty':this.difficulty,*/
         }, 
         (res) => {
             this.nextQuestion();

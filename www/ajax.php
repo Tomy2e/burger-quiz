@@ -50,8 +50,6 @@ if($_GET['action'] == 'new_game')
         $_SESSION['current_proposition_answered'] = true;
         $_SESSION['current_proposition_timesent'] = 0;
         $_SESSION['current_score'] = 0;
-        $_SESSION['current_propositions_correct'] = 0;
-        $_SESSION['current_partietime'] = 0;
 
         // OK!!
         echo json_encode(array(
@@ -150,8 +148,6 @@ else if ($_GET['action'] == 'answer_question')
             {
                $answerCorrect = true; 
 
-               $_SESSION['current_propositions_correct']++;
-
                 // Check how much time taken to answer
                 $timeToAnswer = time() - $_SESSION['current_proposition_timesent'];
 
@@ -200,7 +196,6 @@ else if ($_GET['action'] == 'answer_question')
 
 
             $_SESSION['current_score'] += $answerPoints;
-            $_SESSION['current_partietime'] += $timeToAnswer;
             $_SESSION['current_proposition_answered'] = true;
 
             // Check if the game is finished
@@ -210,9 +205,6 @@ else if ($_GET['action'] == 'answer_question')
                 $partieFinished = true;
 
                 // Add score to database
-                $newScore = new Score($_SESSION['current_propositions_correct'], 9,
-                $_SESSION['current_partietime'], $_SESSION['current_score']);
-                $newScore->addInDatabase($user, $currentPartie);
             }
             else
             {

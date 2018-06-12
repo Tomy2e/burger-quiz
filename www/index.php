@@ -16,7 +16,7 @@
 		<script src="js/main.js"></script>
 	</head>
 	<body>
-		<?php require_once("templates/header.html"); ?>
+		<?php require_once("templates/header.php"); ?>
 
 		<!-- Page content -->
 		<div id="page-menu" class="main-content">
@@ -38,6 +38,6 @@
 			</div>
 		</div>
 
-		<?php require_once("templates/footer.html"); ?>
+		<?php require_once("templates/footer.php"); ?>
 	</body>
 </html>
