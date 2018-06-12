@@ -2,9 +2,16 @@
 
 require_once('php/autoload.php');
 
+header("Cache-control: no-store, no-cache, must-revalidate");
+header("Pragma: no-cache");
+//header("Content-Type: application/json; charset=utf-8");
+
 if(!isConnected($user) || empty($_GET['action']))
 {
-    header("Location: index.php");
+    echo json_encode(array(
+        'status' => 'error',
+        'message' => 'Accès non autorisé'
+    ));
     exit;
 }
 
@@ -60,7 +67,6 @@ if($_GET['action'] == 'new_game')
 
     } catch (Exception $e)
     {
-        echo $e->getMessage();
         echo json_encode(array(
             'status' => 'error',
             'message' => $e->getMessage()
@@ -230,6 +236,35 @@ else if ($_GET['action'] == 'answer_question')
         else
         {
             throw new Exception("Game was not started or last proposition was already answered");
+        }
+    } catch (Exception $e)
+    {
+        echo json_encode(array(
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ));
+    }
+}
+else if($_GET['action'] == 'get_results')
+{
+    try {
+        $currentPartie = unserialize($_SESSION['current_partie']);
+        $currentPropositions = unserialize($_SESSION['current_propositions']);
+        $currentProposition = $currentPropositions[$_SESSION['current_proposition_index']];
+
+        // Check if the game is finished
+        if($_SESSION['current_question_index'] == count($currentPartie->getQuestions()) -  1
+        && $_SESSION['current_proposition_index'] == count($currentPropositions) - 1)
+        {
+            echo json_encode(array(
+                'status' => 'ok',
+                'scoreboard' => $currentPartie->fetchScores()
+            ));
+            print_r();
+        }
+        else
+        {
+            throw new Exception("Game is not finished!");
         }
     } catch (Exception $e)
     {

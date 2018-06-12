@@ -19,25 +19,58 @@ class Score
 
     public function addInDatabase(User $utilisateur, Partie $partie)
     {
-        $prepAdd = Database::getInstance()
-        ->prepare("INSERT INTO possede_scores (id_utilisateur, id_partie, reponses_correctes, questions_total, temps_partie, score_final, date_score)
-        VALUES (:id_user, :id_partie, :reponses_correctes, :questions_total, :temps_partie, :score_final, NOW())");
+        $prepFetchDup = Database::getInstance()
+        ->prepare("SELECT * FROM possede_scores WHERE id_utilisateur = ? AND id_partie = ?");
 
-        if($prepAdd->execute(array(
-            'id_user' => $utilisateur->getId(),
-            'id_partie' => $partie->getId(),
-            'reponses_correctes' => $this->reponses_correctes,
-            'questions_total' => $this->questions_total,
-            'temps_partie' => $this->temps_partie,
-            'score_final' => $this->score_final
-        )))
+        if(!$prepFetchDup->execute(array($utilisateur->getId(), $partie->getId())))
         {
-            $this->utilisateur = $utilisateur;
-            $this->partie = $partie;
+            throw new ScoreException("Database error : failed to fetch score");
+        }
+
+        // Decide if we update or not
+        $dupResult = $prepFetchDup->fetch();
+
+        if(!empty($dupResult))
+        {
+            // Update ONLY if current score > old score
+            if($this->score_final > $dupResult['score_final'])
+            {
+                $prepUpdate = Database::getInstance()
+                ->prepare("UPDATE possede_scores SET score_final = ?, date_score = NOW()
+                WHERE id_utilisateur = ? AND id_partie = ?");
+    
+                if(!$prepUpdate->execute(array(
+                    $this->score_final,
+                    $utilisateur->getId(),
+                    $partie->getId()
+                )))
+                {
+                    throw new ScoreException("Database error : failed to update score");
+                }
+            }
         }
         else
         {
-            throw new ScoreException("Database error : failed to add new score");
+            $prepAdd = Database::getInstance()
+            ->prepare("INSERT INTO possede_scores (id_utilisateur, id_partie, reponses_correctes, questions_total, temps_partie, score_final, date_score)
+            VALUES (:id_user, :id_partie, :reponses_correctes, :questions_total, :temps_partie, :score_final, NOW())");
+    
+            if($prepAdd->execute(array(
+                'id_user' => $utilisateur->getId(),
+                'id_partie' => $partie->getId(),
+                'reponses_correctes' => $this->reponses_correctes,
+                'questions_total' => $this->questions_total,
+                'temps_partie' => $this->temps_partie,
+                'score_final' => $this->score_final
+            )))
+            {
+                $this->utilisateur = $utilisateur;
+                $this->partie = $partie;
+            }
+            else
+            {
+                throw new ScoreException("Database error : failed to add new score");
+            }
         }
     }
 }

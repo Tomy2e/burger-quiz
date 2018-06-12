@@ -168,4 +168,29 @@ class Partie
             throw new PartieException("The game was already added in the database");
         }
     }
+
+    public function fetchScores()
+    {
+        if(!is_null($this->id))
+        {
+            $prepFetch = Database::getInstance()->prepare("SELECT nom_utilisateur, photo_utilisateur, score_final, date_score 
+            FROM possede_scores, utilisateurs
+            WHERE possede_scores.id_utilisateur = utilisateurs.id_utilisateur
+                AND possede_scores.id_partie = ?
+            ORDER BY possede_scores.score_final DESC");
+
+            if($prepFetch->execute(array($this->id)))
+            {
+                return $prepFetch->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else
+            {
+                throw new PartieException("Database error : faield to fetch scores");
+            }
+        }
+        else
+        {
+            throw new PartieException("The game is not in the database yet!");
+        }
+    }
 }
