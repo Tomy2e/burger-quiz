@@ -36,6 +36,7 @@ class SliderButton
             this.select(ev.target);
         });
 
+        if ( this.selectedItem ) this.select(this.selectedItem);
     }
 
     select(target)

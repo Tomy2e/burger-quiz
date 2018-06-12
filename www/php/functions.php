@@ -28,7 +28,8 @@ function isConnected(&$userObj = null)
     }
 }
 
-function doDisconnection()
+function disconnect()
 {
     $_SESSION['id_user'] = 0;
+    unset($_SESSION);
 }

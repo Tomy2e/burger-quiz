@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+<?php
+require_once('php/autoload.php');
+
+if ( !isConnected($user) )
+{
+	header('Location: connect.php');
+	exit;
+}
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -65,9 +75,9 @@
 			<h1>Difficulté</h1>
 			<div class="slider-button" id="difficulty">
 				<ul class="hnav-list">
-					<li id="easy" class="selected">Facile</li>
-					<li id="med">Moyen</li>
-					<li id="hard">Difficile</li>
+					<li id="1" class="selected">Facile</li>
+					<li id="2">Moyen</li>
+					<li id="3">Difficile</li>
 				</ul>
 
 				<div id="slider-button-marker"></div>

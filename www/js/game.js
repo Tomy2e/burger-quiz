@@ -59,10 +59,19 @@ class Game
         ajaxRequest('POST', 'ajax.php?action=new_game', 
         {
             'id_theme':this.theme,
-            /*'difficulty':this.difficulty,*/
+            'difficulty':this.difficulty,
         }, 
         (res) => {
-            this.nextQuestion();
+            res = JSON.parse(res);
+
+            if (res.status === 'ok')
+            {
+                this.nextQuestion();
+            }
+            else
+            {
+                new NotifyNotification("Erreur", res.message, 'error', 5000);
+            }
         });
     }
 
