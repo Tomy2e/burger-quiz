@@ -119,6 +119,25 @@ else if($_GET['action'] == 'next_question')
 
             $currentQuestion = $currentPartie->getQuestions()[$_SESSION['current_question_index']];
 
+            switch($currentPartie->getDifficulte())
+            {
+                case 1 : 
+                    $timeToAnswer = 30;
+                break;
+
+                case 2 : 
+                    $timeToAnswer = 20;
+                break;
+
+                case 3 :
+                    $timeToAnswer = 10;
+                break;
+
+                default :
+                throw new Exception("Invalid difficulty");
+                break;
+            }
+
             echo json_encode(array(
                 'status' => 'ok',
                 'current_question' => $currentQuestion->getLibelle1() . ", " . $currentQuestion->getLibelle2() . " ou les deux ?",
@@ -126,7 +145,8 @@ else if($_GET['action'] == 'next_question')
                 'libelle1' => $currentQuestion->getLibelle1(),
                 'libelle2' => $currentQuestion->getLibelle2(),
                 'current_question_progress' => $_SESSION['current_question_index'] + 1,
-                'current_proposition_progress' => $_SESSION['current_proposition_index'] + 1
+                'current_proposition_progress' => $_SESSION['current_proposition_index'] + 1,
+                'time_to_answer' => $timeToAnswer
             ));
 
         }
@@ -196,6 +216,10 @@ else if ($_GET['action'] == 'answer_question')
                     {
                         $answerPoints = 300 + (10 - abs($timeToAnswer)) * 100;
                     }
+                }
+                else
+                {
+                    throw new Exception("Invalid difficulty");
                 }
             }
             else
