@@ -83,9 +83,9 @@ else if(!empty($_POST['register_username']))
 
             <?php if(!empty($error_login)) { echo $error_login; } ?>
 
-            <form class="vbox" action="" method="post">
-                Username : <input type="text" name="login_username"/><br />
-                Password : <input type="password" name="login_password"/><br />
+            <form id="login" class="vbox" action="" method="post">
+                <label>Username : </label><input type="text" name="login_username"/>
+                <label>Password : </label><input type="password" name="login_password"/>
                 <button class="highlighted" type="submit" value="Connexion">Connection</button>
             </form>
 
@@ -93,12 +93,19 @@ else if(!empty($_POST['register_username']))
 
             <?php if(!empty($error_register)) { echo $error_register; } ?>
 
-            <form class="vbox" action="" method="post">
-                Username : <input type="text" name="register_username"/><br />
-                Age : <input type="number" name="register_age"/><br />
-                Email : <input type="email" name="register_email"/><br />
-                Password : <input type="password" name="register_password"/><br />
-                Confirm password : <input type="password" name="register_password2"/><br />
+            <form id="register" class="vbox" action="" method="post">
+                <div class="hbox">
+                    <div id="username" class="expand">
+                        <label>Username : </label><input type="text" name="register_username"/>
+                    </div>
+                    <div id="age" class="expand">
+                        <label>Age : </label><input type="number" name="register_age"/>
+                    </div>
+                </div>
+
+                <label>Email : </label><input type="email" name="register_email"/>
+                <label>Password : </label><input type="password" name="register_password"/>
+                <label>Confirm password : </label><input type="password" name="register_password2"/>
                 <button class="highlighted" type="submit" value="Inscription">Inscription</button>
             </form>
         </div>
