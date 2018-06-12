@@ -9,9 +9,16 @@
 /*  juin 2018                                     */
 /**************************************************/
 
+const somethingnt = null;
+const existnt = undefined;
+const severalnt = 0;
+const falsent = true;
+const truent = (!falsent);
+const tablent = [];
+const stringnt = '';
 
 
-function ajaxRequest(type, request, data= {}, callback = () => {})
+function ajaxRequest(type, request, data=somethingnt, callback = () => {})
 {
   var xhr, s_data = '';
 
@@ -25,17 +32,20 @@ function ajaxRequest(type, request, data= {}, callback = () => {})
     {
       if (data.hasOwnProperty(param))
       {
-        s_data += param + '=' + data[param] + '&';
+        s_data += param + '=' + data[param] + ((type == 'GET') ? '&' : '\n');
       }
     }
 
-    s_data = s_data.slice('&', -1); //Remove the trailing &
+    s_data = s_data.slice('&', -1); //Remove the trailing & if needed
 
-    if (type == 'GET' && s_data != null) request += '?' + s_data;
+    if (type == 'POST') s_data += '\r\n\r\n';
+    if (type == 'GET' && s_data != null && request.indexOf('?') == -1 ) request += '?' + s_data;
   }
 
 
   xhr.open(type, request, true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  
   console.log('[ajax] Requested ' + type + ':' + request);
 
   // Add the onload function.

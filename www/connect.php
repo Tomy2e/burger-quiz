@@ -75,7 +75,7 @@ else if(!empty($_POST['register_username']))
     </head>
 
     <body>
-        <?php require_once("templates/header.html"); ?>
+        <?php require_once("templates/header.php"); ?>
 
 		<!-- Page content -->
 		<div id="page-quiz" class="main-content centered">

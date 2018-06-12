@@ -18,7 +18,7 @@
 		<script src="js/game-settings.js"></script>
 	</head>
 	<body>
-		<?php require_once("templates/header.html"); ?>
+		<?php require_once("templates/header.php"); ?>
 
 		<!-- Page content -->
 		<div id="page-quiz" class="main-content centered">
@@ -77,6 +77,6 @@
 			<a id="replay" href="game.php">Rejouer une partie</a>
 		</div>
 
-		<?php require_once("templates/footer.html"); ?>
+		<?php require_once("templates/footer.php"); ?>
 	</body>
 </html>

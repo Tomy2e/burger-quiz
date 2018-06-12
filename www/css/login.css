@@ -1,0 +1,31 @@
+
+@import "colors.css";
+
+input
+{
+    min-width: 0;
+}
+
+.expand
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+div#username.expand
+{
+    width: 75%;
+}
+
+div#age.expand
+{
+    width: 20%;
+    margin-left: 5%;
+}
+
+div#age.expand input
+{
+    width: auto;
+}
+

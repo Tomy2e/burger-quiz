@@ -24,7 +24,7 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 		<script src="/js/main.js"></script>
 	</head>
 	<body>
-		<?php require_once("templates/header.html"); ?>
+		<?php require_once("templates/header.php"); ?>
 
 		<!-- Page content -->
 		<div id="page-ranking" class="main-content">
@@ -108,6 +108,6 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 			</section>
 		</div>
 
-		<?php require_once("templates/footer.html"); ?>
+		<?php require_once("templates/footer.php"); ?>
 	</body>
 </html>

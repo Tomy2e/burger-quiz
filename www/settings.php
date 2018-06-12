@@ -16,7 +16,7 @@
 		<script src="js/main.js"></script>
 	</head>
 	<body>
-		<?php require_once("templates/header.html"); ?>
+		<?php require_once("templates/header.php"); ?>
 
 		<!-- Page content -->
 		<div id="page-settings" class="main-content">
@@ -24,6 +24,6 @@
 			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde modi sapiente voluptatum quo dignissimos consequuntur vitae architecto quas assumenda, saepe quia accusamus quidem in aut eaque odio debitis, ratione a!</p>
 		</div>
 
-		<?php require_once("templates/footer.html"); ?>
+		<?php require_once("templates/footer.php"); ?>
 	</body>
 </html>
