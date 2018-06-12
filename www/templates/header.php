@@ -13,6 +13,13 @@
 
 	<div class="spacer"></div>
 
+	<?php
+
+	require_once('php/autoload.php');
+
+	if ( isConnected($user) )
+	{
+	?>
 	<span id="hnav-right">
 		<ul class="hnav-list">
 			<li><a id="nav-menu" href="index.php">Menu</a></li>
@@ -39,4 +46,14 @@
 		<button id="btn-param">Paramétres</button>
 		<button class="highlighted" id="btn-disconnect">Déconnexion</button>
 	</div>
+
+	<?php
+	} else {
+	?>
+	
+	<a id="btn-connect" class="button highlighted squared" href="connect.php">Connexion</a>
+
+	<?php
+	}
+	?>
 </header>

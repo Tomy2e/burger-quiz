@@ -69,8 +69,29 @@ class Game
     nextQuestion()
     {
         ajaxRequest('GET', 'ajax.php?action=next_question', {}, (res) => {
+
+            res = JSON.parse(res);
+
+            if ( res.status === 'ok' )
+            {
+                var question = document.getElementById('question');
+                var proposition = document.getElementById('affirmation');
+                var choice1 = document.getElementById('choice1');
+                var choice2 = document.getElementById('choice2');
+
+                question.innerText = res.current_question;
+                proposition.innerText = res.current_proposition;
+                choice1.innerText = res.libelle1;
+                choice2.innerText = res.libelle2;
+
+            }
+            else
+            {
+                new NotifyNotification("Erreur", res.message, 'error', 5000);
+            }
+
             this.show('game-ui');
-            console.log(JSON.parse(res));
+            console.log(res);
         });
     }
 
@@ -79,8 +100,26 @@ class Game
         ajaxRequest('POST', 'ajax.php?action=answer_question', {'answer':choice}, (res) => {
             res = JSON.parse(res);
 
-            if ( res.answer_correct ) this.show('answer-true');
-            else this.show('answer-false');
+            if ( res.status === 'ok' )
+            {
+                let screen;
+
+                if ( res.answer_correct ) screen = 'answer-true';
+                else screen = 'answer-false';
+
+                let score = document.querySelector('#' + screen + ' #score h2');
+                let scoreDelta = document.querySelector('#' + screen + ' .score-box h3');
+
+                score.innerText = res.new_score;
+                scoreDelta.innerText = res.diff_score;
+
+                this.show(screen);
+            }
+            else
+            {
+                new NotifyNotification("Erreur", res.message, 'error', 5000);
+            }
+
         });
     }
 }
@@ -126,6 +165,17 @@ window.addEventListener('load', () => {
         console.log(ev.target);
         quiz.answer(Game.answers.both);
     });
+
+    var btnNext = document.querySelectorAll('.next-question');
+
+    for ( const btn of btnNext )
+    {
+        console.log(btn);
+        
+        btn.addEventListener('click', (ev) => {
+            quiz.nextQuestion();
+        });
+    }
 
     quiz.begin();
 });

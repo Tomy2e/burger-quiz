@@ -150,7 +150,7 @@ button:hover, .button:hover
 
 button.highlighted:hover, .button.highlighted:hover
 {
-    background-color: var(--btn-back);
+    background-color: transparent;
     color: var(--btn-front);
 }
 
