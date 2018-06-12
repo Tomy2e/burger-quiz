@@ -114,13 +114,18 @@ class Game
                 let screen;
 
                 if ( res.answer_correct ) screen = 'answer-true';
-                else screen = 'answer-false';
+                else 
+                {
+                    screen = 'answer-false';
+
+                    document.querySelector('#answer-false #correct-answer').innerText = "La bonne réponse était : " + res.answer;
+                }
 
                 let score = document.querySelector('#' + screen + ' #score h2');
                 let scoreDelta = document.querySelector('#' + screen + ' .score-box h3');
 
                 score.innerText = res.new_score;
-                scoreDelta.innerText = res.diff_score;
+                scoreDelta.innerText = '(+' + res.diff_score + ')';
 
                 this.show(screen);
             }

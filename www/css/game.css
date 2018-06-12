@@ -142,12 +142,12 @@ ul.steps-indicator li
 
 
 
-#answer-true
+.fullscreen#answer-true
 {
     background-color: var(--game-both);
 }
 
-#answer-false
+.fullscreen#answer-false
 {
     background-color: var(--game-choice2);
 }
@@ -164,7 +164,7 @@ ul.steps-indicator li
 
 .fullscreen#answer-false img
 {
-    height: 30vh;
+    height: 22vh;
 }
 
 .score-box
@@ -214,6 +214,17 @@ button.next-question
     border: solid 0.15em var(--game-answer);
 }
 
+#correct-answer
+{
+    display: block;
+
+    margin-bottom: 1em; 
+
+    font-size: 1.5em;
+    font-family: "ZillaSlabBold";
+
+    color: var(--game-answer);
+}
 /*
 button.next-question::after, button.next-question::before
 {
