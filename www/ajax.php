@@ -4,7 +4,7 @@ require_once('php/autoload.php');
 
 header("Cache-control: no-store, no-cache, must-revalidate");
 header("Pragma: no-cache");
-//header("Content-Type: application/json; charset=utf-8");
+header("Content-Type: application/json; charset=utf-8");
 
 if(!isConnected($user) || empty($_GET['action']))
 {
