@@ -1,0 +1,74 @@
+
+#notify-container
+{
+    position: fixed;
+    top: 10vh;
+    left: 2vw;
+
+    z-index: 99999;
+}
+
+.notification
+{
+    padding: 1em;
+    margin: 1em 0;
+
+    text-align: left;
+
+    color: rgb(216, 216, 216);
+    box-shadow: 0 0 20px rgb(29, 29, 29);
+
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.notification.notif-hidden
+{
+    opacity: 0;
+    transform: translateY(50%);
+    
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.notification h3
+{
+    font-size: 1.3em;
+    font-weight: normal;
+    margin: 0;
+
+    color: rgb(216, 216, 216);
+}
+
+.notification p
+{
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.notification button
+{
+    display: none;
+}
+
+.notification.info, .notification
+{
+    border-top: solid 4px rgb(64, 115, 150);
+    background-color: rgb(48, 96, 128);
+}
+
+.notification.ok
+{
+    border-top: solid 4px rgb(64, 150, 75);
+    background-color: rgb(48, 128, 59);
+}
+
+.notification.warning
+{
+    border-top: solid 4px rgb(223, 170, 58);
+    background-color: rgb(177, 136, 47);
+}
+
+.notification.error
+{
+    border-top: solid 4px rgb(211, 112, 87);
+    background-color: rgb(182, 77, 59);
+}
