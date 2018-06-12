@@ -1,3 +1,11 @@
+<?php
+require_once('php/autoload.php');
+
+$scoresMgr = new ScoresManager;
+
+$classementGeneral = $scoresMgr->getClassementGeneral();
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -86,13 +94,15 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php foreach($classementGeneral as $key => $entree) : ?>
 						<tr>
-							<td>1</td>
-							<td>Vlad</td>
-							<td>1897</td>
-							<td>51s</td>
-							<td>452085</td>
+							<td><?= $key + 1; ?></td>
+							<td><?= $entree['nom_utilisateur']; ?></td>
+							<td><?= $entree['top_score']; ?></td>
+							<td><?= $entree['temps_min']; ?>s</td>
+							<td><?= $entree['total_points']; ?></td>
 						</tr>
+						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</section>

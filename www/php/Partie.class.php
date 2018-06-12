@@ -16,6 +16,11 @@ class Partie
         $this->questions = array();
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function setDifficulte($diff)
     {
         if(is_numeric($diff) && $diff > 0 && $diff < 4)
