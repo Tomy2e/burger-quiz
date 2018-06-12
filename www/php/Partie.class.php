@@ -28,6 +28,11 @@ class Partie
         }
     }
 
+    public function getDifficulte()
+    {
+        return $this->difficulte;
+    }
+
     public function getQuestions()
     {
         if(!is_null($this->id) && empty($this->questions))

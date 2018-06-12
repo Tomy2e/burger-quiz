@@ -134,7 +134,100 @@ else if($_GET['action'] == 'next_question')
         ));
     }    
 }
-else if($_GET['action'] == 'answer_question')
+else if ($_GET['action'] == 'answer_question')
 {
-    
+    try {
+        $currentPartie = unserialize($_SESSION['current_partie']);
+        $currentPropositions = unserialize($_SESSION['current_propositions']);
+        $currentProposition = $currentPropositions[$_SESSION['current_proposition_index']];
+
+        if(!empty($_SESSION['current_partie']) && $_SESSION['current_proposition_answered'] == false)
+        {
+            // Check if answer is correct
+            if(intval($_POST['answer']) == $currentProposition->getReponse())
+            {
+               $answerCorrect = true; 
+
+                // Check how much time taken to answer
+                $timeToAnswer = time() - $_SESSION['current_proposition_timesent'];
+
+                if($currentPartie->getDifficulte() == 1)
+                {
+                    // Time to answer in this difficulty : 30 seconds
+                    if($timeToAnswer > 35)
+                    {
+                        $answerPoints = 0;
+                    }
+                    else
+                    {
+                        $answerPoints = 100 + (30 - abs($timeToAnswer)) * 100;
+                    }
+                }
+                else if($currentPartie->getDifficulte() == 2)
+                {
+                    // Time to answer in this difficulty : 20 seconds
+                    if($timeToAnswer > 25)
+                    {
+                        $answerPoints = 0;
+                    }
+                    else
+                    {
+                        $answerPoints = 200 + (20 - abs($timeToAnswer)) * 100;
+                    }
+                }
+                else if($currentPartie->getDifficulte() == 3)
+                {
+                    // Time to answer in this difficulty : 10 seconds
+                    if($timeToAnswer > 15)
+                    {
+                        $answerPoints = 0;
+                    }
+                    else
+                    {
+                        $answerPoints = 300 + (10 - abs($timeToAnswer)) * 100;
+                    }
+                }
+            }
+            else
+            {
+                $answerCorrect = false;
+                $answerPoints = 0;
+            }
+
+
+            $_SESSION['current_score'] += $answerPoints;
+            $_SESSION['current_proposition_answered'] = true;
+
+            // Check if the game is finished
+            if($_SESSION['current_question_index'] == count($currentPartie->getQuestions()) -  1
+            && $_SESSION['current_proposition_index'] == count($currentPropositions) - 1)
+            {
+                $partieFinished = true;
+
+                // Add score to database
+            }
+            else
+            {
+                $partieFinished = false;
+            }
+
+            echo json_encode(array(
+                'status' => 'ok',
+                'answer_correct' => $answerCorrect,
+                'new_score' => $_SESSION['current_score'],
+                'diff_score' => $answerPoints,
+                'partie_terminee' => $partieFinished
+            ));
+        }
+        else
+        {
+            throw new Exception("Game was not started or last proposition was already answered");
+        }
+    } catch (Exception $e)
+    {
+        echo json_encode(array(
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ));
+    }
 }
