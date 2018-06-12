@@ -68,7 +68,7 @@
             <div class="fullscreen" id="answer-false">
                 <h1>Perdu !</h1>
                 <span id="correct-answer">La réponse était : </span>
-                
+
                 <img src="resources/img/burger-triste.png" alt="Là c'est une image de burger triste mais vous pouvez pas la voir pour une raison quelconque">
 
                 <div class="score-box">
@@ -81,6 +81,13 @@
 
                 <button class="next-question">Arch, quéssion zuifante</button>
 
+            </div>
+
+            <div class="fullscreen" id="results">
+                <h1>Là normalement c'est un écran de résultats</h1>
+                <h2>Mais vous ne pouvez pas le voir parce qu'il n'est pas encore fait</h2>
+                <img src="resources/img/imagedequalité.jpg" alt="image de qualité.jpeg">
+                <h3>En attendant je vous propose cette image d'un homme respirant la joie de vivre afin de vous réconforter</h3>
             </div>
 		</div>
 

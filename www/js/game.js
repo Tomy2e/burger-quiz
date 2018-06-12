@@ -23,7 +23,7 @@ class Game
     }
 
     show(screenId)
-    {
+    {        
         if ( this.selected ) this.selected.classList.remove('selected');
 
         var target = this.getScreen(screenId);
@@ -77,9 +77,13 @@ class Game
 
     nextQuestion()
     {
+        //if ( _this ) this = _this;
+        
+
         ajaxRequest('GET', 'ajax.php?action=next_question', {}, (res) => {
 
             res = JSON.parse(res);
+            console.log(res);
 
             if ( res.status === 'ok' )
             {
@@ -92,15 +96,13 @@ class Game
                 proposition.innerText = res.current_proposition;
                 choice1.innerText = res.libelle1;
                 choice2.innerText = res.libelle2;
-
             }
             else
             {
                 new NotifyNotification("Erreur", res.message, 'error', 5000);
             }
-
+            
             this.show('game-ui');
-            console.log(res);
         });
     }
 
@@ -127,6 +129,18 @@ class Game
                 score.innerText = res.new_score;
                 scoreDelta.innerText = '(+' + res.diff_score + ')';
 
+
+                if (res.partie_terminee)
+                {
+                    console.log('##### PARTIE TERMINEE #####');
+                    
+                    let btnNext = document.querySelector('#' + screen + ' .next-question');
+
+                    btnNext.onclick = (ev) => {
+                        this.show('results');
+                    }
+                }
+
                 this.show(screen);
             }
             else
@@ -142,22 +156,6 @@ Game.answers = { 'first': 1, 'second': 2, 'both': 3, 'none': 4 };
 
 window.addEventListener('load', () => {
     var quiz = new Game();
-
-
-    /**
-     * test
-     */
-    /*setTimeout(() => {
-        quiz.show('answer-true');
-
-        setTimeout(() => {
-            quiz.show('answer-false');
-
-            setTimeout(() => {
-                quiz.show('game-ui');
-            }, 1000);
-        }, 1000);
-    }, 1000);*/
 
     if ( !quiz.show(_GET.get('page')) ) quiz.show('game-ui');
 
@@ -186,9 +184,9 @@ window.addEventListener('load', () => {
     {
         console.log(btn);
         
-        btn.addEventListener('click', (ev) => {
+        btn.onclick = (ev) => {
             quiz.nextQuestion();
-        });
+        };
     }
 
     quiz.begin();

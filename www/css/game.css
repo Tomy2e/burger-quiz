@@ -38,6 +38,8 @@ footer:hover
 
     font-size: 2.5vh;
 
+    background-color: var(--game-back);
+
     transition: all 0.3s;
 }
 

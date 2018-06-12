@@ -2,15 +2,11 @@ function updateMarkerPosition()
 {
     var selectedItem = document.querySelector('.hnav-list li a.selected');
     var marker = document.getElementById('marker');
-
-    console.log(selectedItem);
     
     if (selectedItem && marker)
     {
         let selectedItemRect = selectedItem.getBoundingClientRect();
         let markerRect = marker.getBoundingClientRect();
-
-        console.log(selectedItemRect.left);
 
         marker.style.left = (selectedItemRect.left + (selectedItemRect.right - selectedItemRect.left)/2 - (markerRect.right - markerRect.left)/2 ).toString() + "px";        
     } else {
@@ -27,7 +23,6 @@ function initNav()
     if ( pageContent )
     {
         var navItem = document.getElementById('nav-' + pageContent.id.replace('page-', ''));
-        console.log(navItem);
         
         if ( navItem )
         {
