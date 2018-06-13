@@ -43,7 +43,7 @@ if($_GET['action'] == 'new_game')
                 throw new Exception("The theme was not found");
             }
 
-            $currentPartie->setDifficulte($_POST['difficulty']);
+            $currentPartie->setDifficulte(intval($_POST['difficulty']));
 
             $currentPartie->pickRandomQuestionsByTheme($themeChoisi);
 
@@ -190,7 +190,7 @@ else if ($_GET['action'] == 'answer_question')
                     }
                     else
                     {
-                        $answerPoints = 100 + (30 - abs($timeToAnswer)) * 100;
+                        $answerPoints = ceil(100 + ((30 - abs($timeToAnswer))* 100)/30);
                     }
                 }
                 else if($currentPartie->getDifficulte() == 2)
@@ -202,7 +202,7 @@ else if ($_GET['action'] == 'answer_question')
                     }
                     else
                     {
-                        $answerPoints = 200 + (20 - abs($timeToAnswer)) * 100;
+                        $answerPoints = ceil(200 + ((20 - abs($timeToAnswer))* 100)/20);;
                     }
                 }
                 else if($currentPartie->getDifficulte() == 3)
@@ -214,7 +214,7 @@ else if ($_GET['action'] == 'answer_question')
                     }
                     else
                     {
-                        $answerPoints = 300 + (10 - abs($timeToAnswer)) * 100;
+                        $answerPoints = ceil(300 + ((10 - abs($timeToAnswer))* 100)/10);;
                     }
                 }
                 else
