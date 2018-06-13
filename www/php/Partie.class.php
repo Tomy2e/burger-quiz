@@ -1,26 +1,66 @@
 <?php
 
+/**
+* \author Tomy Guichard & Gwenolé Leroy-Ferrec
+* \brief Classe permettant de représenter une Partie
+*/
 class Partie
 {
-    private $id, $date, $difficulte;
+    private $id; //!< ID de la partie
 
-    private $questions;
+    private $date; //!< Date de la partie
 
+    private $difficulte; //!< Difficulté de la partie
 
-    public function __construct($id = null, $date = null, $difficulte = null)
+    private $nb_joueurs; //!< Nombre de joueurs ayant joué à la partie
+
+    private $questions; //!< Tableau contenant les questions de la partie
+
+    /*!
+     *  \brief Constructeur de la classe Partie
+     * 
+     * Initialise les propriétés de la classe en fonction des paramètres
+     *
+     *  \param id : ID de la partie
+     *  \param date : date de la partie
+     *  \param difficulte : difficulté de la partie (1, 2 ou 3)
+     *  \param nb_joueurs : le nombre de joueurs ayant joué à la partie
+     */
+    public function __construct($id = null, $date = null, $difficulte = null, $nb_joueurs = 0)
     {
         $this->id = $id;
         $this->date = $date;
         $this->difficulte = $difficulte;
+        $this->nb_joueurs = $nb_joueurs;
 
         $this->questions = array();
     }
 
+    /*!
+     *  \brief Retourne l'ID de la partie
+     *
+     *  \return L'ID de la partie
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /*!
+     *  \brief Retourne le nombre de joueurs ayant joué à la partie
+     *
+     *  \return Le nombre de joueurs ayant joué à la partie
+     */
+    public function getNbJoueurs()
+    {
+        return $this->nb_joueurs;
+    }
+
+    /*!
+     *  \brief Défini la difficulté de la partie
+     * 
+     *  \param diff : un nombre appartenant à l'intervalle [1;3]
+     */
     public function setDifficulte($diff)
     {
         if(is_numeric($diff) && $diff > 0 && $diff < 4)
@@ -33,11 +73,25 @@ class Partie
         }
     }
 
+    /*!
+     *  \brief Retourne la difficulté de la partie
+     * 
+     *  \return un nombre appartenant à l'intervalle [1;3]
+     */
     public function getDifficulte()
     {
         return $this->difficulte;
     }
 
+    /*!
+     *  \brief Récupère les questions
+     * 
+     * Si l'ID est non nul et qu'il n'y a pas de questions dans la classe
+     * on récupère les questions associées à l'ID dans la base de données
+     * Sinon on retourne simplement les questions existantes
+     *
+     *  \return Un tableau d'objets Question
+     */
     public function getQuestions()
     {
         if(!is_null($this->id) && empty($this->questions))
@@ -74,6 +128,14 @@ class Partie
         return $this->questions;
     }
 
+    /*!
+     *  \brief Rempli la classe de questions aléatoires en fonction d'un thème
+     * 
+     * S'il n'y a pas assez de questions dans un thème, retourne une exception
+     * 
+     *  \param theme : une instance de la classe Theme
+     *  \param number : le nombre de questions à piocher (n'a aucun effect pour l'instant)
+     */
     public function pickRandomQuestionsByTheme(Theme $theme, $number = 3)
     {
         // the $number variable is not used in the SQL query yet
@@ -131,6 +193,13 @@ class Partie
         }
     }
 
+    /*!
+     *  \brief Crée la partie dans la base de données
+     * 
+     * Ne fonctionne que si la partie n'a pas déjà été ajoutée dans la base de données
+     *
+     *  \return true en cas de réussite
+     */
     public function createInDatabase()
     {
         if(is_null($this->id))
@@ -169,6 +238,11 @@ class Partie
         }
     }
 
+    /*!
+     *  \brief Récupère les scores liés à la partie dans la base de données
+     * 
+     *  \return Un tableau avec la liste de scores et l'utilisateur qui a joué
+     */
     public function fetchScores()
     {
         if(!is_null($this->id))

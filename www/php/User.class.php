@@ -1,10 +1,37 @@
 <?php
 
+/**
+* \author Tomy Guichard & Gwenolé Leroy-Ferrec
+* \brief Classe permettant de représenter un User
+*/
 class User
 {
-    private $id, $username, $password, $age, $email, $photo;
-    private $db;
+    private $id; //!< ID de l'utilisateur
 
+    private $username; //!< Nom d'utilisateur
+
+    private $password; //!< Mot de passe hashé de l'utilisateur
+
+    private $age; //!< Âge de l'utilisateur
+
+    private $email; //!< Adresse email de l'utilisateur
+
+    private $photo; //!< Lien vers la photo de l'utilisateur
+
+    private $db; //!< Instance PDO
+
+    /*!
+     *  \brief Constructeur de la classe User
+     * 
+     * Rempli automatiquement la classe à partir des paramètres
+     * 
+     *  \param id : l'ID de l'utilisateur
+     *  \param username : le nom d'utilisateur
+     *  \param password : le mot de passe hashé
+     *  \param age : l'âge de l'utilisateur
+     *  \param email : l'adresse email de l'utilisateur
+     *  \param photo : le lien vers la photo de l'utilisateur
+     */
     public function __construct($id = null, $username = null, $password = null, $age = null, $email = null, $photo = null)
     {
         $this->db = Database::getInstance();
@@ -16,16 +43,34 @@ class User
         $this->photo = $photo;
     }
 
+    /*!
+     *  \brief Retourne l'ID de l'utilisateur
+     * 
+     *  \return l'ID de l'utilisateur
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /*!
+     *  \brief Retourne le nom d'utilisateur
+     * 
+     *  \return le nom d'utilisateur
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /*!
+     *  \brief Retourne le mot de passe hashé
+     * 
+     * S'il n'est pas hashé (modifié depuis l'interface Qt),
+     * on le hash et on met à jour la base de données
+     * 
+     *  \return le mot de passe hashé
+     */
     public function getPassword()
     {
         // If password is not hashed, let's hash it
@@ -39,21 +84,41 @@ class User
         return $this->password;
     }
 
+    /*!
+     *  \brief Retourne l'âge de l'utilisateur
+     * 
+     *  \return l'âge de l'utilisateur
+     */
     public function getAge()
     {
         return $this->age;
     }
 
+    /*!
+     *  \brief Retourne l'adresse email
+     * 
+     *  \return l'adresse email
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+    /*!
+     *  \brief Retourne le lien vers la photo de l'utilisateur
+     * 
+     *  \return le lien vers la photo de l'utilisateur
+     */
     public function getPhoto()
     {
         return $this->photo;
     }
 
+    /*!
+     *  \brief Change le nom d'utilisateur
+     * 
+     *  \param username : Le nouveau nom d'utilisateur
+     */
     public function setUsername($username)
     {
         if(!ctype_alnum($username))
@@ -99,6 +164,11 @@ class User
         return $this;
     }
 
+    /*!
+     *  \brief Change le mot de passe
+     * 
+     *  \param password : Le nouveau mot de passe
+     */
     public function setPassword($password)
     {
 
@@ -120,6 +190,11 @@ class User
         return $this;
     }
 
+    /*!
+     *  \brief Change l'âge de l'utilisateur
+     * 
+     *  \param age : Le nouvel âge de l'utilisateur
+     */
     public function setAge($age)
     {
         if(!is_numeric($age))
@@ -152,6 +227,12 @@ class User
         return $this;
     }
 
+
+    /*!
+     *  \brief Change l'email de l'utilisateur
+     * 
+     *  \param email : Le nouvel email de l'utilisateur
+     */
     public function setEmail($email)
     {
         if(!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -187,6 +268,11 @@ class User
         return $this;
     }
 
+    /*!
+     *  \brief Change la photo de l'utilisateur
+     * 
+     *  \param photo : La nouvelle photo de l'utilisateur
+     */
     public function setPhoto($photo)
     {
         $this->photo = $photo;
@@ -194,6 +280,10 @@ class User
         return $this;
     }
 
+    /*!
+     *  \brief Supprime l'utilisateur
+     *  \return true en cas de réussite
+     */
     public function remove()
     {
         if(!is_null($this->id))
@@ -217,6 +307,11 @@ class User
         }
     }
 
+    /*!
+     *  \brief Crée l'utilisateur dans la base de données
+     * 
+     *  \return true en cas de réussite
+     */
     public function createInDatabase()
     {
         if(is_null($this->id))

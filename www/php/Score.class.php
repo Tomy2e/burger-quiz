@@ -1,11 +1,36 @@
 <?php
 
+/**
+* \author Tomy Guichard & Gwenolé Leroy-Ferrec
+* \brief Classe permettant de représenter un Score
+*/
 class Score
 {
-    private $utilisateur, $partie;
+    private $utilisateur; //!< Contient un object User associé au score
 
-    private $reponses_correctes, $questions_total, $temps_partie, $score_final, $date_score;
+    private $partie; //!< Contient un object Partie associé au score
 
+    private $reponses_correctes; //!< Nombre de réponses correctes
+
+    private $questions_total; //!< Nombre de questions répondues
+
+    private $temps_partie; //!< Temps total de la partie
+
+    private $score_final; //!< Score final
+
+    private $date_score; //!< Date du score
+
+
+    /*!
+     *  \brief Constructeur de la classe Score
+     * 
+     * Rempli automatiquement la classe à partir des paramètres
+     * 
+     *  \param reponses_correctes : le nombre de bonnes réponses
+     *  \param questions_total : le nombre de questions au total
+     *  \param temps_partie : le temps total de la partie
+     *  \param score_final : le score final
+     */
     public function __construct($reponses_correctes = 0, $questions_total = 0, $temps_partie = 0, $score_final = 0)
     {
         $this->utilisateur = null;
@@ -17,6 +42,15 @@ class Score
         $this->score_final = $score_final;
     }
 
+    /*!
+     *  \brief Ajoute le score dans la base de données
+     * 
+     * Si un score existe déjà, on met à jour le score existant si le
+     * score actuel est strictement supérieur
+     * 
+     *  \param utilisateur : l'utilisateur qui a établi le score
+     *  \param partie : la partie liée au score
+     */
     public function addInDatabase(User $utilisateur, Partie $partie)
     {
         $prepFetchDup = Database::getInstance()

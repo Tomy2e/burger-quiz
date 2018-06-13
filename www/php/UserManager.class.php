@@ -1,14 +1,29 @@
 <?php
 
+/**
+* \author Tomy Guichard & Gwenolé Leroy-Ferrec
+* \brief Classe permettant de gérer les Users
+*/
 class UserManager
 {
-    private $db;
+    private $db; //!< Instance PDO
 
+    /*!
+     *  \brief Constructeur de la classe UserManager
+     * 
+     * Récupère l'instance PDO
+     */
     public function __construct()
     {
         $this->db = Database::getInstance();
     }
 
+    /*!
+     *  \brief Transforme un tableau de tableau en tableau d'objets User
+     * 
+     *  \param arrayOfArray : un tableau de tableau
+     *  \return un tableau d'objets User
+     */
     private function userArrayToObject($arrayOfArray)
     {
         $arrayOfUsers = array();
@@ -28,6 +43,12 @@ class UserManager
         return $arrayOfUsers;
     }
 
+    /*!
+     *  \brief Récupère un utilisateur par son nom d'utilisateur
+     * 
+     *  \param username : le nom d'utilisateur exact
+     *  \return un tableau contenant un objet User
+     */
     public function fetchUserByUsername($username)
     {
         $prepareFetch = $this->db->prepare("SELECT * FROM utilisateurs WHERE nom_utilisateur = ?");
@@ -43,6 +64,12 @@ class UserManager
         }
     }
 
+    /*!
+     *  \brief Récupère un utilisateur par son ID
+     * 
+     *  \param id : l'ID de l'utilisateur
+     *  \return un tableau contenant un objet User
+     */
     public function fetchUserById($id)
     {
         $prepareFetch = $this->db->prepare("SELECT * FROM utilisateurs WHERE id_utilisateur = ?");

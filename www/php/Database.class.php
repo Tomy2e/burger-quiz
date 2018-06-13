@@ -1,29 +1,20 @@
 <?php
 
 /**
- * Database class
- * 
- * This class manages the PDO instance
- * 
- * @author Tomy Guichard <tomy.guichard@isen-ouest.yncrea.fr>
- * @author Gwenolé Leroy-Ferrec <gwenole.le-roy-ferrec@isen-ouest.yncrea.fr>
- */
+* \author Tomy Guichard & Gwenolé Leroy-Ferrec
+* \brief Classe permettant de gérer l'instance PDO
+*/
 class Database
 {
 
-    /**
-     * The PDO Instance
-     *
-     * @var PDO
-     */
-    public static $instance;
+    public static $instance; //!< Contient l'instance PDO
 
-    /**
-     * Returns the current PDO Instance
+    /*!
+     *  \brief Retourne l'instance actuelle de PDO
      * 
-     * If it doesn't exist, creates a new PDO instance.
+     * Si elle n'existe pas, on en crée une nouvelle
      *
-     * @return PDO
+     *  \return L'instance PDO
      */
     static function getInstance()
     {

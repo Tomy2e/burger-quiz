@@ -1,14 +1,30 @@
 <?php
 
+/**
+* \author Tomy Guichard & Gwenolé Leroy-Ferrec
+* \brief Classe permettant de gérer les Scores
+*/
 class ScoresManager 
 {
-    private $db;
+    private $db; //!< Instance PDO
 
+    /*!
+     *  \brief Constructeur de la classe ScoresManager
+     * 
+     * Récupère l'instance PDO
+     */
     public function __construct()
     {
         $this->db = Database::getInstance();
     }
 
+    /*!
+     *  \brief Récupère le classement général
+     * 
+     * Pour chaque utilisateur, récupère le score total, le top score et le top temps
+     * 
+     *  \param orderby : Critère de tri = total, top_score ou temps_min
+     */
     public function getClassementGeneral($orderby = "total")
     {
         switch($orderby)
