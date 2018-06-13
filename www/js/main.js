@@ -35,6 +35,14 @@ window.addEventListener('load', function ()
 		profileWindowToggler.addEventListener('click', (event) => {
 			profileWindow.toggle();
 		});
+
+		var buttons = this.document.querySelectorAll('#profile-modal .button');
+
+		for (const button of buttons) {
+			button.addEventListener('click', (ev) => {
+				profileWindow.hide();
+			});
+		}
 	}
 
 	var mainContent = document.querySelector('body > div.main-content');

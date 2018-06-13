@@ -54,53 +54,62 @@ class Game
         return false;
     }
 
+    request(action, param = null, callback = () => {}, type = null)
+    {
+        if ( !type )
+        {
+            switch (action) {
+                case 'new_game':
+                case 'answer_question':
+                    type = 'POST';
+                    break;
+                
+                case 'next_question':
+                case 'get_results':
+                default:
+                    type = 'GET';
+                    break;
+            }
+        }
+
+        ajaxRequest(type, 'ajax.php?action=' + action, param, (res) => {            
+            let json = JSON.parse(res);
+
+            if (json.status === 'ok')
+            {
+                callback(json, res);
+            }
+            else {
+                new NotifyNotification("Erreur", json.message, 'error', 5000);
+            }
+        });
+    }
+
     begin()
     {
-        ajaxRequest('POST', 'ajax.php?action=new_game', 
+        this.request('new_game', 
         {
             'id_theme':this.theme,
             'difficulty':this.difficulty,
         }, 
         (res) => {
-            res = JSON.parse(res);
-
-            if (res.status === 'ok')
-            {
                 this.nextQuestion();
-            }
-            else
-            {
-                new NotifyNotification("Erreur", res.message, 'error', 5000);
-            }
         });
     }
 
     nextQuestion()
     {
-        //if ( _this ) this = _this;
-        
+        this.request('next_question', {}, (res) => {
 
-        ajaxRequest('GET', 'ajax.php?action=next_question', {}, (res) => {
+            var question = document.getElementById('question');
+            var proposition = document.getElementById('affirmation');
+            var choice1 = document.getElementById('choice1');
+            var choice2 = document.getElementById('choice2');
 
-            res = JSON.parse(res);
-            console.log(res);
-
-            if ( res.status === 'ok' )
-            {
-                var question = document.getElementById('question');
-                var proposition = document.getElementById('affirmation');
-                var choice1 = document.getElementById('choice1');
-                var choice2 = document.getElementById('choice2');
-
-                question.innerText = res.current_question;
-                proposition.innerText = res.current_proposition;
-                choice1.innerText = res.libelle1;
-                choice2.innerText = res.libelle2;
-            }
-            else
-            {
-                new NotifyNotification("Erreur", res.message, 'error', 5000);
-            }
+            question.innerText = res.current_question;
+            proposition.innerText = res.current_proposition;
+            choice1.innerText = res.libelle1;
+            choice2.innerText = res.libelle2;
             
             this.show('game-ui');
         });
@@ -108,46 +117,41 @@ class Game
 
     answer(choice)
     {
-        ajaxRequest('POST', 'ajax.php?action=answer_question', {'answer':choice}, (res) => {
-            res = JSON.parse(res);
+        this.request('answer_question', {'answer':choice}, (res) => {
 
-            if ( res.status === 'ok' )
+            let screen;
+
+            if ( res.answer_correct ) screen = 'answer-true';
+            else 
             {
-                let screen;
+                screen = 'answer-false';
 
-                if ( res.answer_correct ) screen = 'answer-true';
-                else 
-                {
-                    screen = 'answer-false';
+                document.querySelector('#answer-false #correct-answer').innerText = "La bonne réponse était : " + res.answer;
+            }
 
-                    document.querySelector('#answer-false #correct-answer').innerText = "La bonne réponse était : " + res.answer;
-                }
+            let score = document.querySelector('#' + screen + ' #score h2');
+            let scoreDelta = document.querySelector('#' + screen + ' .score-box h3');
 
-                let score = document.querySelector('#' + screen + ' #score h2');
-                let scoreDelta = document.querySelector('#' + screen + ' .score-box h3');
-
-                score.innerText = res.new_score;
-                scoreDelta.innerText = '(+' + res.diff_score + ')';
+            score.innerText = res.new_score;
+            scoreDelta.innerText = '(+' + res.diff_score + ')';
 
 
-                if (res.partie_terminee)
-                {
-                    console.log('##### PARTIE TERMINEE #####');
+            if (res.partie_terminee)
+            {
+                console.log('##### PARTIE TERMINEE #####');
+                
+                let btnNext = document.querySelector('#' + screen + ' .next-question');
+
+                btnNext.onclick = (ev) => {
                     
-                    let btnNext = document.querySelector('#' + screen + ' .next-question');
-
-                    btnNext.onclick = (ev) => {
-                        this.show('results');
-                    }
+                    this.request('get_results', null, (res) => {
+                        
+                    });
+                    this.show('results');
                 }
-
-                this.show(screen);
-            }
-            else
-            {
-                new NotifyNotification("Erreur", res.message, 'error', 5000);
             }
 
+            this.show(screen);
         });
     }
 }
