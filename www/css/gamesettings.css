@@ -3,6 +3,8 @@
 li.theme-list-item
 {
     padding: 1em;
+    margin-bottom: 2em;
+
     background-color: var(--header-front);
 
     cursor: pointer;
@@ -106,6 +108,7 @@ li.theme-list-item.selected h3
 #theme-list
 {
     width: 100%;
+    flex-wrap: wrap;
 }
 
 #play

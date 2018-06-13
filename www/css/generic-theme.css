@@ -7,6 +7,7 @@
     --btn-back: white;
     --btn-disable: rgb(82, 82, 82);
     --btn-alt: rgb(34, 95, 34);
+    --btn-border-width: 1px;
 
     --input-border: gray;
     --input-shadow: rgba(128, 128, 128, 0.651);
@@ -28,6 +29,18 @@ form
 
     margin: auto;
 }
+
+
+form.vbox label
+{
+    margin-bottom: 0.2em;
+}
+
+form button
+{
+    margin-top: 1.5em;
+}
+
 
 .hbox
 {
@@ -120,8 +133,8 @@ button, .button
     color: var(--btn-front);
     background-color: var(--btn-back);
 
-    border-radius: 8px;
-    border: solid 2px var(--btn-front);
+    border-radius: 4px;
+    border: solid var(--btn-border-width) var(--btn-front);
 
     transform: scale(1);
 
