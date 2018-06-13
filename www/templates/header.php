@@ -37,14 +37,14 @@
 	<div class="window vbox hidden" id="profile-modal">
 		<div class="triangle" id="modal-toparrow"></div>
 
-		<h2>Vlad</h2>
+		<h2><?php echo $user->getUsername(); ?></h2>
 
 		<div class="roundel centered" id="window-profile-pic">
 			<img src="resources/img/users/vlad.png" alt="vlad" id="profile-pic-big">
 		</div>
 
-		<button id="btn-param">Paramétres</button>
-		<button class="highlighted" id="btn-disconnect">Déconnexion</button>
+		<a href="settings.php" class="button highlighted" id="btn-param">Paramétres</a>
+		<a href="disconnect.php" class="button highlighted" id="btn-disconnect">Déconnexion</a>
 	</div>
 
 	<?php

@@ -32,7 +32,7 @@ function ajaxRequest(type, request, data=somethingnt, callback = () => {})
     {
       if (data.hasOwnProperty(param))
       {
-        s_data += param + '=' + data[param] + ((type == 'GET') ? '&' : '\n');
+        s_data += param + '=' + data[param] + '&';
       }
     }
 
@@ -45,7 +45,7 @@ function ajaxRequest(type, request, data=somethingnt, callback = () => {})
 
   xhr.open(type, request, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  
+
   console.log('[ajax] Requested ' + type + ':' + request);
 
   // Add the onload function.
