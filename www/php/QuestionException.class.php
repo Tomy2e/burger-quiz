@@ -2,8 +2,8 @@
 
 /**
 * \author Tomy Guichard & Gwenolé Leroy-Ferrec
-* \brief Type d'exception retournée par la classe PropositionException
+* \brief Type d'exception retournée par la classe Question
 */
-class PropositionException extends Exception {
+class QuestionException extends Exception {
     
 }
