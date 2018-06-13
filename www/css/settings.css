@@ -1,0 +1,16 @@
+
+#settings
+{
+    max-width: 60%;
+    margin: auto;
+}
+
+#lbl-changepasswd
+{
+    margin-bottom: 0.2em;
+}
+
+#lbl-changepasswd label
+{
+    margin-bottom: 0;
+}
