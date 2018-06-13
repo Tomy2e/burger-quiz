@@ -58,7 +58,8 @@ class Game
     {
         if ( !type )
         {
-            switch (action) {
+            switch (action)
+            {
                 case 'new_game':
                 case 'answer_question':
                     type = 'POST';
@@ -79,7 +80,8 @@ class Game
             {
                 callback(json, res);
             }
-            else {
+            else
+            {
                 new NotifyNotification("Erreur", json.message, 'error', 5000);
             }
         });
@@ -125,7 +127,6 @@ class Game
             else 
             {
                 screen = 'answer-false';
-
                 document.querySelector('#answer-false #correct-answer').innerText = "La bonne réponse était : " + res.answer;
             }
 
@@ -141,12 +142,14 @@ class Game
                 console.log('##### PARTIE TERMINEE #####');
                 
                 let btnNext = document.querySelector('#' + screen + ' .next-question');
+                btnNext.innerText = "Résultats";
 
                 btnNext.onclick = (ev) => {
-                    
+
                     this.request('get_results', null, (res) => {
-                        
+                        //do things, plz no bugs
                     });
+
                     this.show('results');
                 }
             }

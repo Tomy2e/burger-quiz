@@ -28,6 +28,7 @@
 .podium .user h2
 {
     margin: 0;
+    font-size: 100%;
 }
 
 .podium .step h2
@@ -46,7 +47,7 @@
 .podium .user .topscore
 {
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 1em;
 
     margin-bottom: 2em;
 

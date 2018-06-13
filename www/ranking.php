@@ -29,14 +29,22 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 		<!-- Page content -->
 		<div id="page-ranking" class="main-content">
 			<h1>Classements</h1>
+
+			<?php
+			if (count($classementGeneral) >= 3)
+			{
+			?>
 			<section id="top3">
 				<h1>Meilleurs joueurs</h1>
 				<div class="podium hbox">
 					<div id="second">
 						<div class="user roundel">
-							<img src="resources/img/users/vlad.png" alt="Vlad">
-							<h2>Vlad</h2>
-							<span class="topscore">15252<span>
+							<?php
+
+							echo '<img src="resources/img/users/vlad.png" alt="Vlad">';
+							echo '<h2>'.$classementGeneral[1]['nom_utilisateur'].'</h2>';
+							echo '<span class="topscore">'.$classementGeneral[1]['total_points'].'<span>';
+							?>
 						</div>
 
 						<div class="step">
@@ -46,9 +54,12 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 
 					<div id="first">
 						<div class="user roundel">
-							<img src="resources/img/users/vlad.png" alt="Vlad">
-							<h2>Vlad</h2>
-							<span class="topscore">7.8×10⁹<span>
+							<?php
+
+							echo '<img src="resources/img/users/vlad.png" alt="Vlad">';
+							echo '<h2>'.$classementGeneral[0]['nom_utilisateur'].'</h2>';
+							echo '<span class="topscore">'.$classementGeneral[0]['total_points'].'<span>';
+							?>
 						</div>
 
 						<div class="step">
@@ -58,9 +69,12 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 
 					<div id="third">
 						<div class="user roundel">
-							<img src="resources/img/users/vlad.png" alt="Vlad">
-							<h2>Vlad</h2>
-							<span class="topscore">-15252<span>
+							<?php
+
+							echo '<img src="resources/img/users/vlad.png" alt="Vlad">';
+							echo '<h2>'.$classementGeneral[2]['nom_utilisateur'].'</h2>';
+							echo '<span class="topscore">'.$classementGeneral[2]['total_points'].'<span>';
+							?>
 						</div>
 
 						<div class="step">
@@ -69,6 +83,7 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 					</div>
 				</div>
 			</section>
+			<?php } ?>
 
 			<section id="general-ranking">
 				<div class="hbox">

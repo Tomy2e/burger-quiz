@@ -6,6 +6,16 @@ input
     min-width: 0;
 }
 
+form.vbox label
+{
+    margin-bottom: 0.2em;
+}
+
+button
+{
+    margin-top: 1.5em;
+}
+
 .expand
 {
     display: flex;
