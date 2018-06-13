@@ -314,4 +314,21 @@ else if($_GET['action'] == 'get_results')
             'message' => $e->getMessage()
         ));
     }
+} 
+else if($_GET['action'] == 'set_user_info')
+{
+    try
+    {
+        if ( isset($_POST['username']) ) $user->setUsername($_POST['username']);
+        if ( isset($_POST['password']) ) $user->setPassword($_POST['password']);
+        if ( isset($_POST['email']) ) $user->setEmail($_POST['email']);
+        if ( isset($_POST['photo']) ) $user->setPhoto($_POST['photo']);
+    }
+    catch (Exception $e)
+    {
+        echo json_encode( array(
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ));
+    }
 }

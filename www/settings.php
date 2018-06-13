@@ -26,6 +26,7 @@ if ( !isConnected($user) )
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
 
 		<script src="js/main.js"></script>
+		<script src="js/settings.js"></script>
 	</head>
 	<body>
 		<?php require_once("templates/header.php"); ?>
