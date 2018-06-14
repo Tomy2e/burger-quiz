@@ -323,6 +323,10 @@ else if($_GET['action'] == 'set_user_info')
         if ( isset($_POST['password']) ) $user->setPassword($_POST['password']);
         if ( isset($_POST['email']) ) $user->setEmail($_POST['email']);
         if ( isset($_POST['photo']) ) $user->setPhoto($_POST['photo']);
+
+        echo json_encode(array(
+            'status' => 'ok'
+        ));
     }
     catch (Exception $e)
     {

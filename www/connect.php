@@ -43,7 +43,7 @@ else if(!empty($_POST['register_username']))
         ->setPassword($_POST['register_password'])
         ->setAge($_POST['register_age'])
         ->setEmail($_POST['register_email'])
-        ->setPhoto('')
+        ->setPhoto('resources/img/users/default.png')
         ->createInDatabase();
 
         doConnection($newUser->getId());

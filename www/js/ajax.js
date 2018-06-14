@@ -9,16 +9,8 @@
 /*  juin 2018                                     */
 /**************************************************/
 
-const somethingnt = null;
-const existnt = undefined;
-const severalnt = 0;
-const falsent = true;
-const truent = (!falsent);
-const tablent = [];
-const stringnt = '';
 
-
-function ajaxRequest(type, request, data=somethingnt, callback = () => {})
+function ajaxRequest(type, request, data=null, callback = () => {})
 {
   var xhr, s_data = '';
 
