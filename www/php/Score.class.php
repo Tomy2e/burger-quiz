@@ -70,11 +70,12 @@ class Score
             if($this->score_final > $dupResult['score_final'])
             {
                 $prepUpdate = Database::getInstance()
-                ->prepare("UPDATE possede_scores SET score_final = ?, date_score = NOW()
+                ->prepare("UPDATE possede_scores SET score_final = ?, date_score = NOW(), temps_partie = ?
                 WHERE id_utilisateur = ? AND id_partie = ?");
     
                 if(!$prepUpdate->execute(array(
                     $this->score_final,
+                    $this->temps_partie,
                     $utilisateur->getId(),
                     $partie->getId()
                 )))

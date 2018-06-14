@@ -106,11 +106,6 @@ class Partie
 
                 $pickedQuestions = array();
 
-                if(count($fetchQuestions) < $number)
-                {
-                    throw new PartieException("Not enough questions available in this theme");
-                }
-
                 // Transform arrays of arrays to arrays of Question objects
                 foreach($fetchQuestions as $question)
                 {
