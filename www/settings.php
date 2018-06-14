@@ -43,23 +43,20 @@ if ( !isConnected($user) )
 			<div id="settings" class="hbox">
 				<form class="vbox" action="#">
 					<label for="username">Nom d'utilisateur</label>
-					<input type="text" value="<?php echo $user->getUsername(); ?>" name="username">
+					<input id="username" type="text" value="<?php echo $user->getUsername(); ?>" name="username">
 
 					<label for="mail">Adresse mail</label>
-					<input type="text" value="<?php echo $user->getEmail(); ?>" name="mail">
+					<input id="mail" type="text" value="<?php echo $user->getEmail(); ?>" name="mail">
 
 					<div id="lbl-age" class="hbox">
 						<label for="age">Age</label>
-						<input type="number" value="<?php echo $user->getAge(); ?>" min="0" max="150" step="1" name="age">
+						<input id="age" type="number" value="<?php echo $user->getAge(); ?>" min="0" max="150" step="1" name="age">
 					</div>
 
 					<div id="lbl-changepasswd" class="inline-option hbox">
 						<label for="password">Mot de passe</label>
 						<a id="btn-changepasswd" href="#">Modifier le mot de passe</a>
 					</div>
-
-					<input id="password" type="hidden" name="password" value="">
-					<input id="photo" type="hidden" name="photo" value="<?php echo $user->getPhoto(); ?>">
 
 					<button class="highlighted" type="submit">Enregistrer les modifications</button>
 				</form>
@@ -91,13 +88,13 @@ if ( !isConnected($user) )
 
 				<form class="vbox" action="#">
 					<label for="current_passwd">Mot de passe actuel</label>
-					<input type="password" value="" name="current_passwd">
+					<input id="current-password" type="password" value="" name="current_passwd">
 
 					<label for="passwd">Nouveau mot de passe</label>
-					<input type="password" value="" name="passwd">
+					<input id="new-password" type="password" value="" name="passwd">
 
 					<label for="confirm_passwd">Confirmer le mot de passe</label>
-					<input type="password" value="" name="confirm_passwd">
+					<input id="conf-password" type="password" value="" name="confirm_passwd">
 
 					<div class="hbox inline-option button-bar">
 						<button id="btn-cancel" type="submit">Annuler</button>

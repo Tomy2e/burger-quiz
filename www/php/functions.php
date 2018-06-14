@@ -45,3 +45,27 @@ function disconnect()
     $_SESSION['id_user'] = 0;
     unset($_SESSION['id_user']);
 }
+
+/**
+ * \brief Vérifie si les identifiants (pseudo et mot de passe) fournis sont corrects
+ */
+function checkAuth($username, $password)
+{
+
+        $userMgr = new UserManager;
+        $userFound = $userMgr->fetchUserByUsername($username);
+
+        if(empty($userFound)) {
+            throw new Exception("Nom d'utilisateur inconnu");
+        }
+
+        if(password_verify($password, $userFound[0]->getPassword()))
+        {
+            return true;
+        }
+        else
+        {
+            throw new Exception("Mot de passe incorrect");
+        }
+
+}

@@ -30,7 +30,6 @@ function ajaxRequest(type, request, data=null, callback = () => {})
 
     s_data = s_data.slice('&', -1); //Remove the trailing & if needed
 
-    if (type == 'POST') s_data += '\r\n\r\n';
     if (type == 'GET' && s_data != null && request.indexOf('?') == -1 ) request += '?' + s_data;
   }
 

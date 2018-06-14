@@ -46,7 +46,29 @@ window.addEventListener('windowmanagerready', () => {
     if (btnChangePasswd && WindowManager.wndPasswd)
     {
         WindowManager.wndPasswd.onvalidate = (ev) => {
-            //TODO : manage password changes here
+            var username = document.getElementById('username').value;
+            var currentPassword = document.getElementById('current-password').value;
+            var newPassword = document.getElementById('new-password').value;
+            var confPassword = document.getElementById('conf-password').value;
+
+            if ( currentPassword )
+            {
+                ajaxRequest('POST', 'ajax.php?action=check_auth', {
+                    'username': username,
+                    'password': currentPassword
+                },
+                (res) => {
+                    let json = JSON.parse(res);
+                    
+                    if (json.status === 'ok') {
+                        
+                        new NotifyNotification('Lorem', 'ca marche peut être', 'ok');
+                    }
+                    else {
+                        new NotifyNotification("Erreur", json.message, 'error', 5000);
+                    }
+                });
+            }
         };
 
         btnChangePasswd.addEventListener('click', (ev) => {

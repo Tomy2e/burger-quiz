@@ -336,3 +336,21 @@ else if($_GET['action'] == 'set_user_info')
         ));
     }
 }
+else if($_GET['action'] == 'check_auth')
+{
+    try
+    {
+        checkAuth($_POST['username'], $_POST['password']);
+
+        echo json_encode(array(
+            'status' => 'ok'
+        ));
+    }
+    catch (Exception $e)
+    {
+        echo json_encode( array(
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ));
+    }
+}
