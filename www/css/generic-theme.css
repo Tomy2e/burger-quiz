@@ -229,7 +229,7 @@ table.flat-table, table.flat-table td
 table.flat-table tr
 {
     color: var(--table-line-text);
-    border-bottom: solid 2px rgb(161, 161, 161);
+    /*border-bottom: solid 2px rgb(161, 161, 161);*/
     /*padding: 0.5em;*/
 }
 
