@@ -299,6 +299,7 @@ else if($_GET['action'] == 'get_results')
         {
             echo json_encode(array(
                 'status' => 'ok',
+                'id_game' => $currentPartie->getId(),
                 'scoreboard' => $currentPartie->fetchScores()
             ));
             print_r();

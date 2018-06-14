@@ -32,7 +32,7 @@ class User
      *  \param email : l'adresse email de l'utilisateur
      *  \param photo : le lien vers la photo de l'utilisateur
      */
-    public function __construct($id = null, $username = null, $password = null, $age = null, $email = null, $photo = null)
+    public function __construct($id = null, $username = null, $password = null, $age = null, $email = null, $photo = 'resources/img/users/default.png')
     {
         $this->db = Database::getInstance();
         $this->id = $id;
