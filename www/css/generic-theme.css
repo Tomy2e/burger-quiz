@@ -18,6 +18,8 @@
     --table-line-text:  var(--text);
     --table-line-odd:   rgb(255, 210, 158);
     --table-line-even:  rgb(255, 195, 128);
+
+    --window-front: var(--text);
 }
 
 
@@ -122,7 +124,7 @@ input:focus
 
 button, .button
 {
-    padding: 0.3em;
+    padding: 0.3em 1em;
 
     text-transform: uppercase;
     text-decoration: none;
@@ -139,6 +141,11 @@ button, .button
     transform: scale(1);
 
     transition: color 0.3s, background-color 0.3s;
+}
+
+button:not(#close-btn)
+{
+    min-width: 6em;
 }
 
 button.disabled, .button.disabled
@@ -262,7 +269,12 @@ table.flat-table thead tr
 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.726);
 
-    transition: transform 0.3s, opacity 0.3s;
+    transition: all 0.2s;
+}
+
+.window.fixed
+{
+    position: fixed;
 }
 
 .window.screen-centered
@@ -301,14 +313,14 @@ table.flat-table thead tr
     padding: 0;
 
     border: none;
-    color: var(--btn-back);
+    color: var(--window-front);
     background-color: transparent;
 
     font-size: 2em;
     transform: translateY(-25%);
 }
 
-.window:first-child, .window h3
+.window *:first-child, .window h3
 {
     margin-top: 0;
 }

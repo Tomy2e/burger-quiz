@@ -58,11 +58,12 @@ button, .button
 {
 	width: 80%;
 	min-height: 100vh;
+	min-height: calc(100vh - 10em);
 
 	padding: 2em 1em;
 
 	margin: 2em auto;
-	margin-top: 4em.1em;
+	margin-top: 4.1em;
 
 	opacity: 0;
 	transition: opacity 0.3s;

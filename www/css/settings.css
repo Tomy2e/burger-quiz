@@ -5,12 +5,48 @@
     margin: auto;
 }
 
-#lbl-changepasswd
+.hbox.inline-option
 {
     margin-bottom: 0.2em;
 }
 
-#lbl-changepasswd label
+.hbox.inline-option label
 {
     margin-bottom: 0;
+}
+
+#profile-pic-large
+{
+    width: 15vw;
+    max-width: 25vw;
+}
+
+#btn-changepic
+{
+    text-align: center;
+}
+
+.window
+{
+    padding: 1em;
+}
+
+.window h3
+{
+    color: var(--alt-back);
+}
+
+.window .button-bar
+{
+    margin-top: 1em;
+}
+
+.window .button-bar button
+{
+    margin: 0;
+}
+
+.window form
+{
+    min-width: 50vw;
 }

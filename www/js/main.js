@@ -6,6 +6,10 @@
 /*	juin 2018										*/
 /****************************************************/
 
+
+
+/** Utility functions **/
+
 /* Attaches an event listener that will be only fired once */
 Element.prototype.fireOnce = function (event, callback)
 {
@@ -17,8 +21,23 @@ Element.prototype.fireOnce = function (event, callback)
 	});
 }
 
+/* Transforms class-name to className. Thanks to StackOverflow ;) */
+function prettify(str) {
+	let prettified = str.split('-').map(function capitalize(part) {
+		return part.charAt(0).toUpperCase() + part.slice(1);
+	}).join('');
+
+	return prettified.charAt(0).toLowerCase() + prettified.slice(1);
+}
+
+/* Like $_GET in PHP. */
 var _GET = new URL(location.href).searchParams;
 
+
+
+
+
+/* Initialization of a bunch of stuff like header menus */
 window.addEventListener('load', function ()
 {
 	initNav();
