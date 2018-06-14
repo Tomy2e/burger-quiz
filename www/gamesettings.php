@@ -36,13 +36,7 @@ if ( !isConnected($user) )
 			<h1>Thème</h1>
 			<ul class="hbox hnav-list" id="theme-list">
 
-				<?php
-					require_once('php/config.php');
-					require_once('php/Database.class.php');
-					require_once('php/Theme.class.php');
-
-					$db = Database::getInstance();
-					
+				<?php					
 					$themes = Theme::fetchAllThemes();
 
 					foreach ($themes as $theme) {
@@ -84,7 +78,7 @@ if ( !isConnected($user) )
 			</div>
 			
 			<a id="play" class="button squared highlighted disabled" href="game.php">Jouer !</a>
-			<a id="replay" href="game.php">Rejouer une partie</a>
+			<a id="replay" href="replay.php">Rejouer une partie</a>
 		</div>
 
 		<?php require_once("templates/footer.php"); ?>

@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <?php
 
 require_once('php/autoload.php');
@@ -7,10 +5,10 @@ require_once('php/autoload.php');
 if ( !isConnected($user) )
 {
     header('Location: index.php');
+    exit;
 }
 ?>
-
-
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">

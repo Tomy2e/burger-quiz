@@ -267,4 +267,41 @@ class Partie
             throw new PartieException("The game is not in the database yet!");
         }
     }
+
+    /*!
+     *  \brief Liste les thèmes associés aux questions de la partie
+     * 
+     *  \return Un tableau avec les thèmes
+     */
+    public function fetchThemes()
+    {
+        if(!is_null($this->id))
+        {
+            $prepFetch = Database::getInstance()->prepare("SELECT DISTINCT(themes.id_theme),themes.libelle_theme, themes.photo_theme
+            FROM parties, themes, appartient_parties, appartient_themes
+            WHERE parties.id_partie = 1 AND appartient_parties.id_partie = parties.id_partie
+                AND appartient_themes.id_question = appartient_parties.id_question
+                AND appartient_themes.id_theme = themes.id_theme");
+
+            if($prepFetch->execute(array($this->id)))
+            {
+                $arrayOfThemes = array();
+
+                foreach($prepFetch->fetchAll() as $theme_raw)
+                {
+                    array_push($arrayOfThemes, new Theme($theme_raw['id_theme'], $theme_raw['libelle_theme'], $theme_raw['photo_theme']));
+                }
+
+                return $arrayOfThemes;
+            }
+            else
+            {
+                throw new PartieException("Database error : faield to fetch themes");
+            }
+        }
+        else
+        {
+            throw new PartieException("The game is not in the database yet!");
+        }
+    }
 }

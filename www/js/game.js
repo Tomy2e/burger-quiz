@@ -9,6 +9,7 @@ class Game
 
         this.theme = _GET.get('id_theme');
         this.difficulty = _GET.get('d');
+        this.id_partie = _GET.get('id_partie');
 
         for (let screen of this.screens)
         {
@@ -88,12 +89,24 @@ class Game
     }
 
     begin()
-    {
-        this.request('new_game', 
+    {        
+        let params = {};
+
+        if(this.id_partie != null)
         {
-            'id_theme':this.theme,
-            'difficulty':this.difficulty,
-        }, 
+            params = {
+                'id_game' : this.id_partie,
+            };
+        }
+        else
+        {
+            params = {
+                'id_theme':this.theme,
+                'difficulty':this.difficulty,
+            };
+        }
+
+        this.request('new_game', params, 
         (res) => {
                 this.nextQuestion();
         });
