@@ -1,5 +1,26 @@
-class Window
+/****************************************/
+/*              window.js               */
+/*  A simple tool to display and use    */
+/* customizable modal windows.          */
+/*             -------                  */
+/* Gwenolé Leroy-Ferrec    -   mai 2018 */
+/****************************************/
+
+
+/**
+ * LICENSE : GNU GPL-3.0
+ * You can use, distribute and modify this file and all the associated files
+ * as permitted by the LICENSE. Only the aforementionned LICENSE applies to
+ * the present files and all it's associated files (window.js, window.css)
+ */
+
+
+ class Window
 {
+    /**
+     * Window : A simple way to create modal windows in the current page, and manage them. Very early WIP.
+     * @param {HTMLElement} element The underlying HTML DOM Element that is actually the graphical part of the window. Ususally, a div with the "window" class is used.
+     */
     constructor(element)
     {
         this.element = element;
@@ -46,6 +67,15 @@ class Window
         return !this.element.classList.contains('hidden');
     }
 };
+
+
+/**
+ * WindowManager
+ * The WindowManager object is an interface used to access the Windows created and control them.
+ */
+
+/* Event to be dispatched when the WindowManager is ready (ie, it have finished loading all the windows into its list) */
+var ev_WindowManagerReady = new Event('windowmanagerready');
 
 /* FIXME: upgrade to ES6 class */
 var WindowManager = {
@@ -95,4 +125,6 @@ window.addEventListener('load', (ev) => {
         WindowManager.add(_window);
     }
 
+    
+    window.dispatchEvent(ev_WindowManagerReady);
 });

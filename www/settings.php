@@ -26,6 +26,7 @@ if ( !isConnected($user) )
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
 
 		<script src="js/main.js"></script>
+		<script src="js/ajax.js"></script>
 		<script src="js/settings.js"></script>
 	</head>
 	<body>
@@ -60,12 +61,12 @@ if ( !isConnected($user) )
 				</form>
 
 				<div class="vbox">
-					<img id="profile-pic-large" class="roundel" src="resources/img/users/vlad.png" alt="Avatar">
+					<img id="profile-pic-large" class="roundel" src="<?php echo $user->getPhoto(); ?>" alt="Avatar">
 					<a id="btn-changepic" href="#">Modifier</a>
 				</div>
 			</div>
 
-			<div id="wnd-profile-pic" class="window screen-centered fixed hidden">
+			<div id="wnd-pic" class="window screen-centered fixed hidden">
 				<button id="close-btn">×</button>
 				<h3>Modifier la photo de profil</h3>
 

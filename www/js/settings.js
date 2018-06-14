@@ -1,6 +1,6 @@
 
 
-window.addEventListener('load', () => {
+window.addEventListener('windowmanagerready', () => {
 
     var username = document.getElementsByName('username')[0];
     var email = document.getElementsByName('mail')[0];
@@ -13,40 +13,32 @@ window.addEventListener('load', () => {
     var btnChangePic = document.getElementById('btn-changepic');
     var btnChangePasswd = document.getElementById('btn-changepasswd');
 
-    var _wndPic = document.getElementById('wnd-profile-pic');
-    var _wndPasswd = document.getElementById('wnd-passwd');
-
-    if ( btnChangePic && _wndPic )
+    if ( btnChangePic && WindowManager.wndPic )
     {
-        var wndPic = new Window(_wndPic);
 
-        wndPic.onvalidate = (ev) => {
+        WindowManager.wndPic.onvalidate = (ev) => {
             var profilePic = document.getElementById('profile-pic-large');
             var inputPhoto = document.getElementById('photo');
             var url = document.getElementById('url-photo').value;
 
-            profilePic.src = url;
-            console.log(url);
-            
+            profilePic.src = inputPhoto.value = url;
         }
 
         btnChangePic.addEventListener('click', (ev) => {
             ev.preventDefault();
-            wndPic.show();
+            WindowManager.wndPic.show();
         });
     }
 
-    if (btnChangePasswd && _wndPasswd)
+    if (btnChangePasswd && WindowManager.wndPasswd)
     {
-        var wndPasswd = new Window(_wndPasswd);
+        WindowManager.wndPasswd.onvalidate = (ev) => {
+            //TODO : manage password changes here
+        };
 
         btnChangePasswd.addEventListener('click', (ev) => {
             ev.preventDefault();
-            wndPasswd.show();
+            WindowManager.wndPasswd.show();
         });
     }
-
-
-    console.log(WindowManager.wndPasswd);
-    
 });
