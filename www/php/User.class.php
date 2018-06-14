@@ -275,6 +275,25 @@ class User
      */
     public function setPhoto($photo)
     {
+        $photo = filter_var($photo, FILTER_SANITIZE_URL);
+        if(!filter_var($photo, FILTER_VALIDATE_URL))
+        {
+            throw new UserException("URL is not valid. Details: \nURL : ".$photo);
+        }
+
+        // If ID is defined, update the database
+        if(!is_null($this->id)) 
+        {
+            $prepUpdatePhoto = $this->db->prepare("UPDATE utilisateurs SET photo_utilisateur = ? WHERE id_utilisateur = ?");
+            if(!$prepUpdatePhoto->execute(array(
+                $photo,
+                $this->id
+            )))
+            {
+                throw new UserException("Database error : Failed to update the user profile picture");
+            }
+        }
+
         $this->photo = $photo;
 
         return $this;

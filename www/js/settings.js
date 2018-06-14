@@ -21,7 +21,20 @@ window.addEventListener('windowmanagerready', () => {
             var inputPhoto = document.getElementById('photo');
             var url = document.getElementById('url-photo').value;
 
-            profilePic.src = inputPhoto.value = url;
+            ajaxRequest('POST', 'ajax.php?action=set_user_info', {
+                'photo': url
+            },
+            (res) => {
+                let json = JSON.parse(res);
+
+                if (json.status === 'ok') {
+                    profilePic.src = url;
+                    new NotifyNotification('Sauvegardé !', 'Votre photo de profil a bien été mise à jour', 'ok');
+                }
+                else {
+                    new NotifyNotification("Erreur", json.message, 'error', 5000);
+                }
+            });
         }
 
         btnChangePic.addEventListener('click', (ev) => {

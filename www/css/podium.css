@@ -17,9 +17,17 @@
     text-align: center;
 }
 
+.podium .user
+{
+    display: block;
+    min-width: 4em;
+    min-height: 4em;
+}
+
 .podium .user img
 {
     width: 4em;
+    height: 4em;
 
     border: solid 4px var(--main-front);
     border-radius: 100%;

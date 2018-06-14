@@ -24,9 +24,11 @@ if ( !isConnected($user) )
 		<link rel="stylesheet" type="text/css" href="css/header.css">
 		<link rel="stylesheet" type="text/css" href="css/footer.css">
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
+		<link rel="stylesheet" type="text/css" href="css/notify.css">
 
 		<script src="js/main.js"></script>
 		<script src="js/ajax.js"></script>
+		<script src="js/notify.js"></script>
 		<script src="js/settings.js"></script>
 	</head>
 	<body>
@@ -36,6 +38,8 @@ if ( !isConnected($user) )
 		<div id="page-settings" class="main-content">
 			<h1>Paramétres</h1>
 			
+			<div id="notify-container"></div>
+
 			<div id="settings" class="hbox">
 				<form class="vbox" action="#">
 					<label for="username">Nom d'utilisateur</label>
