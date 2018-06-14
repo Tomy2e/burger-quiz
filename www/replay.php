@@ -27,7 +27,7 @@ $popular = $partiesMgr->fetchLatestParties();
 		<link rel="stylesheet" type="text/css" href="css/footer.css">
 		<link rel="stylesheet" type="text/css" href="css/podium.css">
 
-		<script src="/js/main.js"></script>
+		<script src="js/main.js"></script>
 	</head>
 	<body>
 		<?php require_once("templates/header.php"); ?>

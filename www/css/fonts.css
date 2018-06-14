@@ -36,17 +36,17 @@
 @font-face
 {
     font-family: "ZillaSlab";
-    src: url("/fonts/Zilla Slab/ZillaSlab-Regular.ttf");
+    src: url("../fonts/Zilla Slab/ZillaSlab-Regular.ttf");
 }
 
 @font-face
 {
     font-family: "ZillaSlabBold";
-    src: url("/fonts/Zilla Slab/ZillaSlab-SemiBold.ttf");
+    src: url("../fonts/Zilla Slab/ZillaSlab-SemiBold.ttf");
 }
 
 @font-face
 {
     font-family: "ZillaSlabMedium";
-    src: url("/fonts/Zilla Slab/ZillaSlab-Medium.ttf");
+    src: url("../fonts/Zilla Slab/ZillaSlab-Medium.ttf");
 }

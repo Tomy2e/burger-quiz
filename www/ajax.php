@@ -171,6 +171,8 @@ else if ($_GET['action'] == 'answer_question')
 
         if(!empty($_SESSION['current_partie']) && $_SESSION['current_proposition_answered'] == false)
         {
+            $timeToAnswer = time() - $_SESSION['current_proposition_timesent'];
+            
             // Check if answer is correct
             if(intval($_POST['answer']) == $currentProposition->getReponse())
             {
@@ -179,7 +181,6 @@ else if ($_GET['action'] == 'answer_question')
                $_SESSION['current_propositions_correct']++;
 
                 // Check how much time taken to answer
-                $timeToAnswer = time() - $_SESSION['current_proposition_timesent'];
 
                 if($currentPartie->getDifficulte() == 1)
                 {
@@ -302,7 +303,6 @@ else if($_GET['action'] == 'get_results')
                 'id_game' => $currentPartie->getId(),
                 'scoreboard' => $currentPartie->fetchScores()
             ));
-            print_r();
         }
         else
         {

@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
                 return false;
             }
             
-            location.href = "http://" + location.hostname + "/game.php?action=play&id_theme=" + id_theme + "&d=" + difficulty;
+            location.href = "game.php?action=play&id_theme=" + id_theme + "&d=" + difficulty;
         });
     }
 });

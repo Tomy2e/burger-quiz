@@ -41,7 +41,7 @@ if ( !isConnected($user) )
 
 					foreach ($themes as $theme) {
 						echo '<li id="'.$theme->getId().'" class="theme-list-item">';
-							echo '<img class="theme-cover" src="'.( ($theme->getPhoto() == "") ? '/resources/img/imagedequalité.jpg"' : $theme->getPhoto() ).' alt="image de qualité.jpeg">';
+							echo '<img class="theme-cover" src="'.( ($theme->getPhoto() == "") ? 'resources/img/imagedequalité.jpg"' : $theme->getPhoto() ).' alt="image de qualité.jpeg">';
 							echo '<h3>'.$theme->getLibelle().'</h3>';
 						echo '</li>';
 					}
