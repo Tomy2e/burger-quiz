@@ -31,7 +31,7 @@
 	</span>
 
 	<div class="roundel" id="profile-selector">
-		<img src="resources/img/users/vlad.png" alt="vlad" id="profile-pic">
+		<img src="<?= $user->getPhoto(); ?>" alt="Photo de profil" id="profile-pic">
 	</div>
 
 	<div class="window vbox hidden" id="profile-modal">
@@ -40,7 +40,7 @@
 		<h2><?php echo $user->getUsername(); ?></h2>
 
 		<div class="roundel centered" id="window-profile-pic">
-			<img src="resources/img/users/vlad.png" alt="vlad" id="profile-pic-big">
+			<img src="<?= $user->getPhoto(); ?>" alt="Photo de profil" id="profile-pic-big">
 		</div>
 
 		<a href="settings.php" class="button highlighted" id="btn-param">Paramétres</a>

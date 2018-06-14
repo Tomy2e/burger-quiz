@@ -46,7 +46,7 @@ class ScoresManager
             break;
         }
 
-        $prepFetch = $this->db->prepare("SELECT utilisateurs.nom_utilisateur, SUM(score_final) AS total_points,
+        $prepFetch = $this->db->prepare("SELECT utilisateurs.nom_utilisateur, SUM(score_final) AS total_points, utilisateurs.photo_utilisateur,
         (SELECT MAX(score_final) FROM possede_scores AS e1 WHERE e1.id_utilisateur = possede_scores.id_utilisateur) AS top_score,
         (SELECT MIN(temps_partie) FROM possede_scores AS e1 WHERE e1.id_utilisateur = possede_scores.id_utilisateur) AS temps_min
         FROM possede_scores, utilisateurs

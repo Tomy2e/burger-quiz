@@ -41,7 +41,7 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 						<div class="user roundel">
 							<?php
 
-							echo '<img src="resources/img/users/vlad.png" alt="Vlad">';
+							echo '<img src="'.$classementGeneral[1]['photo_utilisateur'].'" alt="Vlad">';
 							echo '<h2>'.$classementGeneral[1]['nom_utilisateur'].'</h2>';
 							echo '<span class="topscore">'.$classementGeneral[1]['total_points'].'<span>';
 							?>
@@ -56,7 +56,7 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 						<div class="user roundel">
 							<?php
 
-							echo '<img src="resources/img/users/vlad.png" alt="Vlad">';
+							echo '<img src="'.$classementGeneral[0]['photo_utilisateur'].'" alt="Vlad">';
 							echo '<h2>'.$classementGeneral[0]['nom_utilisateur'].'</h2>';
 							echo '<span class="topscore">'.$classementGeneral[0]['total_points'].'<span>';
 							?>
@@ -71,7 +71,7 @@ $classementGeneral = $scoresMgr->getClassementGeneral();
 						<div class="user roundel">
 							<?php
 
-							echo '<img src="resources/img/users/vlad.png" alt="Vlad">';
+							echo '<img src="'.$classementGeneral[2]['photo_utilisateur'].'" alt="Vlad">';
 							echo '<h2>'.$classementGeneral[2]['nom_utilisateur'].'</h2>';
 							echo '<span class="topscore">'.$classementGeneral[2]['total_points'].'<span>';
 							?>
