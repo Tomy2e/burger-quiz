@@ -143,6 +143,10 @@ class Game
                 timer.style.width = '0';
             }, 10);
 
+            setTimeout(() => {
+                this.answer(Game.answers.none);
+            }, res.time_to_answer * 1000);
+
             /* Switch back to the game screen */
             this.show('game-ui');
         });
