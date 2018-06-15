@@ -191,7 +191,7 @@ else if ($_GET['action'] == 'answer_question')
                     }
                     else
                     {
-                        $answerPoints = ceil(100 + ((30 - abs($timeToAnswer))* 100)/30);
+                        $answerPoints = ceil(100 + ((30 - min(abs($timeToAnswer),30))* 100)/30);
                     }
                 }
                 else if($currentPartie->getDifficulte() == 2)
@@ -203,7 +203,7 @@ else if ($_GET['action'] == 'answer_question')
                     }
                     else
                     {
-                        $answerPoints = ceil(200 + ((20 - abs($timeToAnswer))* 100)/20);;
+                        $answerPoints = ceil(200 + ((20 - min(abs($timeToAnswer),20))* 100)/20);;
                     }
                 }
                 else if($currentPartie->getDifficulte() == 3)
@@ -215,7 +215,7 @@ else if ($_GET['action'] == 'answer_question')
                     }
                     else
                     {
-                        $answerPoints = ceil(300 + ((10 - abs($timeToAnswer))* 100)/10);;
+                        $answerPoints = ceil(300 + ((10 - min(abs($timeToAnswer), 10))* 100)/10);;
                     }
                 }
                 else
@@ -322,7 +322,8 @@ else if($_GET['action'] == 'set_user_info')
     {
         if ( isset($_POST['username']) ) $user->setUsername($_POST['username']);
         if ( isset($_POST['password']) ) $user->setPassword($_POST['password']);
-        if ( isset($_POST['email']) ) $user->setEmail($_POST['email']);
+        if ( isset($_POST['mail']) ) $user->setEmail($_POST['mail']);
+        if ( isset($_POST['age']) ) $user->setAge($_POST['age']);
         if ( isset($_POST['photo']) ) $user->setPhoto($_POST['photo']);
 
         echo json_encode(array(
