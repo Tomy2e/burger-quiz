@@ -38,25 +38,26 @@ if ( !isConnected($user) )
             <div id="notify-container"></div>
 
             <div class="fullscreen selected" id="game-ui">
+                
                 <div class="vbox" id="question-zone">
                     <ul class="steps-indicator">
                         <li id="step1"></li>
                         <li id="step2"></li>
                         <li id="step3"></li>
                     </ul>
-
+                    
                     <h2 id="question">...</h2>
                     <h1 id="affirmation">Préparation de la sauce...</h1>
+                </div>
+                
+                <div class="progress-bar">
+                    <div id="remaining-time" class="progress-bar-indicator"></div>
                 </div>
 
                 <div id="choices" class="hbox">
                     <button id="choice1" class="choice squared flat">Loading...</button>
                     <button id="choice2" class="choice squared flat">Loading...</button>
                     <button id="both" class="roundel">Les deux</button>
-                </div>
-
-                <div class="progress-bar" id"timer-bar">
-                    <div id="progress"></div>
                 </div>
             </div>
 
@@ -72,7 +73,7 @@ if ( !isConnected($user) )
                     <h3>(+42)</h3>
                 </div>
 
-                <button class="next-question">Arch, quéssion zuifante</button>
+                <button class="next-question">Question suivante</button>
             </div>
 
             <div class="fullscreen" id="answer-false">
@@ -89,7 +90,7 @@ if ( !isConnected($user) )
                     <h3>(+0)</h3>
                 </div>
 
-                <button class="next-question">Arch, quéssion zuifante</button>
+                <button class="next-question">Question suivante</button>
 
             </div>
 

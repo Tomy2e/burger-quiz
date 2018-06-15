@@ -120,12 +120,30 @@ class Game
             var proposition = document.getElementById('affirmation');
             var choice1 = document.getElementById('choice1');
             var choice2 = document.getElementById('choice2');
+            var timer = document.getElementById('remaining-time');
 
+            /* Update questions and answers */
             question.innerText = res.current_question;
             proposition.innerText = res.current_proposition;
             choice1.innerText = res.libelle1;
             choice2.innerText = res.libelle2;
+
+            for (let i = 1 ; i <= res.current_question_progress ; i++)
+            {
+                document.querySelector('ul.steps-indicator li#step' + i).classList.add('done');                        
+            }
             
+            /* Reset the progress bar timer */
+            timer.style.transitionDuration = '0s';
+            timer.style.width = '100%';
+            
+            setTimeout(() => {  //We need to wait a little bit for the browser to update the computed CSS properties f the timer
+                /* Start the countdown animation */
+                timer.style.transitionDuration = res.time_to_answer + 's';
+                timer.style.width = '0';
+            }, 10);
+
+            /* Switch back to the game screen */
             this.show('game-ui');
         });
     }

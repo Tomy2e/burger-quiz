@@ -84,6 +84,32 @@ ul.steps-indicator li
     border-radius: 100%;
 }
 
+ul.steps-indicator li.done
+{
+    background-color: var(--main-front);
+}
+
+.progress-bar
+{
+    position: absolute;
+    top: 4.1em;
+    left: 0;
+
+    width: 100vw;
+    height: 0.5em;
+}
+
+.progress-bar .progress-bar-indicator
+{
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--game-both);
+
+    transition: width 10s;
+    transition-timing-function: linear;
+}
+
 .fullscreen h1, .fullscreen h2, .fullscreen h3
 {
     color: var(--game-answer);
@@ -101,6 +127,8 @@ ul.steps-indicator li
 {
     width: 50vw;
     height: 40vh;
+
+    padding: 1em;
     
     font-family: "ZillaSlabBold", "ZillaSlab";
     font-weight: normal;

@@ -2,23 +2,20 @@
 
 window.addEventListener('windowmanagerready', () => {
 
-    var username = document.getElementsByName('username')[0];
-    var email = document.getElementsByName('mail')[0];
-    //var passwd = document.getElementsByName('password')[0]; //way too easy
-
-    //lets try something more... tasteful
-    var passwd = ((document.getElementsByName('password').length > 0) ? document.getElementsByName('password') : [null])[0];
-
-
     var btnChangePic = document.getElementById('btn-changepic');
     var btnChangePasswd = document.getElementById('btn-changepasswd');
+    var userSettingsForm = document.getElementById('user-settings');
+    
+    var initialUsername = document.getElementById('username').value;
+    var initialMail = document.getElementById('mail').value;
+    var initialAge = document.getElementById('age').value;
+
 
     if ( btnChangePic && WindowManager.wndPic )
     {
 
         WindowManager.wndPic.onvalidate = (ev) => {
             var profilePic = document.getElementById('profile-pic-large');
-            var inputPhoto = document.getElementById('photo');
             var url = document.getElementById('url-photo').value;
 
             ajaxRequest('POST', 'ajax.php?action=set_user_info', {
@@ -43,7 +40,7 @@ window.addEventListener('windowmanagerready', () => {
         });
     }
 
-    if (btnChangePasswd && WindowManager.wndPasswd)
+    if ( btnChangePasswd && WindowManager.wndPasswd )
     {
         WindowManager.wndPasswd.onvalidate = (ev) => {
             var username = document.getElementById('username').value;
@@ -60,9 +57,30 @@ window.addEventListener('windowmanagerready', () => {
                 (res) => {
                     let json = JSON.parse(res);
                     
-                    if (json.status === 'ok') {
-                        
-                        new NotifyNotification('Lorem', 'ca marche peut être', 'ok');
+                    if (json.status === 'ok')
+                    {
+                        if ( newPassword === confPassword )
+                        {
+                            ajaxRequest('POST', 'ajax.php?action=set_user_info', {
+                                'password': newPassword
+                            },
+                            (res) => {
+                                let json = JSON.parse(res);
+
+                                if (json.status === 'ok')
+                                {
+                                    new NotifyNotification('Sauvegardé !', 'Votre mot de passe a bien été mise à jour', 'ok');
+                                }
+                                else
+                                {
+                                    new NotifyNotification("Erreur", json.message, 'error', 5000);
+                                }
+                            });
+                        }
+                        else 
+                        {
+                            new NotifyNotification("Erreur", "Les mots de passe ne correspondent pas", 'error', 5000);
+                        }
                     }
                     else {
                         new NotifyNotification("Erreur", json.message, 'error', 5000);
@@ -75,5 +93,30 @@ window.addEventListener('windowmanagerready', () => {
             ev.preventDefault();
             WindowManager.wndPasswd.show();
         });
+
+        userSettingsForm.onsubmit = (ev) => {
+            ev.preventDefault();
+
+            var newUsername = document.getElementById('username').value;
+            var newMail = document.getElementById('mail').value;
+            var newAge = document.getElementById('age').value;
+
+            var updatedInfo = {};
+
+            if ( newUsername !== initialUsername ) updatedInfo.username = newUsername;
+            if ( newAge !== initialAge ) updatedInfo.age = newAge;
+            if ( newMail !== initialMail ) updatedInfo.mail = newMail;
+
+            ajaxRequest('POST', 'ajax.php?action=set_user_info', updatedInfo, (res) => {
+                let json = JSON.parse(res);
+
+                if (json.status === 'ok') {
+                    new NotifyNotification('Sauvegardé !', 'Vos modifications ont été enregistrées', 'ok');
+                }
+                else {
+                    new NotifyNotification("Erreur", json.message, 'error', 5000);
+                }
+            });
+        }
     }
 });

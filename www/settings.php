@@ -41,7 +41,7 @@ if ( !isConnected($user) )
 			<div id="notify-container"></div>
 
 			<div id="settings" class="hbox">
-				<form class="vbox" action="#">
+				<form id="user-settings" class="vbox" action="#">
 					<label for="username">Nom d'utilisateur</label>
 					<input id="username" type="text" value="<?php echo $user->getUsername(); ?>" name="username">
 
