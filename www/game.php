@@ -95,10 +95,33 @@ if ( !isConnected($user) )
             </div>
 
             <div class="fullscreen" id="results">
-                <h1>Là normalement c'est un écran de résultats</h1>
-                <h2>Mais vous ne pouvez pas le voir parce qu'il n'est pas encore fait</h2>
-                <img src="resources/img/imagedequalité.jpg" alt="image de qualité.jpeg">
-                <h3>En attendant je vous propose cette image d'un homme respirant la joie de vivre afin de vous réconforter</h3>
+               <h1>Résultats</h1>
+
+                <div id="user-pic">
+                    <img class="roundel" src="<?php echo $user->getPhoto(); ?>" alt="c'est cassé :/">
+                    <h3><?php echo $user->getUsername(); ?></h3>
+                </div>
+
+
+                <div id="stats" class="hbox">
+                    <div>
+                        <h2>VOUS</h2>
+                    
+                        <div class="score-item hbox">Score : <span id="score">XXXX</span></div>
+                        <div class="score-item hbox">Temps : <span id="time">XXXX</span></div>
+                        <div class="score-item hbox">Bonnes réponses : <span id="correct-answers">XXXX</span></div>
+                    </div>
+                    
+                    <div>
+                        <h2>TOP JOUEURS SUR CETTE PARTIE</h2>
+                    
+                        <ul id="top-players">
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <button id="replay" class="next-question">Rejouer</button>
             </div>
 		</div>
 

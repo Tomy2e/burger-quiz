@@ -45,7 +45,7 @@ $popular = $partiesMgr->fetchLatestParties();
 				<table class="flat-table">
 					<thead>
 						<tr>
-							<td>N° partie</td>
+							<td>#</td>
 							<td>Thèmes</td>
 							<td>Difficulté</td>
 							<td>Nombre de joueurs</td>
@@ -56,7 +56,7 @@ $popular = $partiesMgr->fetchLatestParties();
 					<tbody>
 						<?php foreach($popular as $entree) : ?>
 						<tr>
-							<td>Partie N°<?= $entree->getId(); ?></td>
+							<td><?= $entree->getId(); ?></td>
 							<td>
                                 <?php
                                 $themes = $entree->fetchThemes();

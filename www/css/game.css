@@ -39,6 +39,7 @@ footer:hover
     font-size: 2.5vh;
 
     background-color: var(--game-back);
+    color: var(--game-answer);
 
     transition: all 0.3s;
 }
@@ -242,6 +243,13 @@ button.next-question
     background-color: var(--game-choice1);
     border-radius: 0;
     border: solid 0.15em var(--game-answer);
+
+    transition: box-shadow 0.3s;
+}
+
+button.next-question:hover
+{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.527);
 }
 
 #correct-answer
@@ -255,6 +263,81 @@ button.next-question
 
     color: var(--game-answer);
 }
+
+#results .roundel
+{
+    border: solid 4px var(--main-front);
+}
+
+#results .score-item
+{
+    width: 30vw;
+    min-width: 12em;
+
+    font-family: "ZillaSlabBold";
+    font-size: 1.2em;
+
+    margin: auto;
+}
+
+#results #replay
+{
+    margin-top: 3em;
+}
+
+#results h2
+{
+    font-size: 1.3em;
+
+    margin-top: 1.5em;
+    margin-bottom: 0;
+}
+
+#user-pic img.roundel 
+{
+    width: 20vh;
+    height: 20vh;
+}
+
+#user-pic h3
+{
+    margin-top: 0.2em;
+}
+
+ul#top-players
+{
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+ul#top-players li
+{
+    margin: 0.3em auto;
+}
+
+ul#top-players li h3
+{
+    margin: 0;
+}
+
+#top-players img.roundel
+{
+    width: 2em;
+    height: 2em;
+
+    border: solid 2px var(--main-front);
+}
+
+#stats
+{
+    justify-content: space-between;
+    justify-content: space-evenly;
+
+    align-items: baseline;
+}
+
 /*
 button.next-question::after, button.next-question::before
 {

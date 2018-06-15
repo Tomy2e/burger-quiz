@@ -301,6 +301,9 @@ else if($_GET['action'] == 'get_results')
             echo json_encode(array(
                 'status' => 'ok',
                 'id_game' => $currentPartie->getId(),
+                'user_score' => $_SESSION['current_score'],
+                'user_time' => $_SESSION['current_partietime'],
+                'correct_answers' => $_SESSION['current_propositions_correct'],
                 'scoreboard' => $currentPartie->fetchScores()
             ));
         }

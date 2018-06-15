@@ -185,7 +185,23 @@ class Game
                 btnNext.onclick = (ev) => {
 
                     this.request('get_results', null, (res) => {
-                        //do things, plz no bugs
+                        console.log(document.getElementById('score'));
+                        
+                        document.querySelector('#results #score').innerText = res.user_score + ' points';
+                        document.querySelector('#results #time').innerText = res.user_time + ' s';
+                        document.querySelector('#results #correct-answers').innerText = res.correct_answers + '/9';
+
+                        var topPlayers = document.getElementById('top-players');
+
+                        for (let i = 0 ; i < Math.min(res.scoreboard.length, 3) ; i++)
+                        {
+                            let score = res.scoreboard[i];
+                            topPlayers.innerHTML += '<li class="hbox">' +
+                                                        '<img class="roundel" src = "' + score.photo_utilisateur + '" alt = ":/">' +
+                                                        '<h3>'+ score.nom_utilisateur + '</h3>' +
+                                                        '<span>' + score.score_final + ' points</span>' +
+                                                    '</li>';
+                        }
                     });
 
                     this.show('results');
@@ -235,4 +251,4 @@ window.addEventListener('load', () => {
     }
 
     quiz.begin();
-});
+});//do things, plz no bugs
