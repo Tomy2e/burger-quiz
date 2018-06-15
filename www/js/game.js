@@ -141,11 +141,12 @@ class Game
                 /* Start the countdown animation */
                 timer.style.transitionDuration = res.time_to_answer + 's';
                 timer.style.width = '0';
-            }, 10);
 
-            setTimeout(() => {
-                this.answer(Game.answers.none);
-            }, res.time_to_answer * 1000);
+                this.countdown = setTimeout(() => {
+                    this.answer(Game.answers.none);
+                }, res.time_to_answer * 1000);
+            }, 30);
+
 
             /* Switch back to the game screen */
             this.show('game-ui');
@@ -154,6 +155,8 @@ class Game
 
     answer(choice)
     {
+        clearTimeout(this.countdown);
+
         this.request('answer_question', {'answer':choice}, (res) => {
 
             let screen;
