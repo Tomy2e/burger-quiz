@@ -1,5 +1,15 @@
+/********************************/
+/*          game.js             */
+/* Manages the game window and  */
+/* the game communication with  */
+/* the server.                  */
+/********************************/
+
 class Game
 {
+    /**
+     * Create a new game
+     */
     constructor()
     {
         var _GET = new URL(location.href).searchParams;

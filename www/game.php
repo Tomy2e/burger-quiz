@@ -121,7 +121,7 @@ if ( !isConnected($user) )
                     </div>
                 </div>
 
-                <button id="replay" class="next-question">Rejouer</button>
+                <a href="gamesettings.php" id="replay" class="button next-question">Rejouer</a>
             </div>
 		</div>
 
