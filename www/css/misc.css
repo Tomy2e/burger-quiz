@@ -1,0 +1,16 @@
+#location
+{
+    font-size: 4em;
+    font-style: normal;
+}
+
+.centered
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    text-align: center;
+}
