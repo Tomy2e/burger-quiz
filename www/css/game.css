@@ -232,7 +232,7 @@ ul.steps-indicator li.done
     font-size: 2em;
 }
 
-.button.next-question
+.button.next-question, button.next-question
 {
     margin-top: 1em;
     padding: 0.5em;
@@ -247,7 +247,7 @@ ul.steps-indicator li.done
     transition: box-shadow 0.3s;
 }
 
-.button.next-question:hover
+.button.next-question:hover, button.next-question:hover
 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.527);
 }
@@ -282,6 +282,7 @@ ul.steps-indicator li.done
 
 #results #replay
 {
+    display: inline-block;
     margin-top: 3em;
 }
 
