@@ -44,3 +44,6 @@ CMakeLists.txt.user*
 
 # The PHP configuration
 www/php/config.php
+
+# Ban the executable
+admin-gui/BurgerQuiz-Admin/BurgerQuiz-Admin
